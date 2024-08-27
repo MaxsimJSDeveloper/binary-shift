@@ -9,4 +9,4 @@ const waterSlice = createSlice({
   },
 });
 
-export const contactsReducer = waterSlice.reducer;
+export const waterReducer = waterSlice.reducer;

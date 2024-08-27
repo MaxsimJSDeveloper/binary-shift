@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { waterReducer } from "./water/slice";
+
 import {
   persistStore,
   persistReducer,
@@ -12,6 +12,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth/slice";
+import { waterReducer } from "./water/slice";
 
 const authPersistConfig = {
   key: "auth",

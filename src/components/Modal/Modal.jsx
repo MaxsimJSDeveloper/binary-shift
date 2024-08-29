@@ -8,7 +8,7 @@ const Modal = ({ isOpen, onClose, children }) => {
     <div className={css.modalOverlay} onClick={onClose}>
       <div className={css.modalContent} onClick={(e) => e.stopPropagation()}>
         <button className={css.closeButton} onClick={onClose}>
-          <IoMdClose style={{ width: 24, height: 24, fill: "#407BFF" }} />
+          <IoMdClose className={css.icon} />
         </button>
         {children}
       </div>

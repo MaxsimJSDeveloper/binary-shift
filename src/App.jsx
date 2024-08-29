@@ -20,7 +20,14 @@ function App() {
       <button onClick={handleOpenModal}>Modal wrap</button>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <h2>Тут передайте те що вам треба</h2>
+        <div
+          style={{
+            width: 424,
+            height: 296,
+          }}
+        >
+          <h2>Тут передайте те що вам треба</h2>
+        </div>
       </Modal>
     </>
   );

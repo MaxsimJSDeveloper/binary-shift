@@ -1,0 +1,32 @@
+.wrapper {
+  width: 280px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.23;
+  margin-bottom: 24px;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+  margin-bottom: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 704px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    width: 592px;
+  }
+}

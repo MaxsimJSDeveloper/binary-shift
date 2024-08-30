@@ -1,0 +1,44 @@
+.header {
+    display: flex;
+    padding: 12px 112px;
+    justify-content: space-between;
+}
+
+.iconLogo {
+    width: 102px;
+    height: 48px;
+}
+
+.containerAuth {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    border: none;
+    background-color: transparent;
+    color: #407bff;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 8px;
+}
+
+.iconUser {
+    width: 28px;
+    height: 28px;
+    
+}
+
+.openModal {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonOpenAndCloseModal {
+    border: none;
+    color: #407bff;
+    background-color: transparent;
+}

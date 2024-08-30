@@ -1,51 +1,30 @@
-// import { useState } from "react";
-import { FiPlus, FiMinus } from "react-icons/fi";
-import Modal from "../Modal/Modal";
+// При вызове компонента передать пропс onClose
+// <TodayWaterList onClose={handleCloseModal} />
 
+import { useEffect, useState } from "react";
 
+import css from "../TodayListModal/TodayListModal.module.css";
+import AddWaterForm from "../AddWaterForm/AddWaterForm";
 
-const TodayListModal = ({ onClose, isOpen }) => {
-    // const [amount, setAmount] = useState();
-    const handleClose = () => {
-        onClose()
-    }
-    return (
-        <Modal isOpen={isOpen} onClose={handleClose}>
-            <h2>Add water</h2>
-            <h3>Choose a value:</h3>
-            <p>Amount of water:</p>
-                <div>
-                    <button>
-                        <FiMinus />
-                    </button>
-                    <div>
-                        <p>50ml</p>
-                    </div>
-                    <button>
-                        <FiPlus />
-                    </button>
-            </div>
-            <div>
-                <p>Recording time:</p>
-                <input
-                    type="text"
-                />
-            </div>
-            <div>
-                <h3>Enter the value of the water used:</h3>
-                <input
-                    type="number"
-                />
-            </div>
-            <div>
-                <p>50ml</p>
-                <button>Save</button>
-            </div>
-            
-            
-            
-    </Modal>
-)
-};
+function TodayWaterList({ onClose }) {
+  const [time, setTime] = useState("");
 
-export default TodayListModal;
+  useEffect(() => {
+    const now = new Date();
+    const hours = String(now.getHours());
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+
+    const currentTime = `${hours}:${minutes}`;
+    setTime(currentTime);
+  }, []);
+
+  return (
+    <div className={css.wrapper}>
+      <h2 className={css.title}>Add water</h2>
+      <p className={css.text}>Choose a value:</p>
+      <AddWaterForm onClose={onClose} currentTime={time} />
+    </div>
+  );
+}
+
+export default TodayWaterList;

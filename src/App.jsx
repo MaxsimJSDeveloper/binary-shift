@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import Modal from "./components/Modal/Modal.jsx";
-import TodayWaterList from "./components/TodayListModal/TodayListModal.jsx";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,15 +20,14 @@ function App() {
       <button onClick={handleOpenModal}>Modal wrap</button>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        {/* <div
+        <div
           style={{
             width: 424,
             height: 296,
           }}
         >
           <p>Тут передайте те що вам треба</p>
-        </div> */}
-        <TodayWaterList onClose={handleCloseModal} />
+        </div>
       </Modal>
     </>
   );

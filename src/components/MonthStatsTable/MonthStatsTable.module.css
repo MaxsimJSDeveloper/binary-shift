@@ -1,0 +1,68 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0 auto;
+  background-color: #ecf2ff;
+  padding: 32px 24px;
+  width: 704px;
+  border-radius: 10px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  height: 32px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.23077;
+  color: #2f2f2f;
+}
+
+.navigationBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #407bff;
+  gap: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.button {
+  background-color: transparent;
+  border-color: transparent;
+  color: #407bff;
+}
+.disable {
+  background-color: transparent;
+  border-color: transparent;
+  color: #9ebbff;
+}
+
+.li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  /* border: 1px solid #ff9d43; */
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 7px;
+  width: 34px;
+  height: 34px;
+  background-color: #fff;
+}
+
+.ul {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 34px;
+  width: 646px;
+}

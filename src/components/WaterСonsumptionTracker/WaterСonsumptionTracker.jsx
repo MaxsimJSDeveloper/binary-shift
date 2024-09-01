@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "./WaterСonsumptionTracker.module.css";
+import css from "./WaterСonsumptionTracker.module.css";
 
 const WaterConsumptionTracker = () => {
   const navigate = useNavigate(); // Хук для навигації по маршрутам
@@ -10,26 +10,24 @@ const WaterConsumptionTracker = () => {
   };
 
   return (
-    <div className="tracker-container">
+    <div className={css.trackerContainer}>
       <h1>Water consumption tracker</h1>
       <p>Record daily water intake and track</p>
-      <div className="tracker-benefits">
+      <div className={css.trackerBenefits}>
         <h3>Tracker Benefits</h3>
         <ul>
           <li>
-            <img src="path/to/icon1.png" alt="Habit drive icon" /> Habit drive
+            <img src="path/to/icon1.png" /> Habit drive
           </li>
           <li>
-            <img src="path/to/icon2.png" alt="View statistics icon" /> View
-            statistics
+            <img src="path/to/icon2.png" /> View statistics
           </li>
           <li>
-            <img src="path/to/icon3.png" alt="Personal rate setting icon" />{" "}
-            Personal rate setting
+            <img src="path/to/icon3.png" /> Personal rate setting
           </li>
         </ul>
       </div>
-      <button className="try-tracker-btn" onClick={handleButtonClick}>
+      <button className={css.tryTrackerBtn} onClick={handleButtonClick}>
         Try tracker
       </button>
     </div>

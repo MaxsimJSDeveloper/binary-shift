@@ -1,0 +1,36 @@
+.whyDrinkWaterCont {
+    background: #ECF2FF;
+    padding: 32px 24px;
+    border-radius: 10px;
+    width: 495px;
+    height: 332px;
+}
+
+.whyDrinkWaterCont h3 {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 12px;
+}
+
+.whyDrinkWaterCont ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.whyDrinkWaterCont li {
+    position: relative;
+    margin-bottom: 16px;
+    padding-left: 20px;
+}
+
+.whyDrinkWaterCont li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    background: #407BFF;
+    border-radius: 50%;
+}

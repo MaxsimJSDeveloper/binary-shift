@@ -1,8 +1,8 @@
-import "./WhyDrinkWater.module.css";
+import css from "./WhyDrinkWater.module.css";
 
 const WhyDrinkWater = () => {
   return (
-    <div className="WhyDrinkWater">
+    <div className={css.whyDrinkWaterCont}>
       <h3>Why drink water</h3>
       <ul>
         <li>Supply of nutrients to all organs</li>

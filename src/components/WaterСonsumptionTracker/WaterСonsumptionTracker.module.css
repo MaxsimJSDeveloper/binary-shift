@@ -1,56 +1,63 @@
-.tracker-container {
+.trackerContainer {
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 439px;
+    height: 366px;
 }
 
-.tracker-container h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
+.trackerContainer h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 42px;
 }
 
-.tracker-container p {
-    font-size: 16px;
-    color: #666;
+.trackerContainer p {
+    font-size: 26px;
+    font-weight: 400;
+    color: #2F2F2F;
+    line-height: 32px;
     margin-bottom: 20px;
 }
 
-.tracker-benefits {
+.trackerBenefits {
     margin-bottom: 20px;
 }
 
-.tracker-benefits h3 {
+.trackerBenefits h3 {
     font-size: 18px;
-    margin-bottom: 10px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-bottom: 12px;
 }
 
-.tracker-benefits ul {
+.trackerBenefits ul {
     list-style: none;
     padding: 0;
+    margin-bottom: 26px;
 }
 
-.tracker-benefits li {
+.trackerBenefits li {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 16px;;
 }
 
-.tracker-benefits img {
+.trackerBenefits img {
     margin-right: 10px;
 }
 
-.try-tracker-btn {
-    background-color: #4a90e2;
+.tryTrackerBtn {
+    background-color: #407BFF;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 30px 10px 30px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
 }
 
-.try-tracker-btn:hover {
-    background-color: #357ab9;
+.tryTrackerBtn:hover {
+    cursor: pointer;
 }

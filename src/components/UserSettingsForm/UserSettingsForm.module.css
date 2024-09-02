@@ -167,9 +167,6 @@ img {
   color: #9ebbff;
 }
 
-/* .user_info_field {
-  margin-top: 8px;
-} */
 .user_form_input_button {
   position: absolute;
   top: 60%; /* Центровка кнопки по вертикали */
@@ -228,7 +225,8 @@ img {
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 24px;
-    /* margin-bottom: 24px; */
+    max-height: 272px;
+    margin-bottom: 24px;
   }
 
   .gender_name_email_desktop {
@@ -238,5 +236,12 @@ img {
 
   .genderPart {
     margin-bottom: 52px;
+  }
+  .namePart {
+    gap: 0px;
+  }
+  .emailPart {
+    margin-bottom: 0px;
+    gap: 0px;
   }
 }

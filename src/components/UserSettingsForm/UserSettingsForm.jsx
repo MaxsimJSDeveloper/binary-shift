@@ -5,7 +5,7 @@ import { HiArrowUpTray } from "react-icons/hi2";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { HiOutlineEye } from "react-icons/hi2";
 import { HiOutlineEyeOff } from "react-icons/hi";
-import { updateUser, uploadPhoto } from "../../redux/auth/operations";
+// import { updateUser, uploadPhoto } from "../../redux/auth/operations.js";
 import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./UserSettingsForm.module.css";
@@ -25,7 +25,6 @@ const validationSchema = Yup.object({
   ),
   // .required('Please confirm your new password'),
 });
-//  добавить проверку, чтобы хотя бы одно поле было заполнено перед сабмитом
 
 export default function UserSettingsForm({ user, onClose }) {
   const [showOutdatedpassword, setShowOutdatedpassword] = useState(false);
@@ -77,6 +76,12 @@ export default function UserSettingsForm({ user, onClose }) {
   const handleUpdate = (values, { setSubmitting }) => {
     console.log("Form values:", values);
     const { gender, name, email, outdatedPassword, newPassword } = values;
+
+    if (!name && !email && !outdatedPassword && !newPassword) {
+      toast.error("Please fill in at least one field.");
+      setSubmitting(false);
+      return;
+    }
 
     dispatch(
       updateUser({

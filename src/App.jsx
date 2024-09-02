@@ -17,19 +17,6 @@ function App() {
   return (
     <>
       <MainPage />
-
-      <button onClick={handleOpenModal}>Modal wrap</button>
-
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <div
-          style={{
-            width: 424,
-            height: 296,
-          }}
-        >
-          <p>Тут передайте те що вам треба</p>
-        </div>
-      </Modal>
     </>
   );
 }

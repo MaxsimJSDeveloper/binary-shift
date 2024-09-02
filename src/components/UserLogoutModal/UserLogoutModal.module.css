@@ -2,19 +2,20 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  justify-content: space-between;
   flex-wrap: nowrap;
   gap: 24px;
   position: relative;
   width: 232px;
   height: 196px;
   margin: 0 auto;
-  padding: 32px 24px;
+  /* padding: 32px 24px; */
   background: #ffffff;
   border-radius: 10px;
 }
 
 .log_out_title {
-  color: 2F2F2F;
+  color: #2f2f2f;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 26px;
@@ -24,13 +25,14 @@
 }
 
 .logout_confirm {
+  width: 100%;
   color: #2e2e2e;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 17px;
   line-height: 1.11;
   text-align: left;
+  white-space: nowrap;
 }
 
 .button_container {
@@ -81,6 +83,11 @@
   .logout_modal_main_container > *:last-child {
     align-self: flex-end;
   }
+
+  .logout_confirm {
+    font-size: 18px;
+  }
+
   .button_container {
     flex-direction: row-reverse;
   }

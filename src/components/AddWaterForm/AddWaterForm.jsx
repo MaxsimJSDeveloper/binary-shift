@@ -12,8 +12,9 @@ const notifyIncorectData = () => toast.error("The data entered is incorrect");
 const notifyIncorrectAmount = () =>
   toast.error("The value of the water you drink should be from 1 to 5000");
 const notifySuccess = () => toast.success("Successfully created!");
+const notifySuccessUpdate = () => toast.success("Successfully utdated!");
 
-function AddWaterForm({ onClose, water = 0, currentTime }) {
+function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
   const [amountWater, setAmountWater] = useState(water);
   const [time, setTime] = useState(() => currentTime);
   const [isTimeCorrect, setIsTimeCorrect] = useState(true);
@@ -89,14 +90,29 @@ function AddWaterForm({ onClose, water = 0, currentTime }) {
     }
     if (time.length === 5 && time.startsWith("0")) {
       const mewTime = time.slice(1);
-      console.log({ time: mewTime, amountWater });
-      notifySuccess();
-      setTimeout(onClose, 2000);
+      if (id === null) {
+        // если не передали id будет post на создание новой записи
+        console.log({ time: mewTime, amountWater });
+        notifySuccess();
+        setTimeout(onClose, 2000);
+      } else {
+        //если передали id будет patch на редактирование записи
+        console.log({ id, time: mewTime, amountWater });
+        notifySuccessUpdate();
+        setTimeout(onClose, 2000);
+      }
+
       return;
     }
-    console.log({ time, amountWater });
-    notifySuccess();
-    setTimeout(onClose, 2000);
+    if (id === null) {
+      console.log({ time, amountWater });
+      notifySuccess();
+      setTimeout(onClose, 2000);
+    } else {
+      console.log({ id, time, amountWater });
+      notifySuccessUpdate();
+      setTimeout(onClose, 2000);
+    }
   }
   return (
     <>

@@ -1,0 +1,26 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 320px) {
+    .loader {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 768px) {
+    .loader {
+        height: 60px;
+        width: 60px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1440px) {
+    .loader {
+        height: 80px;
+        width: 80px;
+    }
+}

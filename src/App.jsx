@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Modal from "./components/Modal/Modal.jsx";
+import MainPage from "./pages/MainPage.jsx";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,12 +16,19 @@ function App() {
 
   return (
     <>
-      <h1>Hello</h1>
+      <MainPage />
 
       <button onClick={handleOpenModal}>Modal wrap</button>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <h2>Тут передайте те що вам треба</h2>
+        <div
+          style={{
+            width: 424,
+            height: 296,
+          }}
+        >
+          <p>Тут передайте те що вам треба</p>
+        </div>
       </Modal>
     </>
   );

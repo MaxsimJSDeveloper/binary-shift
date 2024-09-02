@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import Modal from "./components/Modal/Modal.jsx";
 
+import MainPage from "./pages/MainPage";
+
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -15,7 +17,7 @@ function App() {
 
   return (
     <>
-      <h1>Hello</h1>
+      <MainPage />
 
       <button onClick={handleOpenModal}>Modal wrap</button>
 

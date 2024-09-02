@@ -1,0 +1,28 @@
+@media (max-width: 767px) {
+  .background {
+    background-image: url(../img/mobile/background-main-page.webp);
+    background-repeat: no-repeat;
+    background-position: center 70px;
+    padding-bottom: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .background {
+    background-image: url(../img/tablet/background-main-page.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-bottom: 50px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .background {
+    background-image: url(../img/desck/background-bable.png),
+      url(../img/desck/background-main-page.webp);
+    background-repeat: no-repeat;
+    background-position: center calc(368px - 260px), bottom;
+    height: 900px;
+    display: flex;
+  }
+}

@@ -1,5 +1,5 @@
 import WhyDrinkWater from "../components/WhyDrinkWater/WhyDrinkWater";
-import WaterConsumptionTracker from "../components/WaterСonsumptionTracker/WaterСonsumptionTracker";
+import WaterConsumptionTracker from "../components/WaterСonsumptionTracker/WaterСonsumptionTracker.jsx";
 
 import css from "./MainPage.module.css";
 

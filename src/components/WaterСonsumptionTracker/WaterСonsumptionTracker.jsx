@@ -1,7 +1,15 @@
 import css from "./WaterСonsumptionTracker.module.css";
 import sprite from "../../img/symbol-defs.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function WaterConsumptionTracker() {
+  const navigate = useNavigate(); // Хук для навигації по маршрутам
+
+  // обрробка кліку по кнопці
+  const handleButtonClick = () => {
+    navigate("/signup"); // редірект
+  };
+
   return (
     <div className={(css.component, css.background)}>
       <h1 className={css.header}>Water consumption tracker</h1>
@@ -27,7 +35,7 @@ export default function WaterConsumptionTracker() {
           Personal rate setting
         </li>
       </ul>
-      <button className={css.btn} href="">
+      <button className={css.btn} onClick={handleButtonClick}>
         Try tracker
       </button>
     </div>

@@ -42,14 +42,14 @@
   color: #9ebbff;
 }
 
-.li {
+.liDate {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   gap: 10px;
-  /* border: 1px solid #ff9d43; */
-  border: 1px solid transparent;
+  border: 1px solid #ff9d43;
+  /* border: 1px solid transparent; */
   border-radius: 20px;
   padding: 7px;
   width: 34px;
@@ -65,4 +65,55 @@
   flex-wrap: wrap;
   gap: 34px;
   width: 646px;
+}
+
+.li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  color: #9ebbff;
+}
+
+.modal {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 10px;
+  padding: 24px 16px;
+  width: 292px;
+  height: 188px;
+  box-shadow: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
+  background: #fff;
+  position: absolute;
+}
+
+.dayInfo {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #2f2f2f;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 16px;
+}
+.span {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33333;
+  color: #407bff;
 }

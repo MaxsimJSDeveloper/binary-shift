@@ -95,6 +95,10 @@ label {
   display: block;
 }
 
+.submitbtn:active {
+  box-shadow: none;
+}
+
 .inputwrapper {
   position: relative;
 }
@@ -126,5 +130,9 @@ label {
 
   .submitbtn {
     margin: 0;
+  }
+
+  .submitbtn:hover {
+    box-shadow: 0 4px 14px 0 rgba(42, 54, 82, 0.34);
   }
 }

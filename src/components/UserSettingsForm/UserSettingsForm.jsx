@@ -114,6 +114,7 @@ export default function UserSettingsForm({ user, onClose }) {
       >
         {({ isSubmitting }) => (
           <Form>
+            <h2 className={css.setting_title}>Setting</h2>
             <h3 className={css.photoTitle}>Your photo</h3>
             <div className={css.uploadPhotoWrapper}>
               <div className={css.photoUrlWrapper}>
@@ -156,155 +157,171 @@ export default function UserSettingsForm({ user, onClose }) {
               </div>
             </div>
 
-            <div className={css.genderPart}>
-              <p className={css.genderTitle}>Your gender identity</p>
-              <div
-                className={css.genderInputsContainer}
-                role="group"
-                aria-labelledby="gender"
-              >
-                <label>
+            <div className={css.user_info_block_desktop}>
+              <div className={css.gender_name_email_desktop}>
+                <div className={css.genderPart}>
+                  <p className={css.genderTitle}>Your gender identity</p>
+                  <div
+                    className={css.genderInputsContainer}
+                    role="group"
+                    aria-labelledby="gender"
+                  >
+                    <label>
+                      <Field
+                        className={css.genderText}
+                        type="radio"
+                        name="gender"
+                        value="woman"
+                      />
+                      Woman
+                    </label>
+                    <label>
+                      <Field type="radio" name="gender" value="man" />
+                      Man
+                    </label>
+                  </div>
+                </div>
+
+                <div className={css.namePart}>
+                  <label className={css.nameTitle} htmlFor={`${fieldId}-name`}>
+                    Your name
+                  </label>
                   <Field
-                    className={css.genderText}
-                    type="radio"
-                    name="gender"
-                    value="woman"
+                    className={css.user_info_input}
+                    // className={css.user_info_field}
+                    type="text"
+                    name="name"
+                    id={`${fieldId}-name`}
+                    placeholder="Enter your name"
                   />
-                  Woman
-                </label>
-                <label>
-                  <Field type="radio" name="gender" value="man" />
-                  Man
-                </label>
+                  <ErrorMessage name="name" component="div" className="error" />
+                </div>
+
+                <div className={css.emailPart}>
+                  <label
+                    className={css.emailTitle}
+                    htmlFor={`${fieldId}-email`}
+                  >
+                    E-mail
+                  </label>
+                  <Field
+                    className={css.user_info_input}
+                    type="email"
+                    name="email"
+                    id={`${fieldId}-email`}
+                    placeholder="Enter your email"
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="error"
+                  />
+                </div>
               </div>
-            </div>
+              <div className={css.passwordPart}>
+                <p className={css.passwordTitle}>Password</p>
+                <div className={css.password_label_wrapper}>
+                  <label htmlFor={`${fieldId}-outdatedPassword`}>
+                    Outdated password:
+                    <div className={css.password_form_input_wrapper}>
+                      <Field
+                        className={css.user_info_input}
+                        type={showOutdatedpassword ? "text" : "password"}
+                        name="outdatedPassword"
+                        id={`${fieldId}-outdatedPassword`}
+                        placeholder="Password"
+                      />
+                      <button
+                        className={css.user_form_input_button}
+                        type="button"
+                        onClick={() =>
+                          setShowOutdatedpassword(!showOutdatedpassword)
+                        }
+                      >
+                        {showOutdatedpassword ? (
+                          <HiOutlineEye className={css.user_form_input_icon} />
+                        ) : (
+                          <HiOutlineEyeOff
+                            className={css.user_form_input_icon}
+                          />
+                        )}
+                      </button>
+                    </div>
+                  </label>
+                  <ErrorMessage
+                    name="outdatedPassword"
+                    component="div"
+                    className="error"
+                  />
+                </div>
 
-            <div className={css.namePart}>
-              <label className={css.nameTitle} htmlFor={`${fieldId}-name`}>
-                Your name
-              </label>
-              <Field
-                className={css.user_info_input}
-                // className={css.user_info_field}
-                type="text"
-                name="name"
-                id={`${fieldId}-name`}
-                placeholder="Enter your name"
-              />
-              <ErrorMessage name="name" component="div" className="error" />
-            </div>
+                <div>
+                  <label htmlFor={`${fieldId}-newPassword`}>
+                    New Password:
+                    <div className={css.password_form_input_wrapper}>
+                      <Field
+                        className={css.user_info_input}
+                        type={showNewPassword ? "text" : "password"}
+                        name="newPassword"
+                        id={`${fieldId}-newPassword`}
+                        placeholder="Password"
+                      />
+                      <button
+                        className={css.user_form_input_button}
+                        type="button"
+                        onClick={() => setShowNewPassword(!showNewPassword)}
+                      >
+                        {showNewPassword ? (
+                          <HiOutlineEye className={css.user_form_input_icon} />
+                        ) : (
+                          <HiOutlineEyeOff
+                            className={css.user_form_input_icon}
+                          />
+                        )}
+                      </button>
+                    </div>
+                  </label>
+                  <ErrorMessage
+                    name="newPassword"
+                    component="div"
+                    className="error"
+                  />
+                </div>
 
-            <div className={css.emailPart}>
-              <label className={css.emailTitle} htmlFor={`${fieldId}-email`}>
-                E-mail
-              </label>
-              <Field
-                className={css.user_info_input}
-                type="email"
-                name="email"
-                id={`${fieldId}-email`}
-                placeholder="Enter your email"
-              />
-              <ErrorMessage name="email" component="div" className="error" />
-            </div>
-
-            <div className={css.passwordPart}>
-              <p className={css.passwordTitle}>Password</p>
-              <div className={css.password_label_wrapper}>
-                <label htmlFor={`${fieldId}-outdatedPassword`}>
-                  Outdated password:
-                  <div className={css.password_form_input_wrapper}>
-                    <Field
-                      className={css.user_info_input}
-                      type={showOutdatedpassword ? "text" : "password"}
-                      name="outdatedPassword"
-                      id={`${fieldId}-outdatedPassword`}
-                      placeholder="Password"
-                    />
-                    <button
-                      className={css.user_form_input_button}
-                      type="button"
-                      onClick={() =>
-                        setShowOutdatedpassword(!showOutdatedpassword)
-                      }
-                    >
-                      {showOutdatedpassword ? (
-                        <HiOutlineEye className={css.user_form_input_icon} />
-                      ) : (
-                        <HiOutlineEyeOff className={css.user_form_input_icon} />
-                      )}
-                    </button>
-                  </div>
-                </label>
-                <ErrorMessage
-                  name="outdatedPassword"
-                  component="div"
-                  className="error"
-                />
-              </div>
-
-              <div>
-                <label htmlFor={`${fieldId}-newPassword`}>
-                  New Password:
-                  <div className={css.password_form_input_wrapper}>
-                    <Field
-                      className={css.user_info_input}
-                      type={showNewPassword ? "text" : "password"}
-                      name="newPassword"
-                      id={`${fieldId}-newPassword`}
-                      placeholder="Password"
-                    />
-                    <button
-                      className={css.user_form_input_button}
-                      type="button"
-                      onClick={() => setShowNewPassword(!showNewPassword)}
-                    >
-                      {showNewPassword ? (
-                        <HiOutlineEye className={css.user_form_input_icon} />
-                      ) : (
-                        <HiOutlineEyeOff className={css.user_form_input_icon} />
-                      )}
-                    </button>
-                  </div>
-                </label>
-                <ErrorMessage
-                  name="newPassword"
-                  component="div"
-                  className="error"
-                />
-              </div>
-
-              <div>
-                <label htmlFor={`${fieldId}-repeatNewPassword`}>
-                  Repeat New Password:
-                  <div className={css.password_form_input_wrapper}>
-                    <Field
-                      className={css.user_info_input}
-                      type={showRepeatNewPassword ? "text" : "password"}
-                      name="repeatNewPassword"
-                      id={`${fieldId}-repeatNewPassword`}
-                      placeholder="Password"
-                    />
-                    <button
-                      className={css.user_form_input_button}
-                      type="button"
-                      onClick={() =>
-                        setShowRepeatNewPassword(!showRepeatNewPassword)
-                      }
-                    >
-                      {showRepeatNewPassword ? (
-                        <HiOutlineEye className={css.user_form_input_icon} />
-                      ) : (
-                        <HiOutlineEyeOff className={css.user_form_input_icon} />
-                      )}
-                    </button>
-                  </div>
-                </label>
-                <ErrorMessage
-                  name="repeatNewPassword"
-                  component="div"
-                  className="error"
-                />
+                <div>
+                  <label htmlFor={`${fieldId}-repeatNewPassword`}>
+                    Repeat New Password:
+                    <div className={css.password_form_input_wrapper}>
+                      <Field
+                        className={css.user_info_input}
+                        type={showRepeatNewPassword ? "text" : "password"}
+                        name="repeatNewPassword"
+                        id={`${fieldId}-repeatNewPassword`}
+                        placeholder="Password"
+                      />
+                      <button
+                        className={css.user_form_input_button}
+                        type="button"
+                        onClick={() =>
+                          setShowRepeatNewPassword(!showRepeatNewPassword)
+                        }
+                      >
+                        {showRepeatNewPassword ? (
+                          <HiOutlineEye className={css.user_form_input_icon} />
+                        ) : (
+                          <HiOutlineEyeOff
+                            className={css.user_form_input_icon}
+                          />
+                        )}
+                      </button>
+                    </div>
+                  </label>
+                  <ErrorMessage
+                    name="repeatNewPassword"
+                    component="div"
+                    className="error"
+                  />
+                </div>
               </div>
             </div>
 

@@ -1,3 +1,14 @@
+.setting_title {
+  color: 2F2F2F;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.23;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
 /* PHOTO + UPLOAD BUTTON STYLES */
 .photoTitle {
   color: #2f2f2f;
@@ -194,4 +205,38 @@ img {
   line-height: 1.25;
   text-align: center;
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .user_info_input,
+  .password_form_input_wrapper {
+    width: 392px;
+  }
+
+  .save_form_submit_btn {
+    display: block;
+    width: 160px;
+    height: 44px;
+    padding: 10px 30px;
+    margin-right: 0px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .user_info_block_desktop {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 24px;
+    /* margin-bottom: 24px; */
+  }
+
+  .gender_name_email_desktop {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .genderPart {
+    margin-bottom: 52px;
+  }
 }

@@ -3,24 +3,15 @@
   flex-direction: column;
   align-items: stretch;
   flex-wrap: nowrap;
-  gap: 24px;
+  /* gap: 24px; */
   position: relative;
   width: 256px;
   height: 100%;
   margin: 0 auto;
-  padding: 32px 12px;
+  /* padding: 32px 12px; */
   background: #ffffff;
   border-radius: 10px;
-}
-
-.setting_title {
-  color: 2F2F2F;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1.23;
-  text-align: left;
+  /* padding: 32px 24px; */
 }
 
 @media screen and (min-width: 768px) {

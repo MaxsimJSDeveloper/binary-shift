@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { register, logIn, logOut, refreshUser } from '../../redux/auth/operations.js';
 import { selectIsLoggedIn, selectIsRefreshing, selectUser, selectAuthError } from '../../redux/auth/selectors.js';

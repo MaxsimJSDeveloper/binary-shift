@@ -1,9 +1,18 @@
-// В компонент DailyNorma потрібно передати в аргумент функції handleOpenModal та handleCloseModal
-
+import React, { useState } from "react";
 import DailyNormaModal from "../DailyNormaModal/DailyNormaModal";
 import css from "../DailyNorma/DailyNorma.module.css";
 
 export default function DailyNorma() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={css.dailyform}>
       <span className={css.dailytitle}>My daily norma</span>

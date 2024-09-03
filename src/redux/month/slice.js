@@ -1,0 +1,28 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchMonthWater } from "./operations";
+
+export const handlePending = (state) => {
+  state.isLoading = true;
+};
+
+export const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
+const monthSlice = createSlice({
+  name: "month",
+  initialState: {
+    data: [],
+    loading: false,
+    error: null,
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchMonthWater.rejected, handleRejected)
+      .addCase(fetchMonthWater.pending, handlePending)
+      .addCase(fetchMonthWater.fulfilled);
+  },
+});
+
+export const monthReducer = monthSlice.reducer;

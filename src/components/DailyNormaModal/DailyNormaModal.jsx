@@ -1,23 +1,11 @@
-// У функцію DailyNormaModal передаю closeModal
-// export default function DailyNormaModal({ closeModal })
-
-// Далі в коді де closeModal потрібно передавати цей аргумент(позначив коментарями)
-
-/* Наступна кнопка має так виглядати
-
-<button className={css.closebtn} onClick={closeModal}>
-    <IoMdClose className={css.closeicon} />
-</button>
-
-*/
-
 import { useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { IoMdClose } from "react-icons/io";
 import css from "../DailyNormaModal/DailyNormaModal.module.css";
 import * as Yup from "yup";
 
-export default function DailyNormaModal() {
+// Додаємо closeModal як аргумент
+export default function DailyNormaModal({ closeModal }) {
   const initialValues = {
     sex: sessionStorage.getItem("gender") || "male",
     inputWeightValue: sessionStorage.getItem("weight") || "0",
@@ -41,20 +29,18 @@ export default function DailyNormaModal() {
       .required("Required"),
   });
 
-  useEffect(
-    () => {
-      const handleKeyDown = (event) => {
-        if (event.key === "Escape") {
-          // closeModal();
-        }
-      };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeModal(); // Викликаємо closeModal
+      }
+    };
 
-      document.addEventListener("keydown", handleKeyDown);
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-      };
-    } //[closeModal]
-  );
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [closeModal]);
 
   const handleAmountChange = (currentSex, weight, time) => {
     const weightNum = parseFloat(weight) || 0;
@@ -69,7 +55,7 @@ export default function DailyNormaModal() {
 
   const handleBackdropClick = (event) => {
     if (event.target === event.currentTarget) {
-      //   closeModal();
+      closeModal(); // Викликаємо closeModal
     }
   };
 
@@ -80,13 +66,13 @@ export default function DailyNormaModal() {
     sessionStorage.setItem("dailyNorma", values.dailyNorma);
 
     setSubmitting(false);
-    // closeModal();
+    closeModal(); // Викликаємо closeModal
   };
 
   return (
     <div className={css.modalBackdrop} onClick={handleBackdropClick}>
       <div className={css.modalContent}>
-        <button className={css.closebtn}>
+        <button className={css.closebtn} onClick={closeModal}>
           <IoMdClose className={css.closeicon} />
         </button>
         <div className={css.modaldescr}>

@@ -1,0 +1,195 @@
+.calendar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 264px;
+  width: 280px;
+  margin: 0 auto;
+  background-color: #ecf2ff;
+}
+
+.navigation {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 264px;
+  font-family: "Roboto", sans-serif;
+  color: #2f2f2f;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.navigationBar {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 128px;
+  color: #407bff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.button {
+  display: flex;
+  background-color: transparent;
+  border-color: transparent;
+  color: #407bff;
+  align-items: center;
+  padding: 0;
+}
+.disable {
+  background-color: transparent;
+  border-color: transparent;
+  color: #9ebbff;
+}
+
+.liDate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border: 1px solid #ff9d43;
+  border-radius: 20px;
+  padding: 7px 6px;
+  width: 32px;
+  height: 32px;
+  background: #fff;
+}
+.liDateFull {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 7px 6px;
+  width: 32px;
+  height: 32px;
+  background: #fff;
+}
+
+.ul {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 16px;
+  width: 280px;
+}
+
+.li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  flex-basis: calc(100% / 5);
+}
+
+.p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  text-align: center;
+  color: #9ebbff;
+  padding: 0;
+  margin: 0;
+}
+
+.modal {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 10px;
+  padding: 24px 13px;
+  width: 280px;
+  height: 188px;
+  box-shadow: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
+  background: #fff;
+  position: absolute;
+}
+
+.dayInfo {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #2f2f2f;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 16px;
+}
+.span {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33333;
+  color: #407bff;
+}
+
+@media (min-width: 768px) and (max-width: 1440px) {
+  .calendar {
+    width: 656px;
+    /* border-radius: 10px; */
+  }
+  .navigation {
+    justify-content: space-between;
+    font-size: 26px;
+    line-height: 1.23077;
+    width: 656px;
+  }
+  .liDate {
+    width: 34px;
+    height: 34px;
+  }
+  .liDateFull {
+    width: 34px;
+    height: 34px;
+  }
+  .ul {
+    row-gap: 34px;
+    width: 656px;
+  }
+  .li {
+    flex-basis: calc(100% / 10);
+  }
+
+  .p {
+    font-size: 13px;
+    line-height: 1.53846;
+  }
+  .modal {
+    width: 292px;
+    padding: 24px 16px;
+  }
+}
+@media (min-width: 1440px) {
+  .calendar {
+    width: 544px;
+  }
+  .navigation {
+    width: 544px;
+  }
+
+  .ul {
+    row-gap: 22px;
+    width: 544px;
+  }
+  .li {
+    flex-basis: calc(100% / 10);
+  }
+}

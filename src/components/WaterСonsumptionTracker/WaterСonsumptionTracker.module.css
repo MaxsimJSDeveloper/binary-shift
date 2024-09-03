@@ -1,0 +1,131 @@
+/* Mobile styles (max-width: 767px) */
+@media (max-width: 767px) {
+  .background {
+    padding: 0 20px;
+  }
+
+  .component {
+    padding: 0 20px;
+    font-family: "Roboto";
+  }
+
+  .header {
+    padding-top: 126px;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .secondHeader {
+    padding-top: 16px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .trackerBenefits {
+    padding: 24px 0 12px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .ulTrackerBenefits {
+    padding-bottom: 24px;
+  }
+
+  .trackerItemAdd {
+    padding: 22px 0;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .btn {
+    width: 280px;
+    padding: 9px 0;
+    border-radius: 10px;
+    border: none;
+    background-color: #407bff;
+    color: #fff;
+    margin-bottom: 40px;
+    cursor: pointer;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Tablet styles (min-width: 768px) */
+@media (min-width: 768px) {
+  .background {
+    padding: 0 32px;
+  }
+
+  .header {
+    padding-top: 104px;
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .secondHeader {
+    padding: 16px 0 24px;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  .trackerBenefits {
+    padding-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .ulTrackerBenefits {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .btn {
+    width: 336px;
+    height: 44px;
+    padding: 9px 0;
+    border-radius: 10px;
+    border: none;
+    background-color: #407bff;
+    color: #fff;
+    margin-bottom: 60px;
+    cursor: pointer;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Desktop styles (min-width: 1440px) */
+@media (min-width: 1440px) {
+  .background {
+    padding-left: 216px;
+    padding-right: 81px;
+  }
+
+  .header {
+    padding-top: 140px;
+  }
+
+  .ulTrackerBenefits {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+}

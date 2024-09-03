@@ -1,0 +1,62 @@
+.header {
+    display: flex;
+    padding: 8px 20px;
+    justify-content: space-between;
+    max-width: 320px;
+}
+
+.iconLogo {
+    width: 102px;
+    height: 48px;
+}
+
+.containerAuth {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    border: none;
+    background-color: transparent;
+    color: #407bff;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 8px;
+}
+
+.iconUser {
+    width: 28px;
+    height: 28px;
+    
+}
+
+.openModal {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonOpenAndCloseModal {
+    border: none;
+    color: #407bff;
+    background-color: transparent;
+}
+
+@media screen and (min-width: 768px){
+    .header {
+        max-width: 768px;
+        padding: 16px 32px;
+    }
+    .button {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 1440px){ 
+    .header {
+        max-width: 1440px;
+        padding: 12px 112px;
+    }
+}

@@ -23,7 +23,7 @@ export default function SignIn() {
       .unwrap()
       .then((data) => {
         toast.success("Login successful!");
-        navigate("/");
+        navigate("/home");
       })
       .catch((err) => {
         toast.error("Login failed");

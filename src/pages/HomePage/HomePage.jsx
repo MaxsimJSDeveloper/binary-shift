@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectError } from "../../redux/water/selectors";
 
 // import TodayWaterList from "../../components/TodayWaterList/TodayWaterList";
-// import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
+import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
 // import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 // import DailyNorma from "../../components/DailyNorma/DailyNorma";
 import css from "./HomePage.module.css";
@@ -33,8 +33,8 @@ const HomePage = () => {
 
           <div className={css.containerProgressWrapper}>
             <div className={css["container-progress"]}>
-              {/* <TodayWaterList />
-              <MonthStatsTable /> */}
+              {/* <TodayWaterList /> */}
+              <MonthStatsTable />
             </div>
           </div>
         </div>

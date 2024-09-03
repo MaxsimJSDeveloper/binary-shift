@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+// import DailyNorma from "./components/DailyNorma/DailyNorma";
 import Modal from "./components/Modal/Modal.jsx";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   };
 
   return (
+    // <DailyNorma />
     <>
       <h1>Hello</h1>
 

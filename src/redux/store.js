@@ -15,8 +15,8 @@ import { authReducer } from "./auth/slice";
 import { waterReducer } from "./water/slice";
 import { usersReducer } from "./users/slice";
 import { waterRateReducer } from "./waterRate/slice";
-import { todayReducer } from "./Today/slice";
-import { monthReducer } from "./Month/slice";
+import { todayReducer } from "./today/slice";
+import { monthReducer } from "./month/slice";
 
 const authPersistConfig = {
   key: "auth",

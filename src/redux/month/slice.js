@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchMonthWater } from "./operations";
 
 export const handlePending = (state) => {
   state.isLoading = true;
@@ -12,10 +13,16 @@ export const handleRejected = (state, action) => {
 const monthSlice = createSlice({
   name: "month",
   initialState: {
-    isLoading: false,
+    data: [],
+    loading: false,
     error: null,
   },
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchMonthWater.rejected, handleRejected)
+      .addCase(fetchMonthWater.pending, handlePending)
+      .addCase(fetchMonthWater.fulfilled);
+  },
 });
 
 export const monthReducer = monthSlice.reducer;

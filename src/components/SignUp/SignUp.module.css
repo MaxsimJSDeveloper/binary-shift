@@ -1,0 +1,94 @@
+.form {
+  max-width: 280px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: left;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #2f2f2f;
+}
+
+.fieldStyle {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.label {
+  font-size: 18px;
+  color: #2f2f2f;
+  margin-bottom: 8px;
+}
+
+.field {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 0;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 30px 8px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #007bff;
+}
+
+.signin-link {
+  background: none;
+  display: block;
+  border: none;
+  margin-top: 16px;
+  font-size: 16px;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .form {
+    margin: 20px;
+    padding: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .form {
+    max-width: 336px;
+    padding: 30px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (min-width: 1440px) {
+  .form {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    max-width: 384px;
+  }
+}

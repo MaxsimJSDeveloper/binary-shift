@@ -1,87 +1,75 @@
 .background {
-  margin-right: 20px;
-  margin-left: 20px;
+  margin: 0 20px;
   background-color: #ecf2ff;
   border-radius: 10px;
-  padding-top: 24px;
-  padding-left: 16px;
-  padding-bottom: 24px;
+  padding: 24px 16px;
 }
+
 .whyDrink {
   padding-bottom: 12px;
   line-height: 20px;
   font-size: 18px;
   font-weight: 400;
 }
+
+.ulWhyDrink {
+  list-style-type: none;
+  padding: 0;
+}
+
 .ulWhyDrink li {
   position: relative;
-  padding-left: 20px;
-  padding-right: 16px;
+  padding: 8px 16px;
 }
-.liElements {
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
+
 .ulWhyDrink li::before {
-  content: ""; /* Контент для псевдоелемента (маркер) */
-  position: absolute; /* Абсолютне позиціонування для маркера */
-  left: 0px; /* Розташування маркера зліва */
-  top: 50%; /* Вирівнювання маркера по вертикалі */
-  transform: translateY(-50%); /* Центрування маркера по вертикалі */
-  width: 8px; /* Розмір маркера */
-  height: 8px; /* Розмір маркера */
-  background-color: #407bff; /* Синій колір маркера */
-  border-radius: 50%; /* Робимо маркер круглим */
+  content: ""; /* Контент для псевдоэлемента (маркер) */
+  position: absolute; /* Абсолютное позиционирование для маркера */
+  left: 0; /* Расположение маркера слева */
+  top: 50%; /* Выравнивание маркера по вертикали */
+  transform: translateY(-50%); /* Центрирование маркера по вертикали */
+  width: 8px; /* Размер маркера */
+  height: 8px; /* Размер маркера */
+  background-color: #407bff; /* Синий цвет маркера */
+  border-radius: 50%; /* Делаем маркер круглым */
 }
+
 .liTop {
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding: 4px 0; /* Упрощаем padding */
 }
+
+.liBot {
+  padding-top: 8px; /* Упрощаем padding */
+}
+
 .liFonts {
   font-size: 16px;
 }
+
+/* Медиа-запросы */
 @media (max-width: 767px) {
   .bottleIcon {
-    display: none; /* Приховуємо іконку при ширині екрану 767px і менше */
+    display: none; /* Прячем иконку при ширине экрана 767px и меньше */
   }
 }
 
 @media (min-width: 768px) {
   .background {
-    margin-right: 32px;
-    margin-left: 32px;
-    background-color: #ecf2ff;
-    border-radius: 10px;
-    padding-top: 32px;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: 50px;
+    margin: 0 32px; /* Упрощаем margin */
+    padding: 32px 24px 50px; /* Упрощаем padding */
     width: 494px;
     height: 332px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
-  .liFonts {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 400;
-  }
+
   .ulWhyDrink li {
-    padding-right: 0px;
-    letter-spacing: 0em;
-  }
-  .ulWhyDrink li {
-    position: relative;
-    padding-left: 16px;
-  }
-  .liBot {
-    padding-top: 8px;
+    padding-right: 0; /* Убираем правый отступ */
   }
 }
+
 @media (min-width: 1440px) {
   .background {
-    margin-top: 174px;
-    padding-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 174px 0 0 0; /* Упрощаем margin */
+    padding-bottom: 0; /* Убираем нижний padding */
   }
 }

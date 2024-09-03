@@ -1,0 +1,130 @@
+@media (max-width: 767px) {
+  .background {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .icon {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  .component {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: "Roboto";
+  }
+  .header {
+    padding-top: 126px;
+    font-weight: 700;
+    letter-spacing: 0;
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .secondHeader {
+    padding-top: 16px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .trackerBenefits {
+    font-weight: 500;
+    line-height: 20px;
+    padding-top: 24px;
+    padding-bottom: 12px;
+    letter-spacing: 0;
+    font-size: 18px;
+  }
+  .trackerItemAdd {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+  .ulTrackerBenefits {
+    padding-bottom: 24px;
+  }
+  .btn {
+    width: 280px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-radius: 10px;
+    border: none;
+    background-color: #407bff;
+    color: #fff;
+    margin-bottom: 40px;
+  }
+  .btn:hover {
+    cursor: pointer;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+@media (min-width: 768px) {
+  .background {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .header {
+    padding-top: 104px;
+    line-height: 42px;
+    font-size: 36px;
+  }
+  .secondHeader {
+    padding-top: 16px;
+    padding-bottom: 24px;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 30px;
+  }
+  .trackerBenefits {
+    padding-bottom: 12px;
+    font-weight: 500;
+  }
+  .ulTrackerBenefits {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+  }
+  .icon {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  .btn {
+    width: 336px;
+    height: 44px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-radius: 10px;
+    border: none;
+    background-color: #407bff;
+    color: #fff;
+    margin-bottom: 60px;
+  }
+  .btn:hover {
+    cursor: pointer;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (min-width: 1440px) {
+  .background {
+    padding-left: 216px;
+    padding-right: 81px;
+  }
+  .header {
+    padding-top: 140px;
+  }
+  .trackerBenefits {
+    padding-bottom: 12px;
+    font-weight: 500;
+  }
+  .ulTrackerBenefits {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding-bottom: 24px;
+    gap: 16px;
+  }
+}

@@ -1,8 +1,9 @@
 
 import { useEffect } from "react";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import { selectError } from "../../redux/water/selectors";
+import { selectWaterError } from "../../redux/waterConsumption/selectors";
+import { IError } from "../../services/handleApiError";
 
 import TodayWaterList from "../../components/TodayWaterList/TodayWaterList";
 import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
@@ -11,7 +12,7 @@ import DailyNorma from "../../components/DailyNorma/DailyNorma";
 import css from "./HomePage.module.css";
 
 const HomePage = () => {
-  const error = useSelector(selectError);
+  const error = useSelector(selectWaterError);
 
   useEffect(() => {
     if (error?.errorCode === 400) {
@@ -22,7 +23,6 @@ const HomePage = () => {
       toast.error("Server error: Internal server error");
     }
   }, [error]);
-  
 
   return (
     <section className={css.section}>

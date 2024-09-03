@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { toast } from 'react-hot-toast';
 import { useSelector } from "react-redux";
 import { selectError } from "../../redux/water/selectors";
+// import { IError } from "../../services/handleApiError";
 
 import TodayWaterList from "../../components/TodayWaterList/TodayWaterList";
 import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";

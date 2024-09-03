@@ -2,6 +2,7 @@
 @media (max-width: 767px) {
   .background {
     padding: 0 20px;
+    min-width: 320px;
   }
 
   .component {
@@ -10,7 +11,7 @@
   }
 
   .header {
-    padding-top: 126px;
+    padding-top: 24px;
     font-weight: 700;
     font-size: 28px;
     line-height: 32px;
@@ -32,11 +33,14 @@
 
   .ulTrackerBenefits {
     padding-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 
-  .trackerItemAdd {
+  /* .trackerItemAdd {
     padding: 22px 0;
-  }
+  } */
 
   .icon {
     width: 32px;
@@ -61,11 +65,16 @@
 /* Tablet styles (min-width: 768px) */
 @media (min-width: 768px) {
   .background {
+    min-width: 768px;
     padding: 0 32px;
   }
 
+  /* .wrap {
+    width: 768px;
+  } */
+
   .header {
-    padding-top: 104px;
+    padding-top: 40px;
     font-size: 36px;
     line-height: 42px;
   }
@@ -118,7 +127,7 @@
   }
 
   .header {
-    padding-top: 140px;
+    padding-top: 68px;
   }
 
   .ulTrackerBenefits {

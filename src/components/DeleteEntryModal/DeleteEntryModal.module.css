@@ -1,0 +1,84 @@
+.wrapper {
+  border-radius: 10px;
+  padding: 8px 12px;
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.23;
+  color: var(--primery-color-black);
+  margin-bottom: 24px;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+  color: var(--primery-color-black);
+  margin-bottom: 24px;
+}
+
+.deletebtn {
+  border-radius: 10px;
+  padding: 8px 30px;
+  width: 100%;
+  border: 0px solid transparent;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  background-color: var(--secondary-color-3);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--primery-color-white);
+  margin-bottom: 24px;
+}
+
+.deletebtn:active {
+  box-shadow: none;
+}
+
+.cancelbtn {
+  border-radius: 10px;
+  padding: 8px 30px;
+  width: 100%;
+  background-color: var(--secondary-color---5);
+  border: 0px solid transparent;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--primery-color-blue);
+}
+
+.cancelbtn:hover,
+.deletebtn:hover {
+  box-shadow: 0 4px 14px 0 rgba(42, 54, 82, 0.34);
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    padding: 0;
+    width: 592px;
+  }
+
+  .deletebtn {
+    margin: 0;
+    width: 160px;
+  }
+
+  .cancelbtn {
+    width: 160px;
+  }
+
+  .btnwrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 24px;
+    justify-content: end;
+  }
+}

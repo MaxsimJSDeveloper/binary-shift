@@ -1,3 +1,7 @@
+.wrap {
+  display: flex;
+}
+
 @media (max-width: 767px) {
   .background {
     background-image: url(../img/mobile/background-main-page.webp);
@@ -37,7 +41,6 @@
     background-repeat: no-repeat;
     background-position: center calc(368px - 260px), bottom;
     height: 900px;
-    display: flex;
   }
 }
 @media (min-width: 1440px) and (min-resolution: 192dpi),

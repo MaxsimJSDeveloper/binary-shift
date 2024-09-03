@@ -1,0 +1,33 @@
+.dailyform {
+  width: 180px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #ecf2ff;
+  border-radius: 10px;
+  padding: 8px 20px;
+  box-shadow: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
+  background: #fff;
+}
+.dailytitle {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 133%;
+  color: #2f2f2f;
+}
+.datadaily {
+  display: flex;
+  gap: 12px;
+}
+.water {
+  font-size: 22px;
+  font-weight: bold;
+  color: #407bff;
+}
+.waterbutton {
+  border: none;
+  color: #8baeff;
+  font-size: 16px;
+  background-color: #fff;
+}

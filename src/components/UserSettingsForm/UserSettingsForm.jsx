@@ -5,10 +5,10 @@ import { HiArrowUpTray } from "react-icons/hi2";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { HiOutlineEye } from "react-icons/hi2";
 import { HiOutlineEyeOff } from "react-icons/hi";
-// import { updateUser, uploadPhoto } from "../../redux/auth/operations.js";
 import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./UserSettingsForm.module.css";
+import { updateUser, updateUserAvatar } from "../../redux/users/operations";
 
 const validationSchema = Yup.object({
   name: Yup.string(),
@@ -63,7 +63,7 @@ export default function UserSettingsForm({ user, onClose }) {
     const formData = new FormData();
     formData.append("photo", file);
 
-    dispatch(uploadPhoto(formData))
+    dispatch(updateUserAvatar(formData))
       .unwrap()
       .then(() => {
         toast.success("Photo uploaded successfully!");

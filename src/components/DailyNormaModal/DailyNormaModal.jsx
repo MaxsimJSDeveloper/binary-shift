@@ -1,10 +1,23 @@
+// У функцію DailyNormaModal передаю closeModal
+// export default function DailyNormaModal({ closeModal })
+
+// Далі в коді де closeModal потрібно передавати цей аргумент(позначив коментарями)
+
+/* Наступна кнопка має так виглядати
+
+<button className={css.closebtn} onClick={closeModal}>
+    <IoMdClose className={css.closeicon} />
+</button>
+
+*/
+
 import { useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { IoMdClose } from "react-icons/io";
 import css from "../DailyNormaModal/DailyNormaModal.module.css";
 import * as Yup from "yup";
 
-export default function DailyNormaModal({ closeModal }) {
+export default function DailyNormaModal() {
   const initialValues = {
     sex: sessionStorage.getItem("gender") || "male",
     inputWeightValue: sessionStorage.getItem("weight") || "0",
@@ -14,13 +27,13 @@ export default function DailyNormaModal({ closeModal }) {
 
   const FeedbackSchema = Yup.object().shape({
     sex: Yup.string().required("Please select your gender"),
-    inputWeightValue: Yup.number()
+    inputWeightValue: Yup.number("It must be a number!")
       .positive("Only positive value!")
-      .min(10, "Too low")
       .max(200, "Too high")
       .required("Required"),
     inputTimeValue: Yup.number()
       .positive("Only positive value!")
+      .min(0)
       .max(24, "Too long")
       .required("Required"),
     dailyNorma: Yup.number()
@@ -28,18 +41,20 @@ export default function DailyNormaModal({ closeModal }) {
       .required("Required"),
   });
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        closeModal();
-      }
-    };
+  useEffect(
+    () => {
+      const handleKeyDown = (event) => {
+        if (event.key === "Escape") {
+          // closeModal();
+        }
+      };
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [closeModal]);
+      document.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    } //[closeModal]
+  );
 
   const handleAmountChange = (currentSex, weight, time) => {
     const weightNum = parseFloat(weight) || 0;
@@ -54,7 +69,7 @@ export default function DailyNormaModal({ closeModal }) {
 
   const handleBackdropClick = (event) => {
     if (event.target === event.currentTarget) {
-      closeModal();
+      //   closeModal();
     }
   };
 
@@ -65,31 +80,32 @@ export default function DailyNormaModal({ closeModal }) {
     sessionStorage.setItem("dailyNorma", values.dailyNorma);
 
     setSubmitting(false);
-    closeModal();
+    // closeModal();
   };
 
   return (
     <div className={css.modalBackdrop} onClick={handleBackdropClick}>
       <div className={css.modalContent}>
-        <button className={css.closebtn} onClick={closeModal}>
-          <IoMdClose />
+        <button className={css.closebtn}>
+          <IoMdClose className={css.closeicon} />
         </button>
-        <div>
-          <h3>My daily norma</h3>
-          <div>
-            <p>
-              For woman: <span>V=(M*0.03) + (T*0.4)</span>
+        <div className={css.modaldescr}>
+          <h3 className={css.maintitle}>My daily norma</h3>
+          <div className={css.formulas}>
+            <p className={css.formulaname}>
+              For girl:
+              <span className={css.formula}>V=(M*0.03) + (T*0.4)</span>
             </p>
-            <p>
-              For man: <span>V=(M*0.04) + (T*0.6)</span>
+            <p className={css.formulaname}>
+              For man: <span className={css.formula}>V=(M*0.04) + (T*0.6)</span>
             </p>
           </div>
-          <div>
-            <p>
-              <span>*</span> V is the volume of the water norm in liters per
-              day, M is your body weight, T is the time of active sports, or
-              another type of activity commensurate in terms of loads (in the
-              absence of these, you must set 0)
+          <div className={css.formuladescr}>
+            <p className={css.descrinfo}>
+              <span className={css.symbol}>*</span> V is the volume of the water
+              norm in liters per day, M is your body weight, T is the time of
+              active sports, or another type of activity commensurate in terms
+              of loads (in the absence of these, you must set 0)
             </p>
           </div>
         </div>
@@ -126,74 +142,113 @@ export default function DailyNormaModal({ closeModal }) {
 
             return (
               <Form>
-                <div>
-                  <h4>Calculate your rate:</h4>
-                  <div>
-                    <label>For woman</label>
-                    <Field
-                      type="radio"
+                <div className={css.modalform}>
+                  <h4 className={css.titlecalculation}>Calculate your rate:</h4>
+                  <div className={css.radiobuttons}>
+                    <div className={css.radiocontainer}>
+                      <Field
+                        type="radio"
+                        name="sex"
+                        value="female"
+                        onChange={handleChange}
+                      />
+                      <label className={css.radiodescr}>For girl</label>
+                    </div>
+                    <div className={css.radiocontainer}>
+                      <Field
+                        type="radio"
+                        name="sex"
+                        value="male"
+                        onChange={handleChange}
+                      />
+                      <label className={css.radiodescr}>For man</label>
+                    </div>
+                    <ErrorMessage
+                      className={css.error}
                       name="sex"
-                      value="female"
-                      onChange={handleChange}
+                      component="span"
                     />
-                    <label>For man</label>
-                    <Field
-                      type="radio"
-                      name="sex"
-                      value="male"
-                      onChange={handleChange}
-                    />
-                    <ErrorMessage name="sex" component="span" />
                   </div>
                   <div>
-                    <label>Your weight in kilograms:</label>
-                    <Field
-                      type="text"
-                      name="inputWeightValue"
-                      value={values.inputWeightValue}
-                      onFocus={() => handleFocus("inputWeightValue")}
-                      onBlur={() => handleBlur("inputWeightValue")}
-                      onChange={(e) =>
-                        handleFieldChange("inputWeightValue", e.target.value)
-                      }
-                    />
-                    <ErrorMessage name="inputWeightValue" component="span" />
-                    <label>
-                      The time of active participation in sports or other
-                      activities with a high physical load in hours:
-                    </label>
-                    <Field
-                      type="text"
-                      name="inputTimeValue"
-                      value={values.inputTimeValue}
-                      onFocus={() => handleFocus("inputTimeValue")}
-                      onBlur={() => handleBlur("inputTimeValue")}
-                      onChange={(e) =>
-                        handleFieldChange("inputTimeValue", e.target.value)
-                      }
-                    />
-                    <ErrorMessage name="inputTimeValue" component="span" />
-                    <p>
-                      The required amount of water in liters per day:
-                      <span>{displayAmount} L</span>
-                    </p>
+                    <div className={css.calculcontainer}>
+                      <label className={css.calcdescr}>
+                        Your weight in kilograms:
+                      </label>
+                      <Field
+                        className={css.inputcalc}
+                        type="text"
+                        name="inputWeightValue"
+                        value={values.inputWeightValue}
+                        onFocus={() => handleFocus("inputWeightValue")}
+                        onBlur={() => handleBlur("inputWeightValue")}
+                        onChange={(e) =>
+                          handleFieldChange("inputWeightValue", e.target.value)
+                        }
+                      />
+                      <ErrorMessage
+                        className={css.error}
+                        name="inputWeightValue"
+                        component="span"
+                      />
+                    </div>
+                    <div className={css.calculcontainer}>
+                      <label className={css.calcdescr}>
+                        The time of active participation in sports or other
+                        activities with a high physical load in hours:
+                      </label>
+                      <Field
+                        className={css.inputcalc}
+                        type="text"
+                        name="inputTimeValue"
+                        value={values.inputTimeValue}
+                        onFocus={() => handleFocus("inputTimeValue")}
+                        onBlur={() => handleBlur("inputTimeValue")}
+                        onChange={(e) =>
+                          handleFieldChange("inputTimeValue", e.target.value)
+                        }
+                      />
+                      <ErrorMessage
+                        className={css.error}
+                        name="inputTimeValue"
+                        component="span"
+                      />
+                    </div>
+                    <div className={css.reqamountcontainer}>
+                      <p className={css.reqdescr}>
+                        The required amount of water in liters per day:
+                      </p>
+                      <span className={css.reqamount}>{displayAmount} L</span>
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <h4>Write down how much water you will drink:</h4>
-                  <Field
-                    type="text"
-                    name="dailyNorma"
-                    value={values.dailyNorma}
-                    onFocus={() => handleFocus("dailyNorma")}
-                    onBlur={() => handleBlur("dailyNorma")}
-                    onChange={(e) =>
-                      handleFieldChange("dailyNorma", e.target.value)
-                    }
-                  />
-                  <ErrorMessage name="dailyNorma" component="span" />
+                <div className={css.wateramountcontainer}>
+                  <h4 className={css.titlecalculation}>
+                    Write down how much water you will drink:
+                  </h4>
+                  <div className={css.calculcontainer}>
+                    <Field
+                      className={css.inputcalc}
+                      type="text"
+                      name="dailyNorma"
+                      value={values.dailyNorma}
+                      onFocus={() => handleFocus("dailyNorma")}
+                      onBlur={() => handleBlur("dailyNorma")}
+                      onChange={(e) =>
+                        handleFieldChange("dailyNorma", e.target.value)
+                      }
+                    />
+                    <ErrorMessage
+                      className={css.error}
+                      name="dailyNorma"
+                      component="span"
+                    />
+                  </div>
                 </div>
-                <button type="submit">Save</button>
+                <div className={css.btncontainer}>
+                  <button type="submit" className={css.formbutton}>
+                    Save
+                  </button>
+                </div>
               </Form>
             );
           }}

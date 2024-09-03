@@ -4,17 +4,15 @@
 
 @media (max-width: 767px) {
   .background {
-    background-image: url(../img/mobile/background-main-page.webp);
+    background-image: url(../img/mobile/background-main-page.png);
     background-repeat: no-repeat;
-    background-position: center 70px;
-    padding-bottom: 40px;
     background-size: cover;
   }
 }
 @media (max-width: 767px) and (min-resolution: 192dpi),
   (max-width: 767px) and (min-device-pixel-ratio: 2) {
   .background {
-    background-image: url(../img/mobile/background-main-page@2x.webp);
+    background-image: url(../img/mobile/background-main-page@2x.png);
     background-size: cover;
   }
 }
@@ -24,14 +22,13 @@
     background-image: url(../img/tablet/background-main-page.webp);
     background-repeat: no-repeat;
     background-position: center;
-    padding-bottom: 50px;
     background-size: cover;
   }
 }
 @media (min-width: 768px) and (min-resolution: 192dpi),
   (min-width: 767px) and (min-device-pixel-ratio: 2) {
   .background {
-    background-image: url(../img/tablet/background-main-page@2x.webp);
+    background-image: url(../img/tablet/background-main-page@2x.png);
     background-size: contain;
     background-size: cover;
   }
@@ -39,20 +36,16 @@
 
 @media (min-width: 1440px) {
   .background {
-    background-image: url(../img/desck/background-bable.png),
-      url(../img/desck/background-main-page.webp);
+    background-image: url(../img/desck/background-main-page.png);
     background-repeat: no-repeat;
-
-    /* background-position: center calc(368px - 260px), bottom;
-    height: 900px; */
-
     background-size: cover;
+
+    height: 900px;
   }
 }
 @media (min-width: 1440px) and (min-resolution: 192dpi),
   (min-width: 1440px) and (min-device-pixel-ratio: 2) {
   .background {
-    background-image: url(../img/desck/background-bable@2x.png),
-      url(../img/desck/background-main-page@2x.webp);
+    background-image: url(../img/desck/background-main-page@2x.png);
   }
 }

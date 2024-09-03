@@ -1,13 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import css from "./SignIn.module.css";
-
-// import login from
+import toast from "react-hot-toast";
+import { logIn } from "../../redux/auth/operations";
 
 export default function SignIn() {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
@@ -18,19 +18,20 @@ export default function SignIn() {
       .required("Required"),
   });
 
-//   //   const handleSubmit = (values, actions) => {
-//   dispatch(login(values))
-//   .unwrap() 
-//   .then((data) => {
-//     console.log(data); 
-//     navigate("/home");
-//   })
-//   .catch((err) => {
-//     console.log(err); 
-//   });
+  const handleSubmit = (values, actions) => {
+    dispatch(logIn(values))
+      .unwrap()
+      .then((data) => {
+        toast.success("Login successful!");
+        navigate("/");
+      })
+      .catch((err) => {
+        toast.error("Login failed");
+        console.log(err);
+      });
 
-// actions.resetForm();
-// };
+    actions.resetForm();
+  };
 
   return (
     <Formik
@@ -39,7 +40,7 @@ export default function SignIn() {
         password: "",
       }}
       validationSchema={validationSchema}
-      //   onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
     >
       <Form className={css.form} autoComplete="off">
         <h2 className={css.heading}>Sign In</h2>
@@ -86,3 +87,4 @@ export default function SignIn() {
     </Formik>
   );
 }
+

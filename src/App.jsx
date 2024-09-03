@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import Modal from "./components/Modal/Modal.jsx";
 import MainPage from "./pages/MainPage";
 import SignIn from "./pages/SignInPage";
 import SignUp from "./pages/SignUpPage";

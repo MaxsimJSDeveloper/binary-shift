@@ -29,8 +29,15 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+
+      <button onClick={handleOpenModal}>Modal wrap</button>
+
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <h2>Тут передайте те що вам треба</h2>
+      </Modal>
     </>
   );
 }
 
 export default App;
+

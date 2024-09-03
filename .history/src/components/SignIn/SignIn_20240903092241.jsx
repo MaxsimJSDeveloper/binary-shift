@@ -18,19 +18,14 @@ export default function SignIn() {
       .required("Required"),
   });
 
-//   //   const handleSubmit = (values, actions) => {
-//   dispatch(login(values))
-//   .unwrap() 
-//   .then((data) => {
-//     console.log(data); 
-//     navigate("/home");
-//   })
-//   .catch((err) => {
-//     console.log(err); 
-//   });
+  //   const handleSubmit = (values, actions) => {
+  //     dispatch(login(values))
+  //       .unwrap()
+  //       .then((data) => console.log(data))
+  //       .catch((err) => console.log(err));
 
-// actions.resetForm();
-// };
+  //     actions.resetForm();
+  //   };
 
   return (
     <Formik

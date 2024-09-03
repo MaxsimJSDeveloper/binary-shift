@@ -30,7 +30,7 @@ export default function SignUp() {
   //       .then((data) => {
   //         toast.success("Registration successful!");
   //         console.log(data);
-  //         navigate("/home");
+  //         navigate("/signin");
   //       })
   //       .catch((err) => {
   //         console.log(err);

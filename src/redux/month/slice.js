@@ -21,7 +21,9 @@ const monthSlice = createSlice({
     builder
       .addCase(fetchMonthWater.rejected, handleRejected)
       .addCase(fetchMonthWater.pending, handlePending)
-      .addCase(fetchMonthWater.fulfilled);
+      .addCase(fetchMonthWater.fulfilled, (state, action) => {
+        state.data = action.payload;
+      });
   },
 });
 

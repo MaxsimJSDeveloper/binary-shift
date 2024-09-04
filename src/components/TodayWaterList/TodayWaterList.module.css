@@ -1,0 +1,88 @@
+.heading {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 32px;
+    margin-bottom: 16px;
+}
+.listWrapper {
+    display: flex;
+    flex-direction: column;
+}
+.list {
+    height: 172px;
+    overflow-y: scroll;
+    padding-right: 10px;
+    margin-bottom: 12px;
+    &:not:last-child{
+        border-bottom: 1px solid #d7e3ff;
+    }
+}
+.list::-webkit-scrollbar {
+    width: 4px;
+}
+.list::-webkit-scrollbar-thumb{
+    border-radius: 8px;
+    background-color: var(--color-3);
+}
+.list::-webkit-scrollbar-track {
+    background-color: #d7e3ff;
+}
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--secondary-color---5);
+}
+.waterOptions {
+    display: flex;
+    align-items: center;
+}
+.waterAmount {
+    margin-right: 16px;
+    color: var(--primery-color-blue);
+}
+.icon {
+    margin-right: 6px;
+    margin-bottom: 12px;
+}
+.waterTime {
+    font-size: 12px;
+    line-height: 24px;
+}
+.buttonsWrapper {
+    display: flex;
+    gap: 18px;
+}
+.listButton{
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    width: 16px;
+    height: 16px;
+}
+.editIcon {
+    color: var(--secondary-color-4);
+}
+.deleteIcon {
+    color: var(--secondary-color-3);
+}
+.addButton {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--primery-color-blue); 
+        &:hover,
+        &:focus {
+            color: var(--color-7);
+        }
+}
+.addButtonIcon {
+    width: 24px;
+    height: 24px;
+}

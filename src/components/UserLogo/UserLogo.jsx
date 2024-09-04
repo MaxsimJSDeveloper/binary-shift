@@ -8,21 +8,31 @@ import {
   HiOutlineChevronDown,
   HiOutlineCog6Tooth,
 } from "react-icons/hi2";
-import UserLogoModal from "../UserLogoModal/UserLogoModal"; // Импортируйте ваш компонент модального окна
-import { NavLink } from "react-router-dom";
+import UserLogoModal from "../UserLogoModal/UserLogoModal";
+// import { NavLink } from "react-router-dom";
+import { selectUser } from "../../redux/users/selectors";
+import SettingModal from "../SettingModal/SettingModal";
 
 export default function UserLogo() {
-  const user = useSelector((state) => state.users.user);
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+  const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
+  const handleButtonClick = () => {
+    setIsModalOpen((prevState) => !prevState);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleSettingClick = () => {
+    setIsSettingModalOpen(true);
+  };
+
+  const handleCloseSettingModal = () => {
+    setIsSettingModalOpen(false);
   };
 
   useEffect(() => {
@@ -45,7 +55,7 @@ export default function UserLogo() {
 
   return (
     <div>
-      <button className={css.containerUserAvatar} onClick={handleOpenModal}>
+      <button className={css.containerUserAvatar} onClick={handleButtonClick}>
         {isLoggedIn ? (
           <div className={css.namePhoto}>
             <span className={css.nameUser}>{user?.name || user?.email}</span>
@@ -56,7 +66,9 @@ export default function UserLogo() {
                 className={css.userAvatar}
               />
             ) : (
-              <div className={css.avatarInithial}>{initials}</div>
+              <div className={css.lettersContainer}>
+                <p className={css.letters}>{initials}</p>
+              </div>
             )}
           </div>
         ) : (
@@ -72,17 +84,27 @@ export default function UserLogo() {
       {isModalOpen && (
         <UserLogoModal isOpen={isModalOpen} onClose={handleCloseModal}>
           <div className={css.openModal}>
-            <NavLink className={css.buttonOpenAndCloseModal}>
+            <button
+              className={css.buttonOpenAndCloseModal}
+              onClick={handleSettingClick}
+            >
               <HiOutlineCog6Tooth className={css.iconSettingAndLogOut} />
               Setting
-            </NavLink>
-            <NavLink className={css.buttonOpenAndCloseModal}>
+            </button>
+
+            <button className={css.buttonOpenAndCloseModal}>
               <HiArrowRightOnRectangle className={css.iconSettingAndLogOut} />
               Log out
-            </NavLink>
+            </button>
           </div>
         </UserLogoModal>
       )}
+      <SettingModal
+        isOpen={isSettingModalOpen}
+        onClose={handleCloseSettingModal}
+        avatarUrl={avatarUrl}
+        initials={initials}
+      />
     </div>
   );
 }

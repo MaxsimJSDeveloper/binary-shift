@@ -8,10 +8,6 @@ export default function UserAuth() {
       <NavLink to={"/signin"} className={css.signIn}>
         Sign in
       </NavLink>
-      {/* <button type="button" className={css.button}> */}
-      {/* onClick={handleOpenModal} */}
-      {/* Sign in
-        </button> */}
       <div>
         <PiUserCircleThin className={css.iconUser} />
       </div>

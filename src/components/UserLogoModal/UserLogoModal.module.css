@@ -5,7 +5,8 @@
             /* top: 53px;
                 right: 29px; */
                 top: 53px;
-                right: 65px;
+                /* right: 65px; */
+                        
         display: flex;
         justify-content: center;
         align-items: center;

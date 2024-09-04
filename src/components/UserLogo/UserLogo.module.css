@@ -27,7 +27,7 @@
     border-radius: 50%;
 }
 
-.avatarInithial{ 
+.lettersContainer{ 
     display: flex;
     width: 28px;
     height: 28px;
@@ -36,6 +36,11 @@
     align-items: center;
     justify-content: center;
     
+}
+
+.letters {
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .button {
@@ -60,10 +65,12 @@ row-gap: 16px;
 }
 
 .buttonOpenAndCloseModal {
+    font-size: 16px;
+    font-weight: 300;
         width: 86px;
     display: flex;
         flex-wrap: nowrap;
-    gap: 8px;
+    gap: 4px;
     border: none;
     color: #407bff;
     background-color: transparent;

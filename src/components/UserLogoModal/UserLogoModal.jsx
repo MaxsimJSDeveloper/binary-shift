@@ -14,6 +14,9 @@ export default function UserLogoModal({ isOpen, onClose, children }) {
 
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Optionally: remove listener when modal is not open
+      document.removeEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
@@ -24,7 +27,7 @@ export default function UserLogoModal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (
-    <div className={css.modalOverlay} onClick={(e) => e.stopPropagation()}>
+    <div className={css.modalOverlay}>
       <div className={css.modalContent} ref={modalRef}>
         {children}
       </div>

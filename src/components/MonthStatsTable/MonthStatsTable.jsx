@@ -30,11 +30,10 @@ export default function MonthStatsTable() {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [day, setDay] = useState(0);
-    // const water = useSelector(selectData);
-    // const dispatch = useDispatch();
+    const water = useSelector(selectData);
+    const dispatch = useDispatch();
     
-    // console.log(dispatch(fetchMonthWater(month)));
-    // console.log(water);  
+
 
 
     useEffect(() => {

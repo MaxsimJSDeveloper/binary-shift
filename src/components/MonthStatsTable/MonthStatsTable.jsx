@@ -3,6 +3,9 @@ import { HiOutlineChevronLeft } from "react-icons/hi2";
 import { HiOutlineChevronRight } from "react-icons/hi2";
 import { useMediaQuery } from "react-responsive";
 import css from "./MonthStatsTable.module.css"
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMonthWater } from "../../redux/month/operations";
+import { selectData } from "../../redux/month/selectors";
 
 const ModalCalendar = ({day,month,dailyNorma,rate,servings, x, y}) => {
     return (<div className={css.modal} style={{top:y-205, left:x}}>
@@ -16,7 +19,7 @@ const ModalCalendar = ({day,month,dailyNorma,rate,servings, x, y}) => {
 }
 
 const daysInMonth = (month, year) => {
-    return new Date(year, month, 0).getDate();
+    return new Date(year, month+1, 0).getDate();
 }
 
 export default function MonthStatsTable() {
@@ -27,25 +30,36 @@ export default function MonthStatsTable() {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [day, setDay] = useState(0);
+    const water = useSelector(selectData);
+    const dispatch = useDispatch();
+    
+    // console.log(dispatch(fetchMonthWater(month)));
+    console.log(water);  
+    console.log(month);
+    
+    
 
 
     useEffect(() => {
         setMonth(currentDate.toLocaleString("en-Us", { month: 'long' }));
-        setYear(currentDate.getFullYear());             
-    },[currentDate])
+        setYear(currentDate.getFullYear());   
+        console.log(dispatch(fetchMonthWater(month)));
+    },[currentDate],dispatch,month)
 
 
     const handleLeftButton = () => { 
         setCurrentDate(prevDate => {
             const newDate = new Date(prevDate)
             newDate.setMonth(prevDate.getMonth() - 1)
+            console.log(dispatch(fetchMonthWater(month)));
             return newDate
         });  
     }
     const handleRightButton = () => {
         setCurrentDate(prevDate => {
             const newDate = new Date(prevDate)
-            newDate.setMonth(prevDate.getMonth() + 1)            
+            newDate.setMonth(prevDate.getMonth() + 1) 
+            console.log(dispatch(fetchMonthWater(month)));
             return newDate
         });        
     }

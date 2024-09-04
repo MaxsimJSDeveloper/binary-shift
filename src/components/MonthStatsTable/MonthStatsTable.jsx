@@ -34,8 +34,9 @@ export default function MonthStatsTable() {
     const dispatch = useDispatch();
     
     // console.log(dispatch(fetchMonthWater(month)));
-    console.log(water);  
-    console.log(month);
+    // const date = water[0].date.split(',')
+    // console.log(date[0]);  
+    // console.log(month);
     
     
 
@@ -44,7 +45,7 @@ export default function MonthStatsTable() {
         setMonth(currentDate.toLocaleString("en-Us", { month: 'long' }));
         setYear(currentDate.getFullYear());   
         console.log(dispatch(fetchMonthWater(month)));
-    },[currentDate],dispatch,month)
+    },[currentDate,dispatch,month],)
 
 
     const handleLeftButton = () => { 
@@ -74,7 +75,27 @@ export default function MonthStatsTable() {
         setModalOpen(false)      
     }
 
-    const daysArray = Array.from({ length: daysInMonth(currentDate.getMonth(), year) }, (_, i) => i + 1)
+    const daysArray = Array.from({ length: daysInMonth(currentDate.getMonth(), year) }, (_, i) =>
+    {
+        return {  
+            // date:i+1,
+            date: `${i+1}, ${month}`,
+            dailyNorm: 1500,
+            dailyNormPercent: 0,
+            portions: 0
+        }
+    })
+    
+    const newDaysArray = daysArray.map(obj1 => {
+        const matchingObj = water.find(obj2 => obj2.date === obj1.date);
+        return matchingObj ? matchingObj : obj1;
+    })
+    console.log(newDaysArray);
+    
+    
+
+    
+    
     
     const isMobile = useMediaQuery({ query: '(max-width:767px)' });
     const isTablet = useMediaQuery({ query: '(min-width:768px) and (max-width:1440px' });
@@ -97,9 +118,9 @@ export default function MonthStatsTable() {
                 </div>                
            </div>
             <ul className={css.ul}>
-                {daysArray.map((day) => (<li className={css.li} key={day}  onMouseEnter={(e)=>handleMouseEnter(e,day)} onMouseLeave={handleMouseLeave}>
-                    {rate<100?<div className={css.liDate}>{day}</div>:<div className={css.liDateFull}>{day}</div>}
-                    <p className={css.p}>{rate}%</p>                    
+                {newDaysArray.map((day) => (<li className={css.li} key={day.date}  onMouseEnter={(e)=>handleMouseEnter(e,day.date)} onMouseLeave={handleMouseLeave}>
+                    {parseInt(day.dailyNormPercent)<100?<div className={css.liDate}>{parseInt(day.date)}</div>:<div className={css.liDateFull}>{parseInt(day.date)}</div>}
+                    <p className={css.p}>{day.dailyNormPercent}%</p>                    
                 </li>))}
             </ul>
             {isModalOpen && isMobile && <ModalCalendar day={day} month={month} dailyNorma={dailyNorma} rate={rate} servings={servings} y={y} />}

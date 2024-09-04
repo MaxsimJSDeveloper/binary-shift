@@ -7,12 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMonthWater } from "../../redux/month/operations";
 import { selectData } from "../../redux/month/selectors";
 
-const ModalCalendar = ({day,month,dailyNorma,rate,servings, x, y}) => {
+const ModalCalendar = ({day,dailyNorma,rate,servings, x, y}) => {
     return (<div className={css.modal} style={{top:y-205, left:x}}>
         <div className={css.dayInfo}>
-            <p><span className={css.span}>{day}, {month}</span></p>
+            <p><span className={css.span}>{day}</span></p>
                     <p>Daily norma: <span className={css.span}>{dailyNorma}L</span></p>
-                    <p>Fulfillment of the daily norm: <span className={css.span}>{rate}%</span></p>
+                    <p>Fulfillment of the daily norm: <span className={css.span}>{parseInt(rate)}%</span></p>
                     <p>How many servings of water: <span className={css.span}>{servings}</span></p>
                 </div>
     </div>)
@@ -30,48 +30,21 @@ export default function MonthStatsTable() {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [day, setDay] = useState(0);
+    const [dayObj, setDayObj] = useState({date: '',
+            dailyNorm: 1500,
+            dailyNormPercent: 0,
+            portions: 0})
     const water = useSelector(selectData);
-    const dispatch = useDispatch();
-    
-
-
+    const dispatch = useDispatch();   
 
     useEffect(() => {
         setMonth(currentDate.toLocaleString("en-Us", { month: 'long' }));
         setYear(currentDate.getFullYear());   
-        dispatch(fetchMonthWater(month));
-    },[currentDate,dispatch,month],)
+        dispatch(fetchMonthWater({ month, year }));        
+    },[currentDate, dispatch, month, year],)
 
-
-    const handleLeftButton = () => { 
-        setCurrentDate(prevDate => {
-            const newDate = new Date(prevDate)
-            newDate.setMonth(prevDate.getMonth() - 1)
-            dispatch(fetchMonthWater(month));
-            return newDate
-        });  
-    }
-    const handleRightButton = () => {
-        setCurrentDate(prevDate => {
-            const newDate = new Date(prevDate)
-            newDate.setMonth(prevDate.getMonth() + 1) 
-            dispatch(fetchMonthWater(month));
-            return newDate
-        });        
-    }
-    const handleMouseEnter = (e, day) => {
-        setModalOpen(true) 
-        setX(e.clientX);
-        setY(e.clientY);
-        setDay(day);        
-    }
-
-    const handleMouseLeave = () => {
-        setModalOpen(false)      
-    }
-
-    const daysArray = Array.from({ length: daysInMonth(currentDate.getMonth(), year) }, (_, i) =>
-    {
+    // Створення масиву обєктів для календаря
+    const daysArray = Array.from({ length: daysInMonth(currentDate.getMonth(), year) }, (_, i) => {
         return {  
             date: `${i+1}, ${month}`,
             dailyNorm: 1500,
@@ -79,27 +52,47 @@ export default function MonthStatsTable() {
             portions: 0
         }
     })
-    
+    //Додавання данних у масив з масиву який прийшов з бекенду
     const newDaysArray = daysArray.map(obj1 => {
         const matchingObj = water.find(obj2 => obj2.date === obj1.date);
         return matchingObj ? matchingObj : obj1;
     })
- 
-    
-    
 
+// Дії які відбуваються при кліку по кнопках вперед-назад
+    const handleLeftButton = () => { 
+        setCurrentDate(prevDate => {
+            const newDate = new Date(prevDate);
+            newDate.setMonth(prevDate.getMonth() - 1);
+            dispatch(fetchMonthWater({month,year}));
+            return newDate;
+        });  
+    }
+    const handleRightButton = () => {
+        setCurrentDate(prevDate => {
+            const newDate = new Date(prevDate)
+            newDate.setMonth(prevDate.getMonth() + 1) 
+            dispatch(fetchMonthWater({month,year}));
+            return newDate
+        });        
+    }
+
+    // Дії які відбуваються в заледності від місцезнаходження мищі
+    const handleMouseEnter = (e, day) => {
+        setModalOpen(true) 
+        setX(e.clientX);
+        setY(e.clientY);
+        setDay(day);
+        setDayObj(newDaysArray.find(obj => obj.date === day))        
+    }
+
+    const handleMouseLeave = () => {
+        setModalOpen(false)      
+    }    
     
-    
-    
+    // Розположення <div> в залежності від девайсу
     const isMobile = useMediaQuery({ query: '(max-width:767px)' });
     const isTablet = useMediaQuery({ query: '(min-width:768px) and (max-width:1440px' });
     const isDesktop = useMediaQuery({ query: '(min-width:1440px)' });
-
-    const rate = 0;
-    const dailyNorma = 1.5;
-    const servings = 0;
-    
-
 
     return (
         <div className={css.calendar}>
@@ -108,19 +101,19 @@ export default function MonthStatsTable() {
                 <div className={css.navigationBar}>
                     <button className={css.button} onClick={handleLeftButton}><HiOutlineChevronLeft size={14}/></button>
                     <p>{month}, {year}</p>
-                    {currentDate.getMonth() >= new Date().getMonth() ? (<button className={css.disable}><HiOutlineChevronRight size={14}/></button>):(<button className={css.button} onClick={handleRightButton}><HiOutlineChevronRight /></button>)}
+                    {currentDate.getMonth() >= new Date().getMonth() && currentDate.getFullYear()>=new Date().getFullYear() ? (<button className={css.disable}><HiOutlineChevronRight size={14}/></button>):(<button className={css.button} onClick={handleRightButton}><HiOutlineChevronRight /></button>)}
                 </div>                
            </div>
             <ul className={css.ul}>
-                {newDaysArray.map((day) => (<li className={css.li} key={day.date}  onMouseEnter={(e)=>handleMouseEnter(e,day.date)} onMouseLeave={handleMouseLeave}>
+                {newDaysArray.map((day) => (<li className={css.li} key={parseInt(day.date)}  onMouseEnter={(e)=>handleMouseEnter(e,day.date)} onMouseLeave={handleMouseLeave}>
                     {parseInt(day.dailyNormPercent)<100?<div className={css.liDate}>{parseInt(day.date)}</div>:<div className={css.liDateFull}>{parseInt(day.date)}</div>}
-                    <p className={css.p}>{day.dailyNormPercent}%</p>                    
+                    <p className={css.p}>{parseInt(day.dailyNormPercent)}%</p>                    
                 </li>))}
             </ul>
-            {isModalOpen && isMobile && <ModalCalendar day={day} month={month} dailyNorma={dailyNorma} rate={rate} servings={servings} y={y} />}
-            {isModalOpen && isTablet && x<=400 && <ModalCalendar day={day} month={month} dailyNorma={dailyNorma} rate={rate} servings={servings} x={x} y={y}/>}
-            {isModalOpen && isTablet && x>400 && <ModalCalendar day={day} month={month} dailyNorma={dailyNorma} rate={rate} servings={servings} x={x-280} y={y}/>}
-            {isModalOpen && isDesktop && <ModalCalendar day={day} month={month} dailyNorma={dailyNorma} rate={rate} servings={servings} x={x-280} y={y}/>}
+            {isModalOpen && isMobile && <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} y={y} />}
+            {isModalOpen && isTablet && x<=400 && <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y}/>}
+            {isModalOpen && isTablet && x>400 && <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x-280} y={y}/>}
+            {isModalOpen && isDesktop && <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x-280} y={y}/>}
         </div>
     )
 }

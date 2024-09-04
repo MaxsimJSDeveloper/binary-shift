@@ -5,7 +5,7 @@
       background-repeat: no-repeat;
       background-position: center bottom;
       background-size: contain;
-      padding-bottom: 200px;
+      min-height: 600px;
     }
     
   }
@@ -26,12 +26,9 @@
       background-position-y: 100px ;
       background-position-x: 70px;
       background-size: contain;
-      padding-bottom: 250px;
+      min-height: 800px;
     }
-    .wrap{ 
-    display: flex;
-    justify-content: start;
-  }
+    
     
   }
   @media (min-width: 768px) and (min-resolution: 192dpi),

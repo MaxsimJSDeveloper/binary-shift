@@ -1,0 +1,10 @@
+.openModal {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonOpenAndCloseModal {
+    border: none;
+    color: #407bff;
+    background-color: transparent;
+}

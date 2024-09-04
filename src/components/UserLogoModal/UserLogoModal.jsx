@@ -1,7 +1,7 @@
-// import Modal from "../Modal/Modal";
 import PropTypes from "prop-types";
 import css from "./UserLogoModal.module.css";
 import { useEffect, useRef } from "react";
+
 export default function UserLogoModal({ isOpen, onClose, children }) {
   const modalRef = useRef();
 
@@ -14,6 +14,9 @@ export default function UserLogoModal({ isOpen, onClose, children }) {
 
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Optionally: remove listener when modal is not open
+      document.removeEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
@@ -31,6 +34,7 @@ export default function UserLogoModal({ isOpen, onClose, children }) {
     </div>
   );
 }
+
 UserLogoModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

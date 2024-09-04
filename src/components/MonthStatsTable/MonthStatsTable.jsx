@@ -32,19 +32,14 @@ export default function MonthStatsTable() {
     const [day, setDay] = useState(0);
     const water = useSelector(selectData);
     const dispatch = useDispatch();
-    
-    // console.log(dispatch(fetchMonthWater(month)));
-    // const date = water[0].date.split(',')
-    // console.log(date[0]);  
-    // console.log(month);
-    
+ 
     
 
 
     useEffect(() => {
         setMonth(currentDate.toLocaleString("en-Us", { month: 'long' }));
         setYear(currentDate.getFullYear());   
-        console.log(dispatch(fetchMonthWater(month)));
+        dispatch(fetchMonthWater(month));
     },[currentDate,dispatch,month],)
 
 
@@ -52,7 +47,7 @@ export default function MonthStatsTable() {
         setCurrentDate(prevDate => {
             const newDate = new Date(prevDate)
             newDate.setMonth(prevDate.getMonth() - 1)
-            console.log(dispatch(fetchMonthWater(month)));
+            dispatch(fetchMonthWater(month));
             return newDate
         });  
     }
@@ -60,7 +55,7 @@ export default function MonthStatsTable() {
         setCurrentDate(prevDate => {
             const newDate = new Date(prevDate)
             newDate.setMonth(prevDate.getMonth() + 1) 
-            console.log(dispatch(fetchMonthWater(month)));
+            dispatch(fetchMonthWater(month));
             return newDate
         });        
     }
@@ -78,7 +73,6 @@ export default function MonthStatsTable() {
     const daysArray = Array.from({ length: daysInMonth(currentDate.getMonth(), year) }, (_, i) =>
     {
         return {  
-            // date:i+1,
             date: `${i+1}, ${month}`,
             dailyNorm: 1500,
             dailyNormPercent: 0,
@@ -90,7 +84,7 @@ export default function MonthStatsTable() {
         const matchingObj = water.find(obj2 => obj2.date === obj1.date);
         return matchingObj ? matchingObj : obj1;
     })
-    console.log(newDaysArray);
+ 
     
     
 

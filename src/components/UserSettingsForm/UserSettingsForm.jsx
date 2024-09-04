@@ -5,7 +5,7 @@ import { HiArrowUpTray } from "react-icons/hi2";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { HiOutlineEye } from "react-icons/hi2";
 import { HiOutlineEyeOff } from "react-icons/hi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./UserSettingsForm.module.css";
 import { updateUser, updateUserAvatar } from "../../redux/users/operations";
@@ -26,12 +26,14 @@ const validationSchema = Yup.object({
   // .required('Please confirm your new password'),
 });
 
-export default function UserSettingsForm({ user, onClose }) {
+export default function UserSettingsForm({ onClose }) {
+  const user = useSelector(selectUser);
   const [showOutdatedpassword, setShowOutdatedpassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatNewPassword, setShowRepeatNewPassword] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [photoPreview, setPhotoPreview] = useState(null);
+  const [photoPreview, setPhotoPreview] = useState(user?.photo);
+  // const [photoPreview, setPhotoPreview] = useState(null);
   const dispatch = useDispatch();
   const fieldId = useId();
 
@@ -74,7 +76,7 @@ export default function UserSettingsForm({ user, onClose }) {
   };
 
   const handleUpdate = (values, { setSubmitting }) => {
-    console.log("Form values:", values);
+    console.log("Form values:", values); // потом удалить строку консоли
     const { gender, name, email, outdatedPassword, newPassword } = values;
 
     if (!name && !email && !outdatedPassword && !newPassword) {
@@ -95,18 +97,14 @@ export default function UserSettingsForm({ user, onClose }) {
     )
       .unwrap()
       .then(() => {
-        // console.log('Update result:', result);
         toast.success("Profile updated successfully!");
         onClose();
       })
       .catch(() => {
-        // console.error('Error updating profile:', error);
         toast.error("Error updating profile.");
-        // console.log('Error result:');
       })
       .finally(() => {
         setSubmitting(false);
-        // actions.resetForm();
       });
   };
 

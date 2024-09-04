@@ -1,7 +1,7 @@
-// import Modal from "../Modal/Modal";
 import PropTypes from "prop-types";
 import css from "./UserLogoModal.module.css";
 import { useEffect, useRef } from "react";
+
 export default function UserLogoModal({ isOpen, onClose, children }) {
   const modalRef = useRef();
 
@@ -24,13 +24,14 @@ export default function UserLogoModal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (
-    <div className={css.modalOverlay}>
+    <div className={css.modalOverlay} onClick={(e) => e.stopPropagation()}>
       <div className={css.modalContent} ref={modalRef}>
         {children}
       </div>
     </div>
   );
 }
+
 UserLogoModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

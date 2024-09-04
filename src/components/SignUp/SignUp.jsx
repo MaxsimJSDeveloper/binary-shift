@@ -103,7 +103,7 @@ export default function SignUp() {
 
           <button
             type="button"
-            className={css.btn}
+            className={css.signinLink}
             onClick={() => navigate("/signin")}
           >
             Sign In
@@ -113,3 +113,4 @@ export default function SignUp() {
     </Formik>
   );
 }
+

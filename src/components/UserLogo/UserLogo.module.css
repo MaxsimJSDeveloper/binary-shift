@@ -1,10 +1,76 @@
-.openModal {
+
+.containerUserAvatar {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background-color: transparent;
+    border: none;
+    position: relative;
 }
 
-.buttonOpenAndCloseModal {
+.namePhoto {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.nameUser {
+    font-size: 18px;
+}
+
+
+.userAvatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.avatarInithial{ 
+    display: flex;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: orange;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.button {
     border: none;
     color: #407bff;
     background-color: transparent;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+    /* padding: 0; */
+}
+
+.iconArrow {
+    width: 16px;
+    height: 16px;
+}
+.openModal {
+    display: flex;
+    flex-direction: column;
+row-gap: 16px;
+
+}
+
+.buttonOpenAndCloseModal {
+        width: 86px;
+    display: flex;
+        flex-wrap: nowrap;
+    gap: 8px;
+    border: none;
+    color: #407bff;
+    background-color: transparent;
+
+}
+
+.iconSettingAndLogOut {
+    width: 16px;
+    height: 16px;
 }

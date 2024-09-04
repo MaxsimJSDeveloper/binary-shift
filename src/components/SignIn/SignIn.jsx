@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import css from "./SignIn.module.css";
-
 import toast from "react-hot-toast";
 import { logIn } from "../../redux/auth/operations";
 
@@ -24,7 +23,7 @@ export default function SignIn() {
       .unwrap()
       .then((data) => {
         toast.success("Login successful!");
-        navigate("/");
+        navigate("/home");
       })
       .catch((err) => {
         toast.error("Login failed");
@@ -88,3 +87,4 @@ export default function SignIn() {
     </Formik>
   );
 }
+

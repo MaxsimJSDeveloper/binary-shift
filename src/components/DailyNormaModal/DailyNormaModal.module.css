@@ -1,0 +1,200 @@
+.closebtn {
+  position: absolute;
+  top: 28px;
+  right: 12px;
+  cursor: pointer;
+  background-color: #fff;
+  border: none;
+}
+.closeicon {
+  width: 24px;
+  height: 24px;
+  fill: #407bff;
+}
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: scroll;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #ffffff;
+  margin: 40px 20px;
+  border-radius: 8px;
+  padding: 24px 12px;
+  width: 100%;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.maintitle {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 123%;
+  color: #2f2f2f;
+  margin-bottom: 24px;
+}
+.formulas {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.formulaname {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: #2f2f2f;
+}
+.formula {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 133%;
+  color: #407bff;
+}
+.formuladescr {
+  border: 1px solid #d7e3ff;
+  border-radius: 10px;
+  padding: 10px;
+}
+.descrinfo {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: #8f8f8f;
+}
+.symbol {
+  color: #407bff;
+}
+.modaldescr {
+  margin-bottom: 24px;
+}
+.titlecalculation {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: #2f2f2f;
+  margin-bottom: 16px;
+}
+.radiobuttons {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+.radiocontainer {
+  display: flex;
+  gap: 8px;
+}
+.radiodescr {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: #2f2f2f;
+}
+.calculcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.calcdescr {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: #2f2f2f;
+}
+.inputcalc {
+  border: 1px solid #d7e3ff;
+  border-radius: 6px;
+  padding: 12px 10px;
+  color: #407bff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+}
+
+.reqamountcontainer {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.reqdescr {
+  width: 190px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: #2f2f2f;
+}
+.reqamount {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 133%;
+  color: #407bff;
+}
+.modalform {
+  margin-bottom: 24px;
+}
+.wateramountcontainer {
+  margin-bottom: 24px;
+}
+.formbutton {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 30px;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  background: #407bff;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  text-align: center;
+  color: #fff;
+}
+
+.error {
+  color: #ef5050;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+}
+
+@media screen and (min-width: 768px) {
+  .modalContent {
+    margin: 40px 32px;
+    padding: 32px 24px;
+    max-width: 592px;
+  }
+  .formulas {
+    flex-direction: row;
+    gap: 24px;
+  }
+  .reqdescr {
+    width: 360px;
+  }
+  .formbutton {
+    width: 160px;
+    padding: 10px 30px;
+  }
+  .btncontainer {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .modalContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

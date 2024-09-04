@@ -3,6 +3,9 @@ import { HiOutlineChevronLeft } from "react-icons/hi2";
 import { HiOutlineChevronRight } from "react-icons/hi2";
 import { useMediaQuery } from "react-responsive";
 import css from "./MonthStatsTable.module.css"
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchMonthWater } from "../../redux/month/operations";
+// import { selectData } from "../../redux/month/selectors";
 
 const ModalCalendar = ({day,month,dailyNorma,rate,servings, x, y}) => {
     return (<div className={css.modal} style={{top:y-205, left:x}}>
@@ -27,11 +30,16 @@ export default function MonthStatsTable() {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [day, setDay] = useState(0);
+    // const water = useSelector(selectData);
+    // const dispatch = useDispatch();
+    
+    // console.log(dispatch(fetchMonthWater(month)));
+    // console.log(water);  
 
 
     useEffect(() => {
         setMonth(currentDate.toLocaleString("en-Us", { month: 'long' }));
-        setYear(currentDate.getFullYear());             
+        setYear(currentDate.getFullYear());       
     },[currentDate])
 
 

@@ -15,26 +15,11 @@ import { selectIsLoggedIn } from "../../redux/auth/selectors";
 export default function Header() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   // const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const handleOpenModal = () => {
-  //   setIsModalOpen(true);
-  // };
-
-  // const handleCloseModal = () => {
-  //   setIsModalOpen(false);
-  // };
 
   return (
     <header className={css.header}>
       <Logo />
       {!isLoggedIn ? <UserAuth /> : <UserLogo />}
-
-      {/* <UserLogoModal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <div className={css.openModal}>
-          <button className={css.buttonOpenAndCloseModal}>Settings</button>
-          <button className={css.buttonOpenAndCloseModal}>Log out</button>
-        </div>
-      </UserLogoModal> */}
     </header>
   );
 }

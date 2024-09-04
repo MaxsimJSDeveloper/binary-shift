@@ -11,7 +11,6 @@ import {
 import UserLogoModal from "../UserLogoModal/UserLogoModal";
 // import { NavLink } from "react-router-dom";
 import { selectUser } from "../../redux/users/selectors";
-import SettingModal from "../SettingModal/SettingModal";
 
 export default function UserLogo() {
   const user = useSelector(selectUser);
@@ -99,12 +98,12 @@ export default function UserLogo() {
           </div>
         </UserLogoModal>
       )}
-      <SettingModal
+      {/* <SettingModal
         isOpen={isSettingModalOpen}
         onClose={handleCloseSettingModal}
         avatarUrl={avatarUrl}
         initials={initials}
-      />
+      /> */}
     </div>
   );
 }

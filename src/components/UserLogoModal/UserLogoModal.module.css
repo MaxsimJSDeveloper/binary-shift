@@ -1,21 +1,56 @@
-.modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    /* background: rgba(0, 0, 0, 0.5); */
-    /* Прозрачный фон */
+    .modalOverlay {
+        position: absolute;
+        /* top: 53px;
+        right: 65px; */
+            /* top: 53px;
+                right: 29px; */
+                top: 53px;
+                /* right: 65px; */
+                        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        width: 118px;
+        height: 88px;
+    }
+
+        .modalContent {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+    
+        }
+
+/* @media screen and (min-width: 768px) {
+        .modalOverlay {
+                position: absolute;
+    top: 53px;
+        right: 29px;
+                bottom: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                width: 118px;
+                height: 88px;
+            }
 }
 
-.modalContent {
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-}
+@media screen and (min-width: 1440px) {
+    .modalOverlay {
+        position: absolute;
+    top: 53px;
+        right: 29px;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        width: 118px;
+        height: 88px;
+    }
+
+} */

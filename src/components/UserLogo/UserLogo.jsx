@@ -108,6 +108,4 @@ export default function UserLogo() {
 }
 
 //www33333333333@gmail.com
-// dmytro111@gmail.com
 //Dangerous1488@gmail.com
-//

@@ -20,7 +20,7 @@ export const handleRejected = (state, action) => {
 const usersSlice = createSlice({
   name: "users",
   initialState: {
-    user: null,
+    user: {},
     isLoading: false,
     error: null,
   },
@@ -43,7 +43,7 @@ const usersSlice = createSlice({
       .addCase(updateUserAvatar.pending, handlePending)
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user.photo = action.payload.photo;
       })
       .addCase(updateUserAvatar.rejected, handleRejected)
 

@@ -120,6 +120,16 @@ img {
   text-align: left;
 }
 
+.input-error {
+  color: #ef5050;
+  background-color: #ef5050;
+  margin-bottom: 4px;
+}
+
+.input-error:focus::placeholder {
+  color: #ef5050;
+}
+
 /* PASSWORD STYLES */
 .passwordPart {
   display: flex;

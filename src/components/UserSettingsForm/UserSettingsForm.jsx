@@ -12,13 +12,14 @@ import { updateUser, updateUserAvatar } from "../../redux/users/operations";
 import { selectUser } from "../../redux/users/selectors";
 
 const validationSchema = Yup.object({
-  name: Yup.string(),
+  gender: Yup.string().oneOf(["male", "female"]),
+  name: Yup.string().max(32, "Too Long!"),
   // .required('Name is required'),
   email: Yup.string().email("Invalid email address"),
   // .required('Email is required'),
-  outdatedPassword: Yup.string(),
+  outdatedPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!"),
   // .required('Outdated password is required'),
-  newPassword: Yup.string(),
+  newPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!"),
   // .required('New password is required'),
   repeatNewPassword: Yup.string().oneOf(
     [Yup.ref("newPassword"), null],
@@ -29,23 +30,22 @@ const validationSchema = Yup.object({
 
 export default function UserSettingsForm({ onClose }) {
   const user = useSelector(selectUser);
+  const [isSubmitting, setSubmitting] = useState(false);
   const [showOutdatedpassword, setShowOutdatedpassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatNewPassword, setShowRepeatNewPassword] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [photoPreview, setPhotoPreview] = useState(user?.photo || "");
-  // const [photoPreview, setPhotoPreview] = useState(null);
   const dispatch = useDispatch();
   const fieldId = useId();
 
   const initialValues = {
-    // photo: user?.photo || "",
     gender: user?.gender || "female",
     name: user?.name || "",
     email: user?.email || "",
-    // outdatedPassword: "",
-    // newPassword: "",
-    // repeatNewPassword: "",
+    outdatedPassword: "",
+    newPassword: "",
+    repeatNewPassword: "",
   };
 
   const handleFileChange = async (event) => {
@@ -97,12 +97,11 @@ export default function UserSettingsForm({ onClose }) {
 
     dispatch(
       updateUser({
-        // photo: selectedFile,
         gender,
         name,
         email,
-        // outdatedPassword,
-        // newPassword,
+        outdatedPassword,
+        newPassword,
       })
     )
       .unwrap()
@@ -125,7 +124,7 @@ export default function UserSettingsForm({ onClose }) {
         validationSchema={validationSchema}
         onSubmit={handleUpdate}
       >
-        {({ isSubmitting }) => (
+        {({ errors, touched, isSubmitting }) => (
           <Form>
             <h2 className={css.setting_title}>Setting</h2>
             <h3 className={css.photoTitle}>Your photo</h3>
@@ -134,11 +133,6 @@ export default function UserSettingsForm({ onClose }) {
                 {photoPreview ? (
                   <img
                     className={css.photoUrl}
-                    // style={{
-                    //   width: '80px',
-                    //   height: '80px',
-                    //   objectFit: 'cover',
-                    // }}
                     src={photoPreview}
                     alt="User Photo"
                   />
@@ -146,11 +140,6 @@ export default function UserSettingsForm({ onClose }) {
                   <HiOutlineUserCircle className={css.photoUrl} />
                 )}
               </div>
-              {/* <img
-              src={user?.photo || 'placeholder.jpg'}
-              alt="User Photo"
-              style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-            /> */}
               <div className={css.uploadPhotoButtonWrapper}>
                 <input
                   type="file"
@@ -184,18 +173,12 @@ export default function UserSettingsForm({ onClose }) {
                         className={css.genderText}
                         type="radio"
                         name="gender"
-                        // value="woman"
                         value="female"
                       />
                       Woman
                     </label>
                     <label>
-                      <Field
-                        type="radio"
-                        name="gender"
-                        // value="man"
-                        value="male"
-                      />
+                      <Field type="radio" name="gender" value="male" />
                       Man
                     </label>
                   </div>
@@ -207,7 +190,6 @@ export default function UserSettingsForm({ onClose }) {
                   </label>
                   <Field
                     className={css.user_info_input}
-                    // className={css.user_info_field}
                     type="text"
                     name="name"
                     id={`${fieldId}-name`}
@@ -224,7 +206,10 @@ export default function UserSettingsForm({ onClose }) {
                     E-mail
                   </label>
                   <Field
-                    className={css.user_info_input}
+                    // className={css.user_info_input}
+                    className={clsx(css.user_info_input, {
+                      "input-error": errors.newPassword && touched.newPassword,
+                    })}
                     type="email"
                     name="email"
                     id={`${fieldId}-email`}

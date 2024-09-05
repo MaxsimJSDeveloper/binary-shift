@@ -31,9 +31,6 @@ export const updateUserAvatar = createAsyncThunk(
   "user/updateUserAvatar",
   async (formData, thunkAPI) => {
     try {
-      // const formData = new FormData();
-      // formData.append("avatar", file);
-
       const res = await axios.patch(`/user/avatar`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",

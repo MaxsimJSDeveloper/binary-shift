@@ -1,0 +1,22 @@
+.containerAuth {
+    display: flex;
+    align-items: center;
+}
+
+.signIn {
+    border: none;
+    background-color: transparent;
+    color: #407bff;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 8px;
+}
+
+.iconUser {
+    width: 28px;
+    height: 28px;
+
+}

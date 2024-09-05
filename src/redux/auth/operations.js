@@ -16,9 +16,7 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post("/auth/register", credentials);
-      setAuthHeader(res.data.token);
-      console.log("Registered user email:", res.data.user.email);
-      return res.data;
+      return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -31,9 +29,7 @@ export const logIn = createAsyncThunk(
     try {
       const res = await axios.post("/auth/login", credentials);
       setAuthHeader(res.data.data.accessToken);
-      console.log(res.data.data.accessToken); //отримали токен
-
-      return res.data;
+      return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -52,28 +48,15 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
-    try {
-      setAuthHeader(persistedToken);
-      const res = await axios.get("/auth/refresh");
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+    const reduxState = thunkAPI.getState();
+    setAuthHeader(reduxState.auth.token);    
+    const res = await axios.get("/user");
+    return res.data.data;
   },
   {
-    condition: (_, { getState }) => {
-      const state = getState();
-      const persistedToken = state.auth.token;
-
-      if (persistedToken === null) {
-        return false;
-      }
-
-      return true;
-    },
-    dispatchConditionRejection: true,
+    condition(_, thunkAPI) {
+       const reduxState = thunkAPI.getState();
+      return reduxState.auth.token !== null;
+    }
   }
 );

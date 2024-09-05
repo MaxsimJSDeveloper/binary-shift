@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./UserSettingsForm.module.css";
 import { updateUser, updateUserAvatar } from "../../redux/users/operations";
+import { selectUser } from "../../redux/users/selectors";
 
 const validationSchema = Yup.object({
   name: Yup.string(),
@@ -32,26 +33,30 @@ export default function UserSettingsForm({ onClose }) {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatNewPassword, setShowRepeatNewPassword] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [photoPreview, setPhotoPreview] = useState(user?.photo);
+  const [photoPreview, setPhotoPreview] = useState(user?.photo || "");
   // const [photoPreview, setPhotoPreview] = useState(null);
   const dispatch = useDispatch();
   const fieldId = useId();
 
   const initialValues = {
-    gender: user?.gender || "woman",
+    // photo: user?.photo || "",
+    gender: user?.gender || "female",
     name: user?.name || "",
     email: user?.email || "",
-    outdatedPassword: "",
-    newPassword: "",
-    repeatNewPassword: "",
+    // outdatedPassword: "",
+    // newPassword: "",
+    // repeatNewPassword: "",
   };
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
+    console.log(file); // Проверьте, что файл корректно выбран
     if (file) {
       setSelectedFile(file);
       setPhotoPreview(URL.createObjectURL(file));
       await handleUploadPhoto(file);
+    } else {
+      console.error("No file selected or file is undefined");
     }
   };
 
@@ -63,7 +68,12 @@ export default function UserSettingsForm({ onClose }) {
     if (!file) return;
 
     const formData = new FormData();
-    formData.append("photo", file);
+    formData.append("avatar", file);
+
+    // Логируем содержимое FormData
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value.name || value}`);
+    }
 
     dispatch(updateUserAvatar(formData))
       .unwrap()
@@ -87,12 +97,12 @@ export default function UserSettingsForm({ onClose }) {
 
     dispatch(
       updateUser({
-        photo: selectedFile,
+        // photo: selectedFile,
         gender,
         name,
         email,
-        outdatedPassword,
-        newPassword,
+        // outdatedPassword,
+        // newPassword,
       })
     )
       .unwrap()
@@ -174,12 +184,18 @@ export default function UserSettingsForm({ onClose }) {
                         className={css.genderText}
                         type="radio"
                         name="gender"
-                        value="woman"
+                        // value="woman"
+                        value="female"
                       />
                       Woman
                     </label>
                     <label>
-                      <Field type="radio" name="gender" value="man" />
+                      <Field
+                        type="radio"
+                        name="gender"
+                        // value="man"
+                        value="male"
+                      />
                       Man
                     </label>
                   </div>

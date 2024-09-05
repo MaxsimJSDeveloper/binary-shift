@@ -1,0 +1,247 @@
+.setting_title {
+  color: 2F2F2F;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.23;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+/* PHOTO + UPLOAD BUTTON STYLES */
+.photoTitle {
+  color: #2f2f2f;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.uploadPhotoWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.uploadPhotoButtonWrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.uploadPhotoButtonIcon {
+  color: #407bff;
+}
+
+.uploadPhotoButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  background-color: transparent;
+  color: #407bff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 14px;
+  line-height: 1.28;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.photoUrl {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* GENDER STYLES */
+
+.genderPart {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.genderTitle {
+  color: #2f2f2f;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+  text-align: left;
+}
+
+.genderInputsContainer {
+  margin-top: 12 px;
+  display: flex;
+  gap: 24px;
+}
+
+.genderText {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #2f2f2f;
+}
+
+/* INFO STYLES */
+.namePart,
+.emailPart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.nameTitle,
+.emailTitle,
+.passwordTitle {
+  color: #2f2f2f;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+  text-align: left;
+}
+
+/* PASSWORD STYLES */
+.passwordPart {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.password_label_wrapper {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;
+  justify-content: space-between; */
+  gap: 8px;
+  /* display: block;
+  margin-bottom: 8px; */
+}
+
+.password_form_input_wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.user_info_input {
+  border: 1px solid #d7e3ff;
+  border-radius: 6px;
+  padding: 12px 10px;
+  padding-right: 10px;
+  width: 100%;
+  /* width: 256px; */
+  max-height: 44px;
+  background-color: transparent;
+  color: #407bff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  white-space: nowrap;
+  outline: none;
+  box-sizing: border-box;
+  margin-top: 8px;
+}
+
+.user_info_input::placeholder {
+  color: #9ebbff;
+}
+
+.user_form_input_button {
+  position: absolute;
+  top: 60%; /* Центровка кнопки по вертикали */
+  right: 10px; /* Расположение кнопки справа внутри инпута */
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #407bff;
+}
+.user_form_input_icon {
+  width: 16px;
+  height: 16px;
+}
+
+.save_form_submit_btn {
+  display: block;
+  width: 256px;
+  height: 36px;
+  padding: 8px 30px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  background: #407bff;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .user_info_input,
+  .password_form_input_wrapper {
+    width: 392px;
+  }
+
+  .save_form_submit_btn {
+    display: block;
+    width: 160px;
+    height: 44px;
+    padding: 10px 30px;
+    margin-right: 0px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .user_info_block_desktop {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 24px;
+    max-height: 272px;
+    margin-bottom: 24px;
+  }
+
+  .gender_name_email_desktop {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .genderPart {
+    margin-bottom: 52px;
+  }
+  .namePart {
+    gap: 0px;
+  }
+  .emailPart {
+    margin-bottom: 0px;
+    gap: 0px;
+  }
+}

@@ -78,4 +78,3 @@ export const refreshUser = createAsyncThunk(
     dispatchConditionRejection: true,
   }
 );
-

@@ -9,7 +9,6 @@ import {
   HiOutlineCog6Tooth,
 } from "react-icons/hi2";
 import UserLogoModal from "../UserLogoModal/UserLogoModal";
-// import { NavLink } from "react-router-dom";
 import { selectUser } from "../../redux/users/selectors";
 import SettingModal from "../SettingModal/SettingModal";
 
@@ -19,6 +18,7 @@ export default function UserLogo() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
+
   const handleButtonClick = () => {
     setIsModalOpen((prevState) => !prevState);
   };
@@ -109,6 +109,6 @@ export default function UserLogo() {
   );
 }
 
+
 //www33333333333@gmail.com
-// dmytro111@gmail.com
 //Dangerous1488@gmail.com

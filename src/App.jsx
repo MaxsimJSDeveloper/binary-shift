@@ -7,21 +7,20 @@ import SignUp from "./pages/SignUpPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import HomePage from "./pages/HomePage/HomePage";
 import Header from "./components/Header/Header";
-// import PrivateRoute from "./PrivateRoute";
 import { refreshUser } from "./redux/auth/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { selectIsRefreshing } from "./redux/auth/selectors";
+import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshingUser = useSelector(selectIsRefreshing);
 
    useEffect(() => {
-  dispatch(refreshUser())     
+    console.log(dispatch(refreshUser()))
    }, [dispatch])
 
-
+   const isLogged = useSelector(selectIsLoggedIn);
   return isRefreshingUser? (<div>REFRESHING USER...</div>):(
     <>
       <Header />
@@ -29,8 +28,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/home" element={<HomePage />} />
-        {/* <Route path="/home" element={<PrivateRoute component={<HomePage/>} redirectTo='/signin'/>}/> */}
+        {isLogged ? <Route path="/home" element={<HomePage/>} />:<Route path="/signin" element={<SignIn />} />}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

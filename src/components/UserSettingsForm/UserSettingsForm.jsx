@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useId, useState } from "react";
 import * as Yup from "yup";
+import { clsx } from "clsx";
 import { HiArrowUpTray } from "react-icons/hi2";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { HiOutlineEye } from "react-icons/hi2";
@@ -189,13 +190,19 @@ export default function UserSettingsForm({ onClose }) {
                     Your name
                   </label>
                   <Field
-                    className={css.user_info_input}
+                    className={clsx(css.user_info_input, {
+                      [css["input_error"]]: errors.name && touched.name,
+                    })}
                     type="text"
                     name="name"
                     id={`${fieldId}-name`}
                     placeholder="Enter your name"
                   />
-                  <ErrorMessage name="name" component="div" className="error" />
+                  <ErrorMessage
+                    name="name"
+                    component="div"
+                    className={css["error-message"]}
+                  />
                 </div>
 
                 <div className={css.emailPart}>
@@ -208,7 +215,7 @@ export default function UserSettingsForm({ onClose }) {
                   <Field
                     // className={css.user_info_input}
                     className={clsx(css.user_info_input, {
-                      "input-error": errors.newPassword && touched.newPassword,
+                      [css["input_error"]]: errors.email && touched.email,
                     })}
                     type="email"
                     name="email"
@@ -218,7 +225,7 @@ export default function UserSettingsForm({ onClose }) {
                   <ErrorMessage
                     name="email"
                     component="div"
-                    className="error"
+                    className={css["error-message"]}
                   />
                 </div>
               </div>
@@ -229,7 +236,10 @@ export default function UserSettingsForm({ onClose }) {
                     Outdated password:
                     <div className={css.password_form_input_wrapper}>
                       <Field
-                        className={css.user_info_input}
+                        className={clsx(css.user_info_input, {
+                          [css["input_error"]]:
+                            errors.outdatedPassword && touched.outdatedPassword,
+                        })}
                         type={showOutdatedpassword ? "text" : "password"}
                         name="outdatedPassword"
                         id={`${fieldId}-outdatedPassword`}
@@ -255,7 +265,7 @@ export default function UserSettingsForm({ onClose }) {
                   <ErrorMessage
                     name="outdatedPassword"
                     component="div"
-                    className="error"
+                    className={css["error-message"]}
                   />
                 </div>
 
@@ -264,7 +274,10 @@ export default function UserSettingsForm({ onClose }) {
                     New Password:
                     <div className={css.password_form_input_wrapper}>
                       <Field
-                        className={css.user_info_input}
+                        className={clsx(css.user_info_input, {
+                          [css["input_error"]]:
+                            errors.newPassword && touched.newPassword,
+                        })}
                         type={showNewPassword ? "text" : "password"}
                         name="newPassword"
                         id={`${fieldId}-newPassword`}
@@ -288,7 +301,7 @@ export default function UserSettingsForm({ onClose }) {
                   <ErrorMessage
                     name="newPassword"
                     component="div"
-                    className="error"
+                    className={css["error-message"]}
                   />
                 </div>
 
@@ -297,7 +310,11 @@ export default function UserSettingsForm({ onClose }) {
                     Repeat New Password:
                     <div className={css.password_form_input_wrapper}>
                       <Field
-                        className={css.user_info_input}
+                        className={clsx(css.user_info_input, {
+                          [css["input_error"]]:
+                            errors.repeatNewPassword &&
+                            touched.repeatNewPassword,
+                        })}
                         type={showRepeatNewPassword ? "text" : "password"}
                         name="repeatNewPassword"
                         id={`${fieldId}-repeatNewPassword`}
@@ -323,7 +340,7 @@ export default function UserSettingsForm({ onClose }) {
                   <ErrorMessage
                     name="repeatNewPassword"
                     component="div"
-                    className="error"
+                    className={css["error-message"]}
                   />
                 </div>
               </div>

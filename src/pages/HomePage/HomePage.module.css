@@ -1,7 +1,7 @@
 /* .section {
     padding-top: 80px;
     padding-bottom: 54px;
-  } */
+} */
 
 .container {
   margin: 0 auto;
@@ -39,17 +39,18 @@
     background-image: url(../../img/mobile/background-bable.png),
       url(../../img/mobile/backround-sign-mob_1x.webp);
     background-repeat: no-repeat;
-    background-position: center bottom;
+    background-position: center bottom; /* Обрано останнє значення */
     background-size: contain;
     min-height: 600px;
   }
-}
-@media (max-width: 767px) and (min-resolution: 192dpi),
-  (max-width: 767px) and (min-device-pixel-ratio: 2) {
-  .background {
-    background-image: url(../../img/mobile/backround-sign-mob_2x.webp),
-      url(../../img/mobile/background-bable@2x.png);
-    background-size: contain;
+
+  @media (max-width: 767px) and (min-resolution: 192dpi),
+    (max-width: 767px) and (min-device-pixel-ratio: 2) {
+    .background {
+      background-image: url(../../img/mobile/backround-sign-mob_2x.webp),
+        url(../../img/mobile/background-bable@2x.png);
+      background-size: contain;
+    }
   }
 }
 
@@ -63,6 +64,7 @@
     min-height: 1280px;
   }
 }
+
 @media (min-width: 768px) and (min-resolution: 192dpi),
   (min-width: 767px) and (min-device-pixel-ratio: 2) {
   .background {
@@ -82,6 +84,7 @@
     min-height: 738px;
   }
 }
+
 @media (min-width: 1440px) and (min-resolution: 192dpi),
   (min-width: 1440px) and (min-device-pixel-ratio: 2) {
   .background {
@@ -155,3 +158,4 @@
     max-height: 680px;
   }
 }
+

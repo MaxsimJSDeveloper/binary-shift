@@ -1,9 +1,13 @@
-// В компонент DailyNorma потрібно передати в аргумент функції handleOpenModal та handleCloseModal
+// Замість значення 1.5 повинно повиртатися значення dailyNorma
 
 import DailyNormaModal from "../DailyNormaModal/DailyNormaModal";
 import css from "../DailyNorma/DailyNorma.module.css";
 
-export default function DailyNorma() {
+export default function DailyNorma({
+  isModalOpen,
+  handleOpenModal,
+  handleCloseModal,
+}) {
   return (
     <div className={css.dailyform}>
       <span className={css.dailytitle}>My daily norma</span>

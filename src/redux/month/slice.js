@@ -23,6 +23,7 @@ const monthSlice = createSlice({
       .addCase(fetchMonthWater.pending, handlePending)
       .addCase(fetchMonthWater.fulfilled, (state, action) => {
         state.data = action.payload;
+        state.isLoading = false;
       });
   },
 });

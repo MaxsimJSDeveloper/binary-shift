@@ -19,7 +19,7 @@ export default function UserLogo() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
-  const [isUserLogOutModalOpen, setIsUserLogOutModalOpen] = useState(false);
+  const [isLogoutModal, setIsLogoutModal] = useState(false); // resolved variable name
 
   const handleButtonClick = () => {
     setIsModalOpen((prevState) => !prevState);
@@ -37,12 +37,12 @@ export default function UserLogo() {
     setIsSettingModalOpen(false);
   };
 
-  const handleUserLogOutClick = () => {
-    setIsUserLogOutModalOpen(true);
+  const handleOpenLogoutModal = () => {
+    setIsLogoutModal(true);
   };
 
-  const handleCloseUserLogOutModal = () => {
-    setIsUserLogOutModalOpen(false);
+  const handleCloseLogoutModal = () => {
+    setIsLogoutModal(false);
   };
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export default function UserLogo() {
 
             <button
               className={css.buttonOpenAndCloseModal}
-              onClick={handleUserLogOutClick}
+              onClick={handleOpenLogoutModal}
             >
               <HiArrowRightOnRectangle className={css.iconSettingAndLogOut} />
               Log out
@@ -120,14 +120,9 @@ export default function UserLogo() {
         initials={initials}
       />
       <UserLogOutModal
-        isOpen={isUserLogOutModalOpen}
-        onClose={handleCloseUserLogOutModal}
-        avatarUrl={avatarUrl}
-        initials={initials}
+        isOpen={isLogoutModal} // use the resolved variable name
+        onClose={handleCloseLogoutModal}
       />
     </div>
   );
 }
-
-//www33333333333@gmail.com
-//Dangerous1488@gmail.com

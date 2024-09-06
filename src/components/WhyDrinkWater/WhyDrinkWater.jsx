@@ -5,7 +5,7 @@ export default function WhyDrinkWater() {
     <div className={css.background}>
       <p className={css.whyDrink}>Why drink water</p>
       <ul className={css.ulWhyDrink}>
-        <li className={(css.liElements, css.liFonts, css.liTop)}>
+        <li className={(css.liElements, css.liFonts)}>
           Supply of nutrients to all organs
         </li>
         <li className={(css.liFonts, css.liElements)}>
@@ -23,7 +23,7 @@ export default function WhyDrinkWater() {
         <li className={(css.liFonts, css.liElements)}>
           Maintaining within the normal temperature
         </li>
-        <li className={(css.liFonts, css.liBot)}>
+        <li className={css.liFonts}>
           Maintaining an immune system capable of resisting disease
         </li>
       </ul>

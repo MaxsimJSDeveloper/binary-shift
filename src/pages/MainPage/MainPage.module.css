@@ -2,34 +2,39 @@
   display: flex;
   flex-wrap: wrap;
 }
-
 @media (max-width: 767px) {
   .background {
-    background-image: url(../img/mobile/background-main-page.png);
+    background-image: url(../../img/mobile/background-main-page.png);
+    /* background-position: center -60px; */
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 100vh;
+    padding-bottom: 40px;
+    background-attachment: fixed;
   }
 }
 @media (max-width: 767px) and (min-resolution: 192dpi),
   (max-width: 767px) and (min-device-pixel-ratio: 2) {
   .background {
-    background-image: url(../img/mobile/background-main-page@2x.png);
+    background-image: url(../../img/mobile/background-main-page@2x.png);
     background-size: cover;
   }
 }
 
 @media (min-width: 768px) {
   .background {
-    background-image: url(../img/tablet/background-main-page.webp);
+    background-image: url(../../img/tablet/background-main-page.webp);
     background-repeat: no-repeat;
-    background-position: center;
+    /* background-position: center -60px; */
     background-size: cover;
+    padding-bottom: 50px;
+    background-attachment: fixed;
   }
 }
 @media (min-width: 768px) and (min-resolution: 192dpi),
   (min-width: 767px) and (min-device-pixel-ratio: 2) {
   .background {
-    background-image: url(../img/tablet/background-main-page@2x.png);
+    background-image: url(../../img/tablet/background-main-page@2x.png);
     background-size: contain;
     background-size: cover;
   }
@@ -37,16 +42,18 @@
 
 @media (min-width: 1440px) {
   .background {
-    background-image: url(../img/desck/background-main-page.png);
+    background-image: url(../../img/desck/background-bable.png),
+      url(../../img/desck/background-main-page.png);
+    background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
-
-    height: 900px;
+    background-attachment: fixed;
+    min-height: 100vh;
   }
 }
 @media (min-width: 1440px) and (min-resolution: 192dpi),
   (min-width: 1440px) and (min-device-pixel-ratio: 2) {
   .background {
-    background-image: url(../img/desck/background-main-page@2x.png);
+    background-image: url(../../img/desck/background-main-page@2x.png);
   }
 }

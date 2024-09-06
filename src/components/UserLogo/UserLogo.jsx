@@ -11,6 +11,7 @@ import {
 import UserLogoModal from "../UserLogoModal/UserLogoModal";
 import { selectUser } from "../../redux/users/selectors";
 import SettingModal from "../SettingModal/SettingModal";
+import UserLogOutModal from "../UserLogoutModal/UserLogoutModal";
 
 export default function UserLogo() {
   const user = useSelector(selectUser);
@@ -18,6 +19,7 @@ export default function UserLogo() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
+  const [isLogoutModal, setIsLogoutModal] = useState(false);
 
   const handleButtonClick = () => {
     setIsModalOpen((prevState) => !prevState);
@@ -33,6 +35,14 @@ export default function UserLogo() {
 
   const handleCloseSettingModal = () => {
     setIsSettingModalOpen(false);
+  };
+
+  const handleOpenLogoutModal = () => {
+    setIsLogoutModal(true);
+  };
+
+  const handleCloseLogoutModal = () => {
+    setIsLogoutModal(false);
   };
 
   useEffect(() => {
@@ -92,23 +102,27 @@ export default function UserLogo() {
               Setting
             </button>
 
-            <button className={css.buttonOpenAndCloseModal}>
+            <button
+              className={css.buttonOpenAndCloseModal}
+              onClick={handleOpenLogoutModal}
+            >
               <HiArrowRightOnRectangle className={css.iconSettingAndLogOut} />
               Log out
             </button>
           </div>
         </UserLogoModal>
       )}
+
       <SettingModal
         isOpen={isSettingModalOpen}
         onClose={handleCloseSettingModal}
         avatarUrl={avatarUrl}
         initials={initials}
       />
+      <UserLogOutModal
+        isOpen={isLogoutModal}
+        onClose={handleCloseLogoutModal}
+      />
     </div>
   );
 }
-
-
-//www33333333333@gmail.com
-//Dangerous1488@gmail.com

@@ -27,8 +27,8 @@ const HomePage = () => {
       <div className={css.background}>
         <div className={css.container}>
           <div className={css.firstSection}>
-            {/* <DailyNorma />
-            <WaterRatioPanel /> */}
+             {/* <DailyNorma /> */}
+            {/* <WaterRatioPanel />  */}
           </div>
 
           <div className={css.containerProgressWrapper}>

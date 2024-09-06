@@ -20,15 +20,10 @@ const validationSchema = Yup.object({
   newPassword: Yup.string()
     .min(8, "New password must be at least 8 characters")
     .max(64, "Too Long!"),
-  //   .notOneOf(
-  //     [Yup.ref("password")],
-  //     "New password must be different from the current password"
-  // )
   repeatNewPassword: Yup.string().oneOf(
     [Yup.ref("newPassword"), null],
     "Passwords must match"
   ),
-  // .required('Please confirm your new password'),
 });
 
 export default function UserSettingsForm({ onClose }) {

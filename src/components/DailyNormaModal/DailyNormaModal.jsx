@@ -1,10 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useId } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { IoMdClose } from "react-icons/io";
 import css from "../DailyNormaModal/DailyNormaModal.module.css";
 import * as Yup from "yup";
 
-// Додаємо closeModal як аргумент
 export default function DailyNormaModal({ closeModal }) {
   const initialValues = {
     sex: sessionStorage.getItem("gender") || "male",
@@ -12,6 +11,8 @@ export default function DailyNormaModal({ closeModal }) {
     inputTimeValue: sessionStorage.getItem("time") || "0",
     dailyNorma: sessionStorage.getItem("dailyNorma") || "0",
   };
+
+  const id = useId();
 
   const FeedbackSchema = Yup.object().shape({
     sex: Yup.string().required("Please select your gender"),
@@ -32,7 +33,7 @@ export default function DailyNormaModal({ closeModal }) {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
-        closeModal(); // Викликаємо closeModal
+        closeModal();
       }
     };
 
@@ -55,7 +56,7 @@ export default function DailyNormaModal({ closeModal }) {
 
   const handleBackdropClick = (event) => {
     if (event.target === event.currentTarget) {
-      closeModal(); // Викликаємо closeModal
+      closeModal();
     }
   };
 
@@ -66,7 +67,8 @@ export default function DailyNormaModal({ closeModal }) {
     sessionStorage.setItem("dailyNorma", values.dailyNorma);
 
     setSubmitting(false);
-    closeModal(); // Викликаємо closeModal
+    closeModal();
+    return values.dailyNorma;
   };
 
   return (
@@ -137,8 +139,14 @@ export default function DailyNormaModal({ closeModal }) {
                         name="sex"
                         value="female"
                         onChange={handleChange}
+                        id={`${id}-gendergirl`}
                       />
-                      <label className={css.radiodescr}>For girl</label>
+                      <label
+                        htmlFor={`${id}-gendergirl`}
+                        className={css.radiodescr}
+                      >
+                        For girl
+                      </label>
                     </div>
                     <div className={css.radiocontainer}>
                       <Field
@@ -146,8 +154,14 @@ export default function DailyNormaModal({ closeModal }) {
                         name="sex"
                         value="male"
                         onChange={handleChange}
+                        id={`${id}-genderboy`}
                       />
-                      <label className={css.radiodescr}>For man</label>
+                      <label
+                        htmlFor={`${id}-genderboy`}
+                        className={css.radiodescr}
+                      >
+                        For man
+                      </label>
                     </div>
                     <ErrorMessage
                       className={css.error}
@@ -157,7 +171,7 @@ export default function DailyNormaModal({ closeModal }) {
                   </div>
                   <div>
                     <div className={css.calculcontainer}>
-                      <label className={css.calcdescr}>
+                      <label className={css.calcdescr} htmlFor={`${id}-weight`}>
                         Your weight in kilograms:
                       </label>
                       <Field
@@ -170,6 +184,7 @@ export default function DailyNormaModal({ closeModal }) {
                         onChange={(e) =>
                           handleFieldChange("inputWeightValue", e.target.value)
                         }
+                        id={`${id}-weight`}
                       />
                       <ErrorMessage
                         className={css.error}
@@ -178,7 +193,7 @@ export default function DailyNormaModal({ closeModal }) {
                       />
                     </div>
                     <div className={css.calculcontainer}>
-                      <label className={css.calcdescr}>
+                      <label className={css.calcdescr} htmlFor={`${id}-time`}>
                         The time of active participation in sports or other
                         activities with a high physical load in hours:
                       </label>
@@ -192,6 +207,7 @@ export default function DailyNormaModal({ closeModal }) {
                         onChange={(e) =>
                           handleFieldChange("inputTimeValue", e.target.value)
                         }
+                        id={`${id}-time`}
                       />
                       <ErrorMessage
                         className={css.error}
@@ -243,3 +259,4 @@ export default function DailyNormaModal({ closeModal }) {
     </div>
   );
 }
+

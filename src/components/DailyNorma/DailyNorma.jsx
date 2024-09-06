@@ -17,7 +17,7 @@ export default function DailyNorma() {
     <div className={css.dailyform}>
       <span className={css.dailytitle}>My daily norma</span>
       <div className={css.datadaily}>
-        <span className={css.water}>1.5 L</span>
+        <span className={css.water}>1.5 L</span> {/* Тут треба замінити значення на dailyNorma */}
         <button className={css.waterbutton} onClick={handleOpenModal}>
           Edit
         </button>

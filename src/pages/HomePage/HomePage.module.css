@@ -1,11 +1,11 @@
-.section {
+/* .section {
     padding-top: 80px;
     padding-bottom: 54px;
-  }
+  } */
   
   .container {
     margin: 0 auto;
-    padding: 0px 20px;
+    padding: 0px 0px;
   }
   
   @media only screen and (max-width: 767px) {
@@ -34,44 +34,79 @@
   
   /* background */
   
-  @media only screen and (min-width: 320px) {
+  @media (max-width: 767px) {
     .background {
-      background: url("../../img/mobile/background-bable@2x.png")
-        no-repeat;
-      background-size: cover;
+      background-image: url(../../img/mobile/background-bable.png),
+      url(../../img/mobile/backround-sign-mob_1x.webp);
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: contain;
+      min-height: 600px;
+    }
+    
+  }
+  @media (max-width: 767px) and (min-resolution: 192dpi),
+    (max-width: 767px) and (min-device-pixel-ratio: 2) {
+    .background {
+      background-image: url(../../img/mobile/backround-sign-mob_2x.webp),
+      url(../../img/mobile/background-bable@2x.png);
+      background-size: contain;
     }
   }
   
-  @media only screen and (min-width: 768px) {
+  
+  @media (min-width: 768px) {
     .background {
-      background: url("../../img/tablet/background-bable@2x.png")
-        no-repeat;
-      background-size: cover;
+      background-image: url(../../img/tablet/background-bable.png),
+      url(../../img/tablet/backround-sign-tab_1x.webp);
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: contain;
+      min-height:1280px;
+    }
+    
+    
+  }
+  @media (min-width: 768px) and (min-resolution: 192dpi),
+    (min-width: 767px) and (min-device-pixel-ratio: 2) {
+    .background {
+      background-image: url(../../img/tablet/backround-sign-tab_2x.webp),
+      url(../../img/tablet/background-bable@2x.png);
+      background-size: contain;
     }
   }
   
-  @media only screen and (min-width: 1440px) {
+  @media (min-width: 1440px) {
     .background {
-      background-image: url("../../img/desck/background-bable@2x.png")
-        no-repeat;
-      background-size: cover;
+      background-image: url(../../img/desck/background-bable.png),
+        url(../../img/desck/backround-sign-desk_1x.webp);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center left;
+      min-height: 738px;
     }
+     
   }
+  @media (min-width: 1440px) and (min-resolution: 192dpi),
+    (min-width: 1440px) and (min-device-pixel-ratio: 2) {
+    .background {
+      background-image: url(../../img/desck/background-bable@2x.png),
+        url(../../img/desck/backround-sign-deck_2x.webp);
+    }
+     
+  }
+  
   
   /* My daily norma and progressbar */
   
   .firstSection {
     padding: 24px 0 0px 0;
-    background: url("../../img/symbol-defs.svg/icon-mobile-bottle-home-screen") left 50% top 45%/
-      280px 208px no-repeat;
   }
   
   @media only screen and (min-width: 768px) {
     .firstSection {
       max-width: 768px;
       padding: 40px 0 0px 0;
-      background: url("../../img/symbol-defs.svg/icon-tablet-bottle-home-screen") left 50% top
-        30% / 518px 386px no-repeat;
     }
   }
   
@@ -79,8 +114,6 @@
     .firstSection {
       padding: 52px 0 0 0;
       min-width: 650px;
-      background: url("../../img/symbol-defs.svg/icon-desktop-bottle-home-screen") right top 15% /
-        738px 548px no-repeat;
     }
   }
   

@@ -15,13 +15,15 @@ import { selectUser } from "../../redux/users/selectors";
 const validationSchema = Yup.object({
   gender: Yup.string().oneOf(["male", "female"]),
   name: Yup.string().max(32, "Too Long!"),
-  // .required('Name is required'),
   email: Yup.string().email("Invalid email address"),
-  // .required('Email is required'),
-  outdatedPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!"),
-  // .required('Outdated password is required'),
-  newPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!"),
-  // .required('New password is required'),
+  password: Yup.string().min(8, "Too Short!").max(64, "Too Long!"),
+  newPassword: Yup.string()
+    .min(8, "New password must be at least 8 characters")
+    .max(64, "Too Long!"),
+  //   .notOneOf(
+  //     [Yup.ref("password")],
+  //     "New password must be different from the current password"
+  // )
   repeatNewPassword: Yup.string().oneOf(
     [Yup.ref("newPassword"), null],
     "Passwords must match"
@@ -44,20 +46,19 @@ export default function UserSettingsForm({ onClose }) {
     gender: user?.gender || "female",
     name: user?.name || "",
     email: user?.email || "",
-    outdatedPassword: "",
+    password: "",
     newPassword: "",
     repeatNewPassword: "",
   };
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
-    console.log(file); // Проверьте, что файл корректно выбран
     if (file) {
       setSelectedFile(file);
       setPhotoPreview(URL.createObjectURL(file));
       await handleUploadPhoto(file);
     } else {
-      console.error("No file selected or file is undefined");
+      toast.error("No file selected or file is undefined");
     }
   };
 
@@ -71,11 +72,6 @@ export default function UserSettingsForm({ onClose }) {
     const formData = new FormData();
     formData.append("avatar", file);
 
-    // Логируем содержимое FormData
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value.name || value}`);
-    }
-
     dispatch(updateUserAvatar(formData))
       .unwrap()
       .then(() => {
@@ -87,10 +83,9 @@ export default function UserSettingsForm({ onClose }) {
   };
 
   const handleUpdate = (values, { setSubmitting }) => {
-    console.log("Form values:", values); // потом удалить строку консоли
-    const { gender, name, email, outdatedPassword, newPassword } = values;
+    const { gender, name, email, password, newPassword } = values;
 
-    if (!name && !email && !outdatedPassword && !newPassword) {
+    if (!name && !email && !password && !newPassword) {
       toast.error("Please fill in at least one field.");
       setSubmitting(false);
       return;
@@ -101,7 +96,7 @@ export default function UserSettingsForm({ onClose }) {
         gender,
         name,
         email,
-        outdatedPassword,
+        password,
         newPassword,
       })
     )
@@ -213,7 +208,6 @@ export default function UserSettingsForm({ onClose }) {
                     E-mail
                   </label>
                   <Field
-                    // className={css.user_info_input}
                     className={clsx(css.user_info_input, {
                       [css["input_error"]]: errors.email && touched.email,
                     })}
@@ -232,17 +226,17 @@ export default function UserSettingsForm({ onClose }) {
               <div className={css.passwordPart}>
                 <p className={css.passwordTitle}>Password</p>
                 <div className={css.password_label_wrapper}>
-                  <label htmlFor={`${fieldId}-outdatedPassword`}>
+                  <label htmlFor={`${fieldId}-password`}>
                     Outdated password:
                     <div className={css.password_form_input_wrapper}>
                       <Field
                         className={clsx(css.user_info_input, {
                           [css["input_error"]]:
-                            errors.outdatedPassword && touched.outdatedPassword,
+                            errors.password && touched.password,
                         })}
                         type={showOutdatedpassword ? "text" : "password"}
-                        name="outdatedPassword"
-                        id={`${fieldId}-outdatedPassword`}
+                        name="password"
+                        id={`${fieldId}-password`}
                         placeholder="Password"
                       />
                       <button
@@ -263,7 +257,7 @@ export default function UserSettingsForm({ onClose }) {
                     </div>
                   </label>
                   <ErrorMessage
-                    name="outdatedPassword"
+                    name="password"
                     component="div"
                     className={css["error-message"]}
                   />

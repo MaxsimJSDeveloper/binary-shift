@@ -131,11 +131,7 @@ img {
 .password_label_wrapper {
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: space-between; */
   gap: 8px;
-  /* display: block;
-  margin-bottom: 8px; */
 }
 
 .password_form_input_wrapper {
@@ -149,7 +145,6 @@ img {
   padding: 12px 10px;
   padding-right: 10px;
   width: 100%;
-  /* width: 256px; */
   max-height: 44px;
   background-color: transparent;
   color: #407bff;
@@ -187,8 +182,8 @@ img {
 
 .user_form_input_button {
   position: absolute;
-  top: 60%; /* Центровка кнопки по вертикали */
-  right: 10px; /* Расположение кнопки справа внутри инпута */
+  top: 60%;
+  right: 10px;
   transform: translateY(-50%);
   background: none;
   border: none;

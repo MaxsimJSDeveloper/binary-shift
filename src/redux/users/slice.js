@@ -43,7 +43,7 @@ const usersSlice = createSlice({
       .addCase(updateUserAvatar.pending, handlePending)
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user.photo = action.payload.photo;
+        state.user = action.payload;
       })
       .addCase(updateUserAvatar.rejected, handleRejected)
 

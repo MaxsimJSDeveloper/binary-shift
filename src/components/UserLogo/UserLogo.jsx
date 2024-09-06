@@ -31,6 +31,7 @@ export default function UserLogo() {
 
   const handleSettingClick = () => {
     setIsSettingModalOpen(true);
+    setIsModalOpen(false);
   };
 
   const handleCloseSettingModal = () => {
@@ -39,6 +40,7 @@ export default function UserLogo() {
 
   const handleOpenLogoutModal = () => {
     setIsLogoutModal(true);
+    setIsModalOpen(false);
   };
 
   const handleCloseLogoutModal = () => {

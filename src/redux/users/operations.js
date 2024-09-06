@@ -20,7 +20,7 @@ export const updateUser = createAsyncThunk(
   async (updateData, thunkAPI) => {
     try {
       const res = await axios.patch(`/user`, updateData);
-      return res.data;
+      return res.data.user;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || err.message);
     }

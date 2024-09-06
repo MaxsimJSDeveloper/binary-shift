@@ -112,6 +112,7 @@ export default function UserSettingsForm({ onClose }) {
     <>
       <Formik
         initialValues={initialValues}
+        enableReinitialize={true}
         validationSchema={validationSchema}
         onSubmit={handleUpdate}
       >

@@ -9,7 +9,6 @@ import {
   HiOutlineCog6Tooth,
 } from "react-icons/hi2";
 import UserLogoModal from "../UserLogoModal/UserLogoModal";
-
 import { selectUser } from "../../redux/users/selectors";
 import SettingModal from "../SettingModal/SettingModal";
 import UserLogOutModal from "../UserLogoutModal/UserLogoutModal";
@@ -21,6 +20,7 @@ export default function UserLogo() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
   const [isLogoutModal, setIsLogoutModal] = useState(false);
+
   const handleButtonClick = () => {
     setIsModalOpen((prevState) => !prevState);
   };
@@ -126,6 +126,3 @@ export default function UserLogo() {
     </div>
   );
 }
-
-//www33333333333@gmail.com
-//Dangerous1488@gmail.com

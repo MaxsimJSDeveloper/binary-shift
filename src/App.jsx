@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import MainPage from "./pages/MainPage";
+import MainPage from "./pages/MainPage/MainPage";
 import SignIn from "./pages/SignInPage";
 import SignUp from "./pages/SignUpPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
@@ -16,19 +16,25 @@ function App() {
   const dispatch = useDispatch();
   const isRefreshingUser = useSelector(selectIsRefreshing);
 
-   useEffect(() => {
-    console.log(dispatch(refreshUser()))
-   }, [dispatch])
+  useEffect(() => {
+    console.log(dispatch(refreshUser()));
+  }, [dispatch]);
 
-   const isLogged = useSelector(selectIsLoggedIn);
-  return isRefreshingUser? (<div>REFRESHING USER...</div>):(
+  const isLogged = useSelector(selectIsLoggedIn);
+  return isRefreshingUser ? (
+    <div>REFRESHING USER...</div>
+  ) : (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
-        {isLogged ? <Route path="/home" element={<HomePage/>} />:<Route path="/signin" element={<SignIn />} />}
+        {isLogged ? (
+          <Route path="/home" element={<HomePage />} />
+        ) : (
+          <Route path="/signin" element={<SignIn />} />
+        )}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

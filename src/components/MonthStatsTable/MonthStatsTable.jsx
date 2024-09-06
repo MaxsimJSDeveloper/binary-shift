@@ -5,7 +5,8 @@ import { useMediaQuery } from "react-responsive";
 import css from "./MonthStatsTable.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMonthWater } from "../../redux/month/operations";
-import { selectData } from "../../redux/month/selectors";
+import { selectData, selectIsLoading } from "../../redux/month/selectors";
+import Loader from "../Loader/Loader";
 
 const ModalCalendar = ({day,dailyNorma,rate,servings, x, y}) => {
     return (<div className={css.modal} style={{top:y-205, left:x}}>
@@ -23,6 +24,7 @@ const daysInMonth = (month, year) => {
 }
 
 export default function MonthStatsTable() {
+    const isLoading = useSelector(selectIsLoading);
     const [month, setMonth] = useState(new Date().toLocaleString('en-Us', { month: 'long' }));
     const [year, setYear] = useState(new Date().getFullYear());
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -58,20 +60,18 @@ export default function MonthStatsTable() {
         return matchingObj ? matchingObj : obj1;
     })
 
-// Дії які відбуваються при кліку по кнопках вперед-назад
+    // Дії які відбуваються при кліку по кнопках вперед-назад
     const handleLeftButton = () => { 
         setCurrentDate(prevDate => {
             const newDate = new Date(prevDate);
-            newDate.setMonth(prevDate.getMonth() - 1);
-            dispatch(fetchMonthWater({month,year}));
+            newDate.setMonth(prevDate.getMonth() - 1);         
             return newDate;
         });  
     }
     const handleRightButton = () => {
         setCurrentDate(prevDate => {
             const newDate = new Date(prevDate)
-            newDate.setMonth(prevDate.getMonth() + 1) 
-            dispatch(fetchMonthWater({month,year}));
+            newDate.setMonth(prevDate.getMonth() + 1)          
             return newDate
         });        
     }
@@ -101,9 +101,10 @@ export default function MonthStatsTable() {
                 <div className={css.navigationBar}>
                     <button className={css.button} onClick={handleLeftButton}><HiOutlineChevronLeft size={14}/></button>
                     <p>{month}, {year}</p>
-                    {currentDate.getMonth() >= new Date().getMonth() && currentDate.getFullYear()>=new Date().getFullYear() ? (<button className={css.disable}><HiOutlineChevronRight size={14}/></button>):(<button className={css.button} onClick={handleRightButton}><HiOutlineChevronRight /></button>)}
+                    {currentDate.getMonth() >= new Date().getMonth() && currentDate.getFullYear()>=new Date().getFullYear() ? (<button className={css.disable}><HiOutlineChevronRight size={14}/></button>):(<button className={css.button} onClick={handleRightButton}><HiOutlineChevronRight size={14}/></button>)}
                 </div>                
-           </div>
+            </div>
+            {isLoading&&<Loader/>}
             <ul className={css.ul}>
                 {newDaysArray.map((day) => (<li className={css.li} key={parseInt(day.date)}  onMouseEnter={(e)=>handleMouseEnter(e,day.date)} onMouseLeave={handleMouseLeave}>
                     {parseInt(day.dailyNormPercent)<100?<div className={css.liDate}>{parseInt(day.date)}</div>:<div className={css.liDateFull}>{parseInt(day.date)}</div>}

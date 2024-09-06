@@ -19,7 +19,7 @@ export default function UserLogo() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
-  const [isLogoutModal, setIsLogoutModal] = useState(false);
+  const [isLogoutModal, setIsLogoutModal] = useState(false); // resolved variable name
 
   const handleButtonClick = () => {
     setIsModalOpen((prevState) => !prevState);
@@ -120,7 +120,7 @@ export default function UserLogo() {
         initials={initials}
       />
       <UserLogOutModal
-        isOpen={isLogoutModal}
+        isOpen={isLogoutModal} // use the resolved variable name
         onClose={handleCloseLogoutModal}
       />
     </div>

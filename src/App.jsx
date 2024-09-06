@@ -1,27 +1,42 @@
-import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+
 import "./App.css";
-import Modal from "./components/Modal/Modal.jsx";
+import MainPage from "./pages/MainPage/MainPage";
+import SignIn from "./pages/SignInPage";
+import SignUp from "./pages/SignUpPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import HomePage from "./pages/HomePage/HomePage";
+import Header from "./components/Header/Header";
+import { refreshUser } from "./redux/auth/operations";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const isRefreshingUser = useSelector(selectIsRefreshing);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
+  useEffect(() => {
+    console.log(dispatch(refreshUser()));
+  }, [dispatch]);
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  return (
+  const isLogged = useSelector(selectIsLoggedIn);
+  return isRefreshingUser ? (
+    <div>REFRESHING USER...</div>
+  ) : (
     <>
-      <h1>Hello</h1>
-
-      <button onClick={handleOpenModal}>Modal wrap</button>
-
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <h2>Тут передайте те що вам треба</h2>
-      </Modal>
+      <Header />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        {isLogged ? (
+          <Route path="/home" element={<HomePage />} />
+        ) : (
+          <Route path="/signin" element={<SignIn />} />
+        )}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </>
   );
 }

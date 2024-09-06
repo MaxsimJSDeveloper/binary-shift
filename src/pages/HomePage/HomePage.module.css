@@ -1,0 +1,159 @@
+/* .section {
+    padding-top: 80px;
+    padding-bottom: 54px;
+} */
+
+.container {
+  margin: 0 auto;
+  padding: 0px 0px;
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    margin: 0 auto;
+    max-width: 320px;
+    padding: 0px 20px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0px 32px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1440px;
+    padding: 0px 112px;
+  }
+}
+
+/* background */
+
+@media (max-width: 767px) {
+  .background {
+    background-image: url(../../img/mobile/background-bable.png),
+      url(../../img/mobile/backround-sign-mob_1x.webp);
+    background-repeat: no-repeat;
+    background-position: center bottom; /* Обрано останнє значення */
+    background-size: contain;
+    min-height: 600px;
+  }
+
+  @media (max-width: 767px) and (min-resolution: 192dpi),
+    (max-width: 767px) and (min-device-pixel-ratio: 2) {
+    .background {
+      background-image: url(../../img/mobile/backround-sign-mob_2x.webp),
+        url(../../img/mobile/background-bable@2x.png);
+      background-size: contain;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .background {
+    background-image: url(../../img/tablet/background-bable.png),
+      url(../../img/tablet/backround-sign-tab_1x.webp);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;
+    min-height: 1280px;
+  }
+}
+
+@media (min-width: 768px) and (min-resolution: 192dpi),
+  (min-width: 767px) and (min-device-pixel-ratio: 2) {
+  .background {
+    background-image: url(../../img/tablet/backround-sign-tab_2x.webp),
+      url(../../img/tablet/background-bable@2x.png);
+    background-size: contain;
+  }
+}
+
+@media (min-width: 1440px) {
+  .background {
+    background-image: url(../../img/desck/background-bable.png),
+      url(../../img/desck/backround-sign-desk_1x.webp);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center left;
+    min-height: 738px;
+  }
+}
+
+@media (min-width: 1440px) and (min-resolution: 192dpi),
+  (min-width: 1440px) and (min-device-pixel-ratio: 2) {
+  .background {
+    background-image: url(../../img/desck/background-bable@2x.png),
+      url(../../img/desck/backround-sign-deck_2x.webp);
+  }
+}
+
+/* My daily norma and progressbar */
+
+.firstSection {
+  padding-top: 24px;
+}
+
+@media only screen and (min-width: 768px) {
+  .firstSection {
+    padding-top: 40px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .firstSection {
+    padding-top: 52px;
+  }
+}
+
+/* Calendar */
+
+.containerProgressWrapper {
+  padding: 40px 0px;
+}
+
+@media only screen and (min-width: 768px) {
+  .containerProgressWrapper {
+    padding: 44px 0px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .containerProgressWrapper {
+    padding: 20px 0 40px 0;
+  }
+}
+
+.container-progress {
+  box-sizing: border-box;
+  max-width: 100%;
+  background: var(--Secondary-color-2, #ecf2ff);
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
+  border-radius: 10px;
+  padding: 24px 8px;
+  height: 836px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .container-progress {
+    padding: 32px 24px;
+    height: 688px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .container-progress {
+    max-width: 592px;
+    max-height: 680px;
+  }
+}
+

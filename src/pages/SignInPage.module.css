@@ -1,0 +1,61 @@
+@media (max-width: 767px) {
+  .background {
+    background-image: url(../img/mobile/background-bable.png),
+    url(../img/mobile/backround-sign-mob_1x.webp);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: contain;
+    min-height: 600px;
+  }
+  
+}
+@media (max-width: 767px) and (min-resolution: 192dpi),
+  (max-width: 767px) and (min-device-pixel-ratio: 2) {
+  .background {
+    background-image: url(../img/mobile/backround-sign-mob_2x.webp),
+    url(../img/mobile/background-bable@2x.png);
+    background-size: contain;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .background {
+    background-image: url(../img/tablet/background-bable.png),
+    url(../img/tablet/backround-sign-tab_1x.webp);
+    background-repeat: no-repeat;
+    background-position-y: 100px ;
+    background-position-x: 70px;
+    background-size: contain;
+    min-height:800px;
+  }
+  
+  
+}
+@media (min-width: 768px) and (min-resolution: 192dpi),
+  (min-width: 767px) and (min-device-pixel-ratio: 2) {
+  .background {
+    background-image: url(../img/tablet/backround-sign-tab_2x.webp),
+    url(../img/tablet/background-bable@2x.png);
+    background-size: contain;
+  }
+}
+
+@media (min-width: 1440px) {
+  .background {
+    background-image: url(../img/desck/background-bable.png),
+      url(../img/desck/backround-sign-desk_1x.webp);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center left;
+  }
+   
+}
+@media (min-width: 1440px) and (min-resolution: 192dpi),
+  (min-width: 1440px) and (min-device-pixel-ratio: 2) {
+  .background {
+    background-image: url(../img/desck/background-bable@2x.png),
+      url(../img/desck/backround-sign-deck_2x.webp);
+  }
+   
+}

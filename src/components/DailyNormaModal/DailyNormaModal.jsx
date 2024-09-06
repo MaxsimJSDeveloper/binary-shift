@@ -259,3 +259,4 @@ export default function DailyNormaModal({ closeModal }) {
     </div>
   );
 }
+

@@ -1,0 +1,82 @@
+.background {
+  margin: 0 20px;
+  background-color: #ecf2ff;
+  border-radius: 10px;
+  padding: 24px 16px;
+}
+
+.whyDrink {
+  padding-bottom: 12px;
+  line-height: 20px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.ulWhyDrink {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ulWhyDrink li {
+  position: relative;
+  padding-left: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* Прибираємо верхній падінг для першого елемента */
+.ulWhyDrink li:first-child {
+  padding-top: 0;
+}
+
+/* Прибираємо нижній падінг для останнього елемента */
+.ulWhyDrink li:last-child {
+  padding-bottom: 0;
+}
+
+.ulWhyDrink li::before {
+  content: ""; /* Контент для псевдоэлемента (маркер) */
+  position: absolute; /* Абсолютное позиционирование для маркера */
+  left: 0; /* Расположение маркера слева */
+  top: 50%; /* Выравнивание маркера по вертикали */
+  transform: translateY(-50%); /* Центрирование маркера по вертикали */
+  width: 8px; /* Размер маркера */
+  height: 8px; /* Размер маркера */
+  background-color: #407bff; /* Синий цвет маркера */
+  border-radius: 50%; /* Делаем маркер круглым */
+}
+
+.liFonts {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  /* word-spacing: -0.1em; */
+}
+
+/* Медиа-запросы */
+@media (max-width: 767px) {
+  .bottleIcon {
+    display: none; /* Прячем иконку при ширине экрана 767px и меньше */
+  }
+}
+
+@media (min-width: 768px) {
+  .background {
+    margin: 0 32px; /* Упрощаем margin */
+    padding: 32px 24px 50px; /* Упрощаем padding */
+    width: 494px;
+    height: 332px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .ulWhyDrink li {
+    padding-right: 0; /* Убираем правый отступ */
+  }
+}
+
+@media (min-width: 1440px) {
+  .background {
+    margin: 114px 0 0 0; /* Упрощаем margin */
+    padding-bottom: 0; /* Убираем нижний padding */
+  }
+}

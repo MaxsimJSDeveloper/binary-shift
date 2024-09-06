@@ -39,7 +39,7 @@
       background-image: url(../../img/mobile/background-bable.png),
       url(../../img/mobile/backround-sign-mob_1x.webp);
       background-repeat: no-repeat;
-      background-position: center bottom;
+      background-position: top center;
       background-size: contain;
       min-height: 600px;
     }

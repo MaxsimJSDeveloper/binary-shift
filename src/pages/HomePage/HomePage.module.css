@@ -96,20 +96,18 @@
 /* My daily norma and progressbar */
 
 .firstSection {
-  padding: 24px 0 0px 0;
+  padding-top: 24px;
 }
 
 @media only screen and (min-width: 768px) {
   .firstSection {
-    max-width: 768px;
-    padding: 40px 0 0px 0;
+    padding-top: 40px;
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .firstSection {
-    padding: 52px 0 0 0;
-    min-width: 650px;
+    padding-top: 52px;
   }
 }
 

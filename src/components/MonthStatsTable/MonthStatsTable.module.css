@@ -4,8 +4,7 @@
   justify-content: flex-start;
   flex-direction: column;
   gap: 16px;
-  min-width: 264px;
-  width: 280px;
+  min-width: 224px;
   margin: 0 auto;
 }
 
@@ -14,7 +13,7 @@
   align-items: baseline;
   justify-content: space-between;
   flex-direction: row;
-  width: 264px;
+  min-width: 100%;
   font-family: "Roboto", sans-serif;
   color: #2f2f2f;
   font-weight: 500;
@@ -27,7 +26,6 @@
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  min-width: 128px;
   color: #407bff;
   font-weight: 400;
   font-size: 16px;
@@ -83,7 +81,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   row-gap: 16px;
-  width: 280px;
+  min-width: 224px;
 }
 
 .li {
@@ -140,8 +138,7 @@
 
 @media (min-width: 768px) and (max-width: 1440px) {
   .calendar {
-    width: 656px;
-    /* border-radius: 10px; */
+    /* width: 656px; */
   }
   .navigation {
     justify-content: space-between;

@@ -9,7 +9,6 @@ import css from "./TodayWaterList.module.css";
 const TodayWaterList = () => {
   const dispatch = useDispatch();
   const dailyWaterList = useSelector(selectEntriesToday);
-  console.log("Water entries today:", dailyWaterList);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [waterEntry, setWaterEntry] = useState(null);

@@ -30,11 +30,15 @@
 
 .field {
   width: 100%;
-  padding: 10px;
-  font-size: 14px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
   border: 1px solid #e6e6e6;
-  border-radius: 0;
+  border-radius: 6px;
   margin-top: 8px;
+  font-weight: 400;
 }
 
 .error {
@@ -71,8 +75,19 @@
 
 @media (max-width: 767px) {
   .form {
-    margin: 20px;
-    padding: 16px;
+    margin-top: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 0;
+    padding-top: 24px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+  .label {
+    font-size: 18px;
+    color: #2f2f2f;
+    margin-bottom: 0px;
   }
 }
 
@@ -80,13 +95,24 @@
   .form {
     max-width: 336px;
     margin-left: 32px;
+    padding-top: 40px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+  .label {
+    margin-bottom: 0px;
   }
 }
 
 @media (min-width: 1440px) {
   .form {
-    margin-top: 100px;
+    margin-top: 140px;
     margin-left: 840px;
+    padding: 0;
     max-width: 384px;
+  }
+  .heading {
+    font-size: 26px;
   }
 }

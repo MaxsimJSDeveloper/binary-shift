@@ -1,6 +1,8 @@
 .wrap {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  overflow: hidden;
 }
 @media (max-width: 767px) {
   .background {
@@ -30,6 +32,12 @@
     padding-bottom: 50px;
     background-attachment: fixed;
   }
+
+  .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
 }
 @media (min-width: 768px) and (min-resolution: 192dpi),
   (min-width: 767px) and (min-device-pixel-ratio: 2) {
@@ -48,7 +56,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    min-height: 100vh;
+    min-height: 90.8vh;
   }
 }
 @media (min-width: 1440px) and (min-resolution: 192dpi),

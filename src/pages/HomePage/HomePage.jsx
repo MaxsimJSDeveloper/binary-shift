@@ -8,6 +8,7 @@ import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
 // import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 import DailyNorma from "../../components/DailyNorma/DailyNorma";
 import css from "./HomePage.module.css";
+import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 
 const HomePage = () => {
   const error = useSelector(selectError);
@@ -28,7 +29,7 @@ const HomePage = () => {
         <div className={css.container}>
           <div className={css.firstSection}>
             <DailyNorma />
-            {/* <WaterRatioPanel /> */}
+            <WaterRatioPanel />
           </div>
 
           <div className={css.containerProgressWrapper}>

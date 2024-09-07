@@ -50,7 +50,7 @@ export default function SignIn() {
             Enter your email
             <Field
               type="email"
-              placeholder="Enter your email"
+              placeholder="E-mail"
               name="email"
               className={css.field}
             />
@@ -61,7 +61,7 @@ export default function SignIn() {
             Enter your password
             <Field
               type="password"
-              placeholder="Enter your password"
+              placeholder="Password"
               name="password"
               className={css.field}
             />
@@ -87,4 +87,3 @@ export default function SignIn() {
     </Formik>
   );
 }
-

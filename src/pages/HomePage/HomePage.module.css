@@ -97,6 +97,9 @@
 
 .firstSection {
   padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 @media only screen and (min-width: 768px) {
@@ -156,4 +159,3 @@
     max-height: 680px;
   }
 }
-

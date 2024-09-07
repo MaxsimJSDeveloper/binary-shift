@@ -71,7 +71,7 @@ export default function SignUp() {
             Enter your password
             <Field
               type="password"
-              placeholder="Enter your password"
+              placeholder="Password"
               name="password"
               className={css.field}
             />
@@ -113,4 +113,3 @@ export default function SignUp() {
     </Formik>
   );
 }
-

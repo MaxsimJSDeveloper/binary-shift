@@ -1,43 +1,43 @@
 @media (max-width: 767px) {
   .background {
     background-image: url(../img/mobile/background-bable.png),
-    url(../img/mobile/backround-sign-mob_1x.webp);
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: contain;
-    min-height: 600px;
+      url(../img/mobile/backround-sign-mob_1x.webp);
+    background-repeat: no-repeat, no-repeat;
+    background-position: calc(100% + 7px) 108px, center calc(100% - 20px);
+    background-size: cover, contain;
+    min-height: 100vh;
+    background-attachment: fixed;
   }
-  
 }
 @media (max-width: 767px) and (min-resolution: 192dpi),
   (max-width: 767px) and (min-device-pixel-ratio: 2) {
   .background {
-    background-image: url(../img/mobile/backround-sign-mob_2x.webp),
-    url(../img/mobile/background-bable@2x.png);
-    background-size: contain;
+    background-image: url(../img/mobile/background-bable@2x.png),
+      url(../img/mobile/backround-sign-mob_2x.webp);
   }
 }
-
 
 @media (min-width: 768px) {
   .background {
     background-image: url(../img/tablet/background-bable.png),
-    url(../img/tablet/backround-sign-tab_1x.webp);
-    background-repeat: no-repeat;
-    background-position-y: 100px ;
-    background-position-x: 70px;
-    background-size: contain;
-    min-height:800px;
+      url(../img/tablet/backround-sign-tab_1x.webp);
+    background-repeat: no-repeat, no-repeat;
+
+    /* Позиції бульбашок і пляшки */
+    background-position: -15px 100px, 112px 116px;
+
+    /* Бульбашки покривають весь фон, пляшка має точні розміри */
+    background-size: cover, 656px 548px;
+
+    min-height: 100vh;
+    background-attachment: fixed;
   }
-  
-  
 }
 @media (min-width: 768px) and (min-resolution: 192dpi),
   (min-width: 767px) and (min-device-pixel-ratio: 2) {
   .background {
-    background-image: url(../img/tablet/backround-sign-tab_2x.webp),
-    url(../img/tablet/background-bable@2x.png);
-    background-size: contain;
+    background-image: url(../img/tablet/background-bable@2x.png),
+      url(../img/tablet/backround-sign-tab_2x.webp);
   }
 }
 
@@ -47,9 +47,9 @@
       url(../img/desck/backround-sign-desk_1x.webp);
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: center left;
+    background-position: center, calc(0px - 51px) -5px;
+    overflow: hidden;
   }
-   
 }
 @media (min-width: 1440px) and (min-resolution: 192dpi),
   (min-width: 1440px) and (min-device-pixel-ratio: 2) {
@@ -57,5 +57,4 @@
     background-image: url(../img/desck/background-bable@2x.png),
       url(../img/desck/backround-sign-deck_2x.webp);
   }
-   
 }

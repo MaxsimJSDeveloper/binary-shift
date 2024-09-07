@@ -5,13 +5,20 @@ import { selectEntriesToday } from "../../redux/today/selectors";
 import { HiOutlinePencilSquare, HiOutlineTrash } from "react-icons/hi2";
 import { FiPlus } from "react-icons/fi";
 import css from "./TodayWaterList.module.css";
+import EditTodayListModal from '../EditTodayListModal/EditTodayListModal';
+import DeleteEntryModal from '../DeleteEntryModal/DeleteEntryModal';
+import Modal from '../Modal/Modal';
+import TodayListModal from "../TodayListModal/TodayListModal";
+
 
 const TodayWaterList = () => {
   const dispatch = useDispatch();
-  const dailyWaterList = useSelector(selectEntriesToday);
+  const dailyWaterList  = useSelector(selectEntriesToday);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [waterEntry, setWaterEntry] = useState(null);
+
 
   useEffect(() => {
     dispatch(getWaterToday());
@@ -21,121 +28,80 @@ const TodayWaterList = () => {
     setWaterEntry(null);
     setIsModalOpen(true);
   };
+
   const editWaterModal = (entry) => {
     setWaterEntry(entry);
-    setIsModalOpen(true);
+    setIsEditModalOpen(true);
   };
   const deleteWaterModal = (entry) => {
     setWaterEntry(entry);
     setIsDeleteModalOpen(true);
   };
+  const updateWater = () => {
+    dispatch(getWaterToday())
+  }
 
   return (
     <div className={css.section}>
       <h2 className={css.heading}>Today</h2>
       <div className={css.listWrapper}>
         <ul className={css.list}>
-          <li className={css.item}>
-            <div className={css.waterOptions}>
-              <svg width={36} height={36} className={css.icon}>
-                <use xlinkHref="/src/img/symbol-defs.svg#icon-glass" />
-              </svg>
-              <span className={css.waterAmount}>250 ml</span>
-              <span className={css.waterTime}>09.00</span>
-            </div>
-            <div className={css.buttonsWrapper}>
-              <button className={css.listButton}>
-                <HiOutlinePencilSquare className={css.editIcon} />
-              </button>
-              <button className={css.listButton}>
-                <HiOutlineTrash className={css.deleteIcon} />
-              </button>
-            </div>
-          </li>
-          <li className={css.item}>
-            <div className={css.waterOptions}>
-              <svg width={36} height={36} className={css.icon}>
-                <use xlinkHref="/src/img/symbol-defs.svg#icon-glass" />
-              </svg>
-              <span className={css.waterAmount}>300 ml</span>
-              <span className={css.waterTime}>12.20</span>
-            </div>
-            <div className={css.buttonsWrapper}>
-              <button className={css.listButton}>
-                <HiOutlinePencilSquare className={css.editIcon} />
-              </button>
-              <button className={css.listButton}>
-                <HiOutlineTrash className={css.deleteIcon} />
-              </button>
-            </div>
-          </li>
-          <li className={css.item}>
-            <div className={css.waterOptions}>
-              <svg width={36} height={36} className={css.icon}>
-                <use xlinkHref="/src/img/symbol-defs.svg#icon-glass" />
-              </svg>
-              <span className={css.waterAmount}>350 ml</span>
-              <span className={css.waterTime}>14.30</span>
-            </div>
-            <div className={css.buttonsWrapper}>
-              <button className={css.listButton}>
-                <HiOutlinePencilSquare className={css.editIcon} />
-              </button>
-              <button className={css.listButton}>
-                <HiOutlineTrash className={css.deleteIcon} />
-              </button>
-            </div>
-          </li>
-          <li className={css.item}>
-            <div className={css.waterOptions}>
-              <svg width={36} height={36} className={css.icon}>
-                <use xlinkHref="/src/img/symbol-defs.svg#icon-glass" />
-              </svg>
-              <span className={css.waterAmount}>150 ml</span>
-              <span className={css.waterTime}>16.45</span>
-            </div>
-            <div className={css.buttonsWrapper}>
-              <button className={css.listButton}>
-                <HiOutlinePencilSquare className={css.editIcon} />
-              </button>
-              <button className={css.listButton}>
-                <HiOutlineTrash className={css.deleteIcon} />
-              </button>
-            </div>
-          </li>
-          <li className={css.item}>
-            <div className={css.waterOptions}>
-              <svg width={36} height={36} className={css.icon}>
-                <use xlinkHref="/src/img/symbol-defs.svg#icon-glass" />
-              </svg>
-              <span className={css.waterAmount}>250 ml</span>
-              <span className={css.waterTime}>18.30</span>
-            </div>
-            <div className={css.buttonsWrapper}>
-              <button className={css.listButton}>
-                <HiOutlinePencilSquare className={css.editIcon} />
-              </button>
-              <button className={css.listButton}>
-                <HiOutlineTrash className={css.deleteIcon} />
-              </button>
-            </div>
-          </li>
-          {/* {dailyWaterList?.map(entry => (
-                    <li key={entry._id}>
-                        <p>{entry.volume} ml</p>
-                        <p>{new Date(entry.date).toLocaleTimeString()}</p>
-                        <button onClick={() => editWaterModal(entry)}>Edit</button>
-                        <button onClick={() => deleteWaterModal(entry)}>Delete</button>
-                    </li>
-                ))} */}
+          {dailyWaterList.length === 0 ? (
+            <p>No notes yet</p>
+          ) : (
+            dailyWaterList.map(entry => (
+              <li key={entry.id} className={css.item}>
+                <div className={css.waterOptions}>
+                  <svg width={36} height={36} className={css.icon}>
+                    <use xlinkHref="/src/img/symbol-defs.svg#icon-glass" />
+                  </svg>
+                  <span className={css.waterAmount}>{entry.volume} ml</span> 
+                  <span className={css.waterTime}>{new Date(entry.date).toLocaleTimeString()}</span>
+                </div>
+                <div className={css.buttonsWrapper}>
+                  <button onClick={() => editWaterModal(entry)} className={css.listButton}>
+                    <HiOutlinePencilSquare className={css.editIcon} />
+                  </button>
+                  <button onClick={() => deleteWaterModal(entry)} className={css.listButton}>
+                    <HiOutlineTrash className={css.deleteIcon} />
+                  </button>
+                </div>
+              </li>
+            ))
+          )}
         </ul>
         <button onClick={addWaterModal} className={css.addButton}>
           <FiPlus className={css.addButtonIcon} />
           Add water
         </button>
       </div>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <TodayListModal
+          onClose={() => setIsModalOpen(false)}
+        />
+      </Modal>
+      {isEditModalOpen && (
+        <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
+        <EditTodayListModal
+        onUpdate={updateWater}
+        onClose={() => setIsEditModalOpen(false)}
+            id={waterEntry?.id}
+            time={waterEntry?.time}
+            amountWater={waterEntry?.amountWater}
+          />
+        </Modal>
+      )}
+      {isDeleteModalOpen && (
+        <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
+        <DeleteEntryModal
+        onClose={() => setIsDeleteModalOpen(false)}
+        id={waterEntry?.id}
+          />
+        </Modal>
+      )}
     </div>
   );
 };
 
 export default TodayWaterList;
+ 

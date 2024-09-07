@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { CiCirclePlus } from "react-icons/ci";
-// import { useSelector } from "react-redux";
-// import { selectPercentageConsumed } from "../../redux/today/selectors";
+import { useSelector } from "react-redux";
+import { selectPercentageConsumed } from "../../redux/today/selectors";
 import css from './WaterRatioPanel.module.css'
-// import TodayListModal from "../TodayListModal/TodayListModal";
+import TodayListModal from "../TodayListModal/TodayListModal";
+import Modal from "../Modal/Modal";
 
 const WaterRatioPanel = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    // const todayWaterPercentage = useSelector(selectPercentageConsumed);
-    const todayWaterPercentage = 40;
+    const todayWaterPercentage = useSelector(selectPercentageConsumed);
+    // const todayWaterPercentage = 20;
     const [waterConsumedValue, setWaterConsumedValue] = useState(0);
     
     useEffect(() => {
@@ -102,10 +103,12 @@ const WaterRatioPanel = () => {
                 <CiCirclePlus className={css.addIcon} />
                 Add Water
             </button>
-            {/* <TodayListModal
-            onClose={() => setIsModalOpen(false)}
-            isOpen={isModalOpen}
-            /> */}
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} >
+                <TodayListModal
+                onClose={() => setIsModalOpen(false)}
+                isOpen={isModalOpen}
+                    />
+            </Modal>
         </div>
     );
 };

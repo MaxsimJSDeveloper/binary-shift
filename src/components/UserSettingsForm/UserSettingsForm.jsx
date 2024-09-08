@@ -109,7 +109,7 @@ export default function UserSettingsForm({ onClose }) {
   };
 
   return (
-    <>
+    <div style={{ position: "relative", zIndex: 1000 }}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -348,6 +348,6 @@ export default function UserSettingsForm({ onClose }) {
       <div>
         <Toaster />
       </div>
-    </>
+    </div>
   );
 }

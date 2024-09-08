@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import css from "../TodayListModal/TodayListModal.module.css";
 import AddWaterForm from "../AddWaterForm/AddWaterForm";
 
-function TodayWaterList({ onClose }) {
+function TodayListModal({ onClose }) {
+  // function TodayWaterList({ onClose }) {
   const [time, setTime] = useState("");
 
   useEffect(() => {
@@ -27,4 +28,4 @@ function TodayWaterList({ onClose }) {
   );
 }
 
-export default TodayWaterList;
+export default TodayListModal;

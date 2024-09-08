@@ -1,12 +1,15 @@
 import { useEffect, useId } from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/users/selectors";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { IoMdClose } from "react-icons/io";
 import css from "../DailyNormaModal/DailyNormaModal.module.css";
 import * as Yup from "yup";
 
-export default function DailyNormaModal({ closeModal }) {
+export default function DailyNormaModal({ closeModal, onSave }) {
+  const user = useSelector(selectUser);
   const initialValues = {
-    sex: sessionStorage.getItem("gender") || "male",
+    sex: sessionStorage.getItem("gender") || user?.gender,
     inputWeightValue: sessionStorage.getItem("weight") || "0",
     inputTimeValue: sessionStorage.getItem("time") || "0",
     dailyNorma: sessionStorage.getItem("dailyNorma") || "0",
@@ -66,9 +69,10 @@ export default function DailyNormaModal({ closeModal }) {
     sessionStorage.setItem("time", values.inputTimeValue);
     sessionStorage.setItem("dailyNorma", values.dailyNorma);
 
+    onSave(values.dailyNorma);
+
     setSubmitting(false);
     closeModal();
-    return values.dailyNorma;
   };
 
   return (
@@ -259,4 +263,3 @@ export default function DailyNormaModal({ closeModal }) {
     </div>
   );
 }
-

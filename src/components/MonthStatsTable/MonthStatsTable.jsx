@@ -9,7 +9,7 @@ import { selectData, selectIsLoading } from "../../redux/month/selectors";
 import Loader from "../Loader/Loader";
 
 const ModalCalendar = ({day,dailyNorma,rate,servings, x, y}) => {
-    return (<div className={css.modal} style={{top:y-188, left:x}}>
+    return (<div className={css.modal} style={{top:y-208, left:x-292}}>
         <div className={css.dayInfo}>
             <p><span className={css.span}>{day}</span></p>
                     <p>Daily norma: <span className={css.span}>{dailyNorma}L</span></p>
@@ -118,13 +118,13 @@ export default function MonthStatsTable() {
                 </li>))}
             </ul>
             {isModalOpen && isMobile &&
-                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} y={y+520} />}
+                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} y={y} />}
             {isModalOpen && isTablet && x <= 400 &&
-                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y+320} />}
+                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x+ 280} y={y} />}
             {isModalOpen && isTablet && x > 400 &&
-                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x - 280} y={y+320} />}
+                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y} />}
             {isModalOpen && isDesktop &&
-                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x - 280} y={y} />}
+                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y} />}
         </div>
     )
 }

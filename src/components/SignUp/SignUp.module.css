@@ -39,12 +39,49 @@
   border-radius: 6px;
   margin-top: 8px;
   font-weight: 400;
+  position: relative; /* Додаємо для позиціонування іконки */
+  transition: border-color 0.3s ease; /* Додаємо плавний перехід при зміні кольору рамки */
+  color: #407bff;
 }
 
+.field:focus {
+  outline: none; /* Прибирає стандартну підсвітку браузера */
+  border-color: #407bff; /* Змінює колір рамки при фокусі */
+  box-shadow: 0 0 4px rgba(64, 123, 255, 0.5); /* Додає легку тінь для кращої видимості */
+}
+
+/* Стили для поля з помилкою */
+.field.error {
+  border-color: #ff4d4d; /* Червоний колір рамки при помилці */
+}
+
+.field.error:focus {
+  border-color: #ff4d4d; /* Залишає червоний колір рамки при фокусі, якщо є помилка */
+  box-shadow: none; /* Прибирає тінь при помилці */
+}
+
+/* Обгортка для полів з паролем і іконкою */
+.passwordWrapper {
+  position: relative; /* Для позиціонування іконки всередині поля */
+}
+
+/* Іконка очей */
+.eyeIcon {
+  position: absolute;
+  top: 14px; /* Відстань від верхньої межі поля вводу */
+  bottom: 18px;
+  right: 11px; /* Відстань від правої межі поля вводу */
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  stroke: #407bff; /* Колір лінії */
+  fill: white; /* Колір фону іконки */
+}
+
+/* Класи для помилки */
 .error {
-  color: red;
-  font-size: 12px;
-  margin-top: 4px;
+  color: #ff4d4d; /* Червоний колір для тексту помилки */
+  margin-top: 4px; /* Відстань між полем і текстом помилки */
 }
 
 .btn {

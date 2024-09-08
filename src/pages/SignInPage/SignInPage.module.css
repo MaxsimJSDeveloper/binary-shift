@@ -5,7 +5,7 @@
     background-repeat: no-repeat, no-repeat;
     background-position: calc(100% + 7px) 108px, center calc(100% - 20px);
     background-size: cover, contain;
-    min-height: 100vh;
+    min-height: 90.5vh;
     background-attachment: fixed;
   }
 }
@@ -29,7 +29,7 @@
     /* Бульбашки покривають весь фон, пляшка має точні розміри */
     background-size: cover, 656px 548px;
 
-    min-height: 100vh;
+    min-height: 90vh;
     background-attachment: fixed;
   }
 }

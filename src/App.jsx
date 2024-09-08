@@ -18,7 +18,7 @@ function App() {
   const isRefreshingUser = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    console.log(dispatch(refreshUser()));
+    dispatch(refreshUser());
   }, [dispatch]);
 
   const isLogged = useSelector(selectIsLoggedIn);

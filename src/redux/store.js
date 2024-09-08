@@ -30,7 +30,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     water: waterReducer,
     waterRate: waterRateReducer,
-    month: monthReducer,
+    monthItem: monthReducer,
     today: todayReducer,
   },
   middleware: (getDefaultMiddleware) =>

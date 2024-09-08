@@ -9,7 +9,7 @@ import { selectData, selectIsLoading } from "../../redux/month/selectors";
 import Loader from "../Loader/Loader";
 
 const ModalCalendar = ({day,dailyNorma,rate,servings, x, y}) => {
-    return (<div className={css.modal} style={{top:y-205, left:x}}>
+    return (<div className={css.modal} style={{top:y-188, left:x}}>
         <div className={css.dayInfo}>
             <p><span className={css.span}>{day}</span></p>
                     <p>Daily norma: <span className={css.span}>{dailyNorma}L</span></p>
@@ -36,7 +36,8 @@ export default function MonthStatsTable() {
             dailyNorm: 1500,
             dailyNormPercent: 0,
             portions: 0})
-    const water = useSelector(selectData);
+            
+    const water = useSelector(state => selectData(state, { month, year }));
     const dispatch = useDispatch();   
 
     useEffect(() => {
@@ -99,22 +100,31 @@ export default function MonthStatsTable() {
            <div className={css.navigation}>
                 <h3>Month</h3>
                 <div className={css.navigationBar}>
-                    <button className={css.button} onClick={handleLeftButton}><HiOutlineChevronLeft size={14}/></button>
+                    <button className={css.button} onClick={handleLeftButton}><HiOutlineChevronLeft size={14} /></button>
                     <p>{month}, {year}</p>
-                    {currentDate.getMonth() >= new Date().getMonth() && currentDate.getFullYear()>=new Date().getFullYear() ? (<button className={css.disable}><HiOutlineChevronRight size={14}/></button>):(<button className={css.button} onClick={handleRightButton}><HiOutlineChevronRight size={14}/></button>)}
+                    {currentDate.getMonth() >= new Date().getMonth() &&
+                        currentDate.getFullYear() >= new Date().getFullYear() ?
+                        (<button className={css.disable}><HiOutlineChevronRight size={14} /></button>)
+                        : (<button className={css.button} onClick={handleRightButton}><HiOutlineChevronRight size={14} /></button>)}
                 </div>                
             </div>
             {isLoading&&<Loader/>}
             <ul className={css.ul}>
-                {newDaysArray.map((day) => (<li className={css.li} key={parseInt(day.date)}  onMouseEnter={(e)=>handleMouseEnter(e,day.date)} onMouseLeave={handleMouseLeave}>
-                    {parseInt(day.dailyNormPercent)<100?<div className={css.liDate}>{parseInt(day.date)}</div>:<div className={css.liDateFull}>{parseInt(day.date)}</div>}
+                {newDaysArray.map((day) => (<li className={css.li} key={parseInt(day.date)} onMouseEnter={(e)=>handleMouseEnter(e,day.date)} onMouseLeave={handleMouseLeave}>
+                    {parseInt(day.dailyNormPercent) < 100 ?
+                        <div className={css.liDate}>{parseInt(day.date)}</div> :
+                        <div className={css.liDateFull}>{parseInt(day.date)}</div>}
                     <p className={css.p}>{parseInt(day.dailyNormPercent)}%</p>                    
                 </li>))}
             </ul>
-            {isModalOpen && isMobile && <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} y={y} />}
-            {isModalOpen && isTablet && x<=400 && <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y}/>}
-            {isModalOpen && isTablet && x>400 && <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x-280} y={y}/>}
-            {isModalOpen && isDesktop && <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x-280} y={y}/>}
+            {isModalOpen && isMobile &&
+                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} y={y+520} />}
+            {isModalOpen && isTablet && x <= 400 &&
+                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y+320} />}
+            {isModalOpen && isTablet && x > 400 &&
+                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x - 280} y={y+320} />}
+            {isModalOpen && isDesktop &&
+                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x - 280} y={y} />}
         </div>
     )
 }

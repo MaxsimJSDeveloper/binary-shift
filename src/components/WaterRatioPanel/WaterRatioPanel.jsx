@@ -6,12 +6,13 @@ import css from './WaterRatioPanel.module.css'
 import TodayListModal from "../TodayListModal/TodayListModal";
 import Modal from "../Modal/Modal";
 
+
 const WaterRatioPanel = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const todayWaterPercentage = useSelector(selectPercentageConsumed);
-    // const todayWaterPercentage = 20;
     const [waterConsumedValue, setWaterConsumedValue] = useState(0);
-    
+    // const todayWaterPercentage = 50;
+
     useEffect(() => {
         if (todayWaterPercentage) {
             const value = Number(parseInt(todayWaterPercentage));
@@ -31,13 +32,14 @@ const WaterRatioPanel = () => {
                 const progressRatio = waterConsumedValue / 100;
                 const availableWidth = rangeInput.offsetWidth - rangeSlider.offsetWidth;
                 const positionX = progressRatio * availableWidth;
+
                 rangeSlider.style.left = `${positionX}px`;
-                 rangeValue.style.left = `${positionX - 3}px`;
+                rangeValue.style.left = `${positionX - 3}px`;
                 rangeValue.innerText = `${waterConsumedValue}%`;
             }
         };
+
         const updateRangeBackground = () => {
-            const rangeInput = document.getElementById("range-input");
             if (rangeInput) {
                 const progressRatio = waterConsumedValue / 100;
                 let space;
@@ -50,22 +52,33 @@ const WaterRatioPanel = () => {
                 }
                 const positionX = progressRatio * space;
                 rangeInput.style.background = `linear-gradient(to right, var(--color-6) 0%, var(--color-6) ${positionX}px, var(--color-8) ${positionX}px, var(--color-8) 100%)`;
-                     if (rangeSlider) {
-                      rangeSlider.style.left = `${positionX}px`;
-                }
-                if (rangeValue) {
-                rangeValue.style.left = `${positionX}px`;
-            }
 
+                rangeSlider.style.left = `${positionX}px`;
+                rangeValue.style.left = `${positionX}px`;
+
+                const lowPercentageLabel = document.getElementById("low-percentage");
+                const highPercentageLabel = document.getElementById("high-percentage");
+                
+                if (waterConsumedValue <= 8) {
+                    lowPercentageLabel.style.opacity = '0'; 
+                } else {
+                    lowPercentageLabel.style.opacity = '1'; 
+                }
+                
+                if (waterConsumedValue >= 89) {
+                    highPercentageLabel.style.opacity = '0'; 
+                } else {
+                    highPercentageLabel.style.opacity = '1'; 
+                }
             }
         };
+
         updateRangeBackground();
         updateThumbPosition();
         window.addEventListener('resize', updateRangeBackground);
         return () => {
             window.removeEventListener('resize', updateRangeBackground);
         };
-
     }, [waterConsumedValue]);
 
     return (
@@ -94,8 +107,8 @@ const WaterRatioPanel = () => {
                         </div>
                     </div>
                     <div className={css.rangePerc}>
-                        <span className={css.lowPercentage}>0%</span>
-                        <span className={css.highPercentage}>100%</span>
+                        <span className={css.lowPercentage} id="low-percentage">0%</span>
+                        <span className={css.highPercentage} id="high-percentage">100%</span>
                     </div>
                 </div>
             </div>
@@ -105,9 +118,9 @@ const WaterRatioPanel = () => {
             </button>
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} >
                 <TodayListModal
-                onClose={() => setIsModalOpen(false)}
-                isOpen={isModalOpen}
-                    />
+                    onClose={() => setIsModalOpen(false)}
+                    isOpen={isModalOpen}
+                />
             </Modal>
         </div>
     );

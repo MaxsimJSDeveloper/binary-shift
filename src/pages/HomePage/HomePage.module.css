@@ -60,8 +60,9 @@
     background-image: url(../../img/tablet/background-bable.png),
       url(../../img/tablet/backround-sign-tab_1x.webp);
     background-repeat: no-repeat;
-    background-position: top center;
     background-size: contain;
+    background-position-x: -50px;
+    background-position-y: -50px;
     min-height: 1280px;
   }
 }
@@ -81,7 +82,6 @@
       url(../../img/desck/backround-sign-desk_1x.webp);
     background-repeat: no-repeat;
     background-size: contain;
-    /* background-position: center left; */
      background-position-x: -50px;
     background-position-y: -50px;
     min-height: 738px;
@@ -109,7 +109,7 @@
 
 @media only screen and (min-width: 768px) {
   .firstSection {
-    gap: 336px;
+    gap: 500px;
     /* padding-top: 40px; */
   }
 }

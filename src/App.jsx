@@ -11,6 +11,8 @@ import { refreshUser } from "./redux/auth/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
+import Loader from "./components/Loader/Loader";
+import SharedLayout from "./components/SharedLayout/SharedLayout";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +27,7 @@ function App() {
     <div>REFRESHING USER...</div>
   ) : (
     <>
-      <Header />
+    <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/signup" element={<SignUp />} />
@@ -37,6 +39,7 @@ function App() {
         )}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      
     </>
   );
 }

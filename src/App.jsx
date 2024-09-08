@@ -1,17 +1,18 @@
 import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import MainPage from "./pages/MainPage/MainPage";
-import SignIn from "./pages/SignInPage/SignInPage";
-import SignUp from "./pages/SignUpPage/SignUpPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import HomePage from "./pages/HomePage/HomePage";
 import { refreshUser } from "./redux/auth/operations";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
 import Loader from "./components/Loader/Loader";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
+
+const MainPage = lazy(() => import("../src/pages/MainPage/MainPage"));
+const HomePage = lazy(() => import("../src/pages/HomePage/HomePage"));
+const SignUp = lazy(() => import("../src/pages/SignUpPage/SignUpPage"));
+const SignIn = lazy(() => import("../src/pages/SignInPage/SignInPage"));
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
   ) : (
     <>
     <SharedLayout>
+    <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/signup" element={<SignUp />} />
@@ -38,7 +40,7 @@ function App() {
         )}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      
+    </Suspense>  
     </SharedLayout>
     </>
   );

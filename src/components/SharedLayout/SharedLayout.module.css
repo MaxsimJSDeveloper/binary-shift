@@ -1,9 +1,9 @@
 .box {
-    width: 100%;
-    max-width: 320px;
-  }
-  
-  @media screen and (min-width: 768px) {
+  width: 100%;
+  /* max-width: 320px; */
+}
+
+/* @media screen and (min-width: 768px) {
     .box {
     max-width: 768px;
     }
@@ -13,4 +13,4 @@
     .box {
       max-width: 1440px;
     }
-  }
+  } */

@@ -6,7 +6,6 @@ import SignIn from "./pages/SignInPage/SignInPage";
 import SignUp from "./pages/SignUpPage/SignUpPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import HomePage from "./pages/HomePage/HomePage";
-import Header from "./components/Header/Header";
 import { refreshUser } from "./redux/auth/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -24,10 +23,10 @@ function App() {
 
   const isLogged = useSelector(selectIsLoggedIn);
   return isRefreshingUser ? (
-    <div>REFRESHING USER...</div>
+    <Loader/>
   ) : (
     <>
-    <Header />
+    <SharedLayout>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/signup" element={<SignUp />} />
@@ -40,6 +39,7 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       
+    </SharedLayout>
     </>
   );
 }

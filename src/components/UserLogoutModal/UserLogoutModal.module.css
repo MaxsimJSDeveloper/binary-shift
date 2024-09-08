@@ -10,12 +10,12 @@
   height: 196px;
   margin: 0 auto;
   /* padding: 32px 24px; */
-  background: #ffffff;
+  background: var(--primery-color-white);
   border-radius: 10px;
 }
 
 .log_out_title {
-  color: #2f2f2f;
+  color: var(--primery-color-black);
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 26px;
@@ -26,7 +26,7 @@
 
 .logout_confirm {
   width: 100%;
-  color: #2e2e2e;
+  color: var(--primery-color-black);
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 17px;
@@ -47,8 +47,8 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #ffffff;
-  background-color: #ef5050;
+  color: var(--primery-color-white);
+  background-color: var(--secondary-color-3);
   width: 232px;
   height: 36px;
   padding: 8px 30px;
@@ -64,8 +64,8 @@
   font-size: 16px;
   line-height: 1.25;
   text-align: center;
-  color: #407bff;
-  background-color: #d7e3ff;
+  color: var(--primery-color-blue);
+  background-color: var(--secondary-color---5);
   width: 232px;
   height: 36px;
   padding: 8px 30px;

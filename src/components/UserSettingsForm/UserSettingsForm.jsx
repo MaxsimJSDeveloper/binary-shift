@@ -161,16 +161,16 @@ export default function UserSettingsForm({ onClose }) {
                   >
                     <label>
                       <Field
-                        className={css.genderText}
+                        className={css.gender_radio_buttons}
                         type="radio"
                         name="gender"
                         value="female"
                       />
-                      Woman
+                      <span className={css.genderText}>Woman</span>
                     </label>
                     <label>
                       <Field type="radio" name="gender" value="male" />
-                      Man
+                      <span className={css.genderText}>Man</span>
                     </label>
                   </div>
                 </div>

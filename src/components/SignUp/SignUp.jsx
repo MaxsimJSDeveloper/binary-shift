@@ -1,15 +1,27 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import * as Yup from "yup";
 import css from "./SignUp.module.css";
-
 import toast from "react-hot-toast";
 import { register } from "../../redux/auth/operations";
+import sprite from "../../img/symbol-defs.svg";
 
 export default function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword((prevState) => !prevState);
+  };
 
   const validationControl = Yup.object().shape({
     email: Yup.string()
@@ -53,63 +65,98 @@ export default function SignUp() {
       validationSchema={validationControl}
       onSubmit={handleSubmit}
     >
-      <Form className={css.form} autoComplete="off">
-        <h2 className={css.heading}>Sign Up</h2>
-        <div className={css.fieldStyle}>
-          <label className={css.label}>
-            Enter your email
-            <Field
-              type="email"
-              placeholder="Email"
-              name="email"
-              className={css.field}
-            />
-            <ErrorMessage name="email" component="div" className={css.error} />
-          </label>
+      {({ touched, errors }) => (
+        <Form className={css.form} autoComplete="off">
+          <h2 className={css.heading}>Sign Up</h2>
+          <div className={css.fieldStyle}>
+            <label className={css.label}>
+              Enter your email
+              <Field
+                type="email"
+                placeholder="Email"
+                name="email"
+                className={`${css.field} ${
+                  touched.email && errors.email ? css.error : ""
+                }`}
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className={css.error}
+              />
+            </label>
 
-          <label className={css.label}>
-            Enter your password
-            <Field
-              type="password"
-              placeholder="Password"
-              name="password"
-              className={css.field}
-            />
-            <ErrorMessage
-              name="password"
-              component="div"
-              className={css.error}
-            />
-          </label>
+            <label className={css.label}>
+              Enter your password
+              <div className={css.passwordWrapper}>
+                <Field
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  name="password"
+                  className={`${css.field} ${
+                    touched.password && errors.password ? css.error : ""
+                  }`}
+                />
+                <svg className={css.eyeIcon} onClick={togglePasswordVisibility}>
+                  <use
+                    xlinkHref={`${sprite}#${
+                      showPassword ? "icon-eye-closed" : "icon-eye-open"
+                    }`}
+                  />
+                </svg>
+              </div>
+              <ErrorMessage
+                name="password"
+                component="div"
+                className={css.error}
+              />
+            </label>
 
-          <label className={css.label}>
-            Repeat password
-            <Field
-              type="password"
-              placeholder="Repeat password"
-              name="confirmPassword"
-              className={css.field}
-            />
-            <ErrorMessage
-              name="confirmPassword"
-              component="div"
-              className={css.error}
-            />
-          </label>
+            <label className={css.label}>
+              Repeat password
+              <div className={css.passwordWrapper}>
+                <Field
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Repeat password"
+                  name="confirmPassword"
+                  className={`${css.field} ${
+                    touched.confirmPassword && errors.confirmPassword
+                      ? css.error
+                      : ""
+                  }`}
+                />
+                <svg
+                  className={css.eyeIcon}
+                  onClick={toggleConfirmPasswordVisibility}
+                >
+                  <use
+                    xlinkHref={`${sprite}#${
+                      showConfirmPassword ? "icon-eye-closed" : "icon-eye-open"
+                    }`}
+                  />
+                </svg>
+              </div>
+              <ErrorMessage
+                name="confirmPassword"
+                component="div"
+                className={css.error}
+              />
+            </label>
 
-          <button type="submit" className={css.btn}>
-            Sign Up
-          </button>
+            <button type="submit" className={css.btn}>
+              Sign Up
+            </button>
 
-          <button
-            type="button"
-            className={css.signinLink}
-            onClick={() => navigate("/signin")}
-          >
-            Sign In
-          </button>
-        </div>
-      </Form>
+            <button
+              type="button"
+              className={css.signinLink}
+              onClick={() => navigate("/signin")}
+            >
+              Sign In
+            </button>
+          </div>
+        </Form>
+      )}
     </Formik>
   );
 }

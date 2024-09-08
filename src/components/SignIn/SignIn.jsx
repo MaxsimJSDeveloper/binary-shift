@@ -1,14 +1,22 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import * as Yup from "yup";
 import css from "./SignIn.module.css";
 import toast from "react-hot-toast";
 import { logIn } from "../../redux/auth/operations";
+import sprite from "../../img/symbol-defs.svg";
 
 export default function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -42,48 +50,67 @@ export default function SignIn() {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      <Form className={css.form} autoComplete="off">
-        <h2 className={css.heading}>Sign In</h2>
+      {({ touched, errors }) => (
+        <Form className={css.form} autoComplete="off">
+          <h2 className={css.heading}>Sign In</h2>
 
-        <div className={css.fieldStyle}>
-          <label className={css.label}>
-            Enter your email
-            <Field
-              type="email"
-              placeholder="E-mail"
-              name="email"
-              className={css.field}
-            />
-            <ErrorMessage name="email" component="div" className={css.error} />
-          </label>
+          <div className={css.fieldStyle}>
+            <label className={css.label}>
+              Enter your email
+              <Field
+                type="email"
+                placeholder="E-mail"
+                name="email"
+                className={`${css.field} ${
+                  touched.email && errors.email ? css.error : ""
+                }`}
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className={css.error}
+              />
+            </label>
 
-          <label className={css.label}>
-            Enter your password
-            <Field
-              type="password"
-              placeholder="Password"
-              name="password"
-              className={css.field}
-            />
-            <ErrorMessage
-              name="password"
-              component="div"
-              className={css.error}
-            />
-          </label>
+            <label className={css.label}>
+              Enter your password
+              <div className={css.passwordWrapper}>
+                <Field
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  name="password"
+                  className={`${css.field} ${
+                    touched.password && errors.password ? css.error : ""
+                  }`}
+                />
+                <svg className={css.eyeIcon} onClick={togglePasswordVisibility}>
+                  <use
+                    xlinkHref={`${sprite}#${
+                      showPassword ? "icon-eye-closed" : "icon-eye-open"
+                    }`}
+                  />
+                </svg>
+              </div>
+              <ErrorMessage
+                name="password"
+                component="div"
+                className={css.error}
+              />
+            </label>
 
-          <button type="submit" className={css.btn}>
-            Sign In
-          </button>
-          <button
-            type="button"
-            className={css.signinLink}
-            onClick={() => navigate("/signup")}
-          >
-            Sign up
-          </button>
-        </div>
-      </Form>
+            <button type="submit" className={css.btn}>
+              Sign In
+            </button>
+            <button
+              type="button"
+              className={css.signinLink}
+              onClick={() => navigate("/signup")}
+            >
+              Sign up
+            </button>
+          </div>
+        </Form>
+      )}
     </Formik>
   );
 }

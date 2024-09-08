@@ -28,7 +28,9 @@ const HomePage = () => {
       <div className={css.background}>
         <div className={css.container}>
           <div className={css.firstSection}>
+            <div className={css.wrapDailyNorm}>
             <DailyNorma />
+            </div>
             <WaterRatioPanel />
           </div>
 

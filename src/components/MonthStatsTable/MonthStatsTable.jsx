@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMonthWater } from "../../redux/month/operations";
 import { selectData, selectIsLoading } from "../../redux/month/selectors";
 import Loader from "../Loader/Loader";
+import { selectWaterRate } from "../../redux/waterRate/selectors";
+import { fetchWaterRate } from "../../redux/waterRate/operations";
 
 const ModalCalendar = ({day,dailyNorma,rate,servings, x, y}) => {
     return (<div className={css.modal} style={{top:y-208, left:x-292}}>
@@ -38,19 +40,21 @@ export default function MonthStatsTable() {
             portions: 0})
             
     const water = useSelector(state => selectData(state, { month, year }));
+    const dailyNorma = useSelector(selectWaterRate);
     const dispatch = useDispatch();   
 
     useEffect(() => {
         setMonth(currentDate.toLocaleString("en-Us", { month: 'long' }));
         setYear(currentDate.getFullYear());   
-        dispatch(fetchMonthWater({ month, year }));        
+        dispatch(fetchMonthWater({ month, year })); 
+        dispatch(fetchWaterRate())
     },[currentDate, dispatch, month, year],)
 
     // Створення масиву обєктів для календаря
     const daysArray = Array.from({ length: daysInMonth(currentDate.getMonth(), year) }, (_, i) => {
         return {  
             date: `${i+1}, ${month}`,
-            dailyNorm: 1500,
+            dailyNorm: dailyNorma,
             dailyNormPercent: 0,
             portions: 0
         }

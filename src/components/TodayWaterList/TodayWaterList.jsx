@@ -19,7 +19,6 @@ const TodayWaterList = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [waterEntry, setWaterEntry] = useState(null);
 
-
   useEffect(() => {
     dispatch(getWaterToday());
   }, [dispatch]);
@@ -40,7 +39,7 @@ const TodayWaterList = () => {
   const updateWater = () => {
     dispatch(getWaterToday())
   }
-
+ 
   return (
     <div className={css.section}>
       <h2 className={css.heading}>Today</h2>
@@ -85,9 +84,9 @@ const TodayWaterList = () => {
         <EditTodayListModal
         onUpdate={updateWater}
         onClose={() => setIsEditModalOpen(false)}
-            id={waterEntry?.id}
-            time={waterEntry?.time}
-            amountWater={waterEntry?.amountWater}
+        id={waterEntry?.id}
+        time={waterEntry?.time}
+        amountWater={waterEntry?.amountWater}
           />
         </Modal>
       )}

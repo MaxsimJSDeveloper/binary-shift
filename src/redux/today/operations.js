@@ -8,10 +8,11 @@ export const getWaterToday = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/today");
+      console.log('Отримані дані:', response.data);
       return response.data;
     } catch (err) {
+      console.error('Помилка при отриманні даних:', err);
       return thunkAPI.rejectWithValue(err.response?.data || err.message);
     }
   }
 );
-

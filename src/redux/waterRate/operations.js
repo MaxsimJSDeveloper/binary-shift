@@ -7,22 +7,22 @@ export const fetchWaterRate = createAsyncThunk(
   "waterRate/fetchWaterRate",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/water-rate");
-      return response.data;
+      const response = await axios.get("/water-rate");      
+      return response.data.data.dailyNorma;       
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.response?.data || err.message);
+      return thunkAPI.rejectWithValue(err.response?.data.dailyNorma || err.message);
     }
   }
 );
 
 export const putWaterRate = createAsyncThunk(
   "waterRate/putWaterRate",
-  async ({ volume }, thunkAPI) => {
+  async (dailyNorma , thunkAPI) => {
     try {
-      const response = await axios.post("/water-rate", { volume });
-      return response.data;
+      const response = await axios.put("/water-rate", dailyNorma);      
+      return response.data.data.dailyNorma;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.response?.data || err.message);
+      return thunkAPI.rejectWithValue(err.response?.data.data.dailyNorma || err.message);
     }
   }
 );

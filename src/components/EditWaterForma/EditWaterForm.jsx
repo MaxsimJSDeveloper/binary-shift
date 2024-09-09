@@ -9,6 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 import css from "../EditWaterForma/EditWaterForm.module.css";
 import { useDispatch } from "react-redux";
 import { updateWater } from "../../redux/water/operations";
+import { getWaterToday } from "../../redux/today/operations";
 
 
 const notifyIncorectData = () => toast.error("The data entered is incorrect");
@@ -102,13 +103,15 @@ function EditWaterForm({ onClose, water = 0, currentTime, id = null }) {
       const date = Date(dateString);
       const volume = amountWater
       if (id === null) {
-        dispatch(updateWater({ date, volume}))
+        dispatch(updateWater({ date, volume }))
+        dispatch(getWaterToday())
         // если не передали id будет post на создание новой записи
         // console.log({ time: mewTime, amountWater });
         notifySuccess();
         setTimeout(onClose, 2000);
       } else {
-        dispatch(updateWater({id, date, volume}))
+        dispatch(updateWater({ id, date, volume }))
+        dispatch(getWaterToday())
         //если передали id будет patch на редактирование записи
         // console.log({ id, time: mewTime, amountWater });
         notifySuccessUpdate();
@@ -124,7 +127,8 @@ function EditWaterForm({ onClose, water = 0, currentTime, id = null }) {
       const dateString = `${year}-${month}-${day}T${time}:00`
       const date = Date(dateString);      
       const volume = amountWater;
-      dispatch(updateWater({ date, volume}))
+      dispatch(updateWater({ date, volume }))
+      dispatch(getWaterToday())
       notifySuccess();
       setTimeout(onClose, 2000);      
     } else {
@@ -134,7 +138,8 @@ function EditWaterForm({ onClose, water = 0, currentTime, id = null }) {
       const dateString = `${year}-${month}-${day}T${time}:00`
       const date = Date(dateString);
       const volume = amountWater;
-      dispatch(updateWater({ id, date, volume}))
+      dispatch(updateWater({ id, date, volume }))
+      dispatch(getWaterToday())
       notifySuccessUpdate();
       setTimeout(onClose, 2000);
     }    

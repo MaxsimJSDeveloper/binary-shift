@@ -20,7 +20,7 @@ export const updateWater = createAsyncThunk(
   async ({ id, date, volume }, thunkAPI) => {
     try {
       const res = await axios.patch(`/water/${id}`, { date, volume });
-      return res.data;
+      return res.data.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || err.message);
     }
@@ -32,7 +32,7 @@ export const deleteWater = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const res = await axios.delete(`/water/${id}`);
-      return res.data;
+      return res.data.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || err.message);
     }

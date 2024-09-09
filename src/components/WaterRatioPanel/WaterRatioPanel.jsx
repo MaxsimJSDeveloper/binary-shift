@@ -1,17 +1,25 @@
 import { useState, useEffect } from "react";
 import { CiCirclePlus } from "react-icons/ci";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectPercentageConsumed } from "../../redux/today/selectors";
 import css from './WaterRatioPanel.module.css'
+
 import TodayListModal from "../TodayListModal/TodayListModal";
 import Modal from "../Modal/Modal";
+import { getWaterToday } from "../../redux/today/operations";
 
 
 const WaterRatioPanel = () => {
+    const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const todayWaterPercentage = useSelector(selectPercentageConsumed);
     const [waterConsumedValue, setWaterConsumedValue] = useState(0);
     // const todayWaterPercentage = 50;
+    useEffect(() => {
+        dispatch(getWaterToday());
+      }, [dispatch]);
+      
+      console.log("Today's Water Percentage:", todayWaterPercentage);
 
     useEffect(() => {
         if (todayWaterPercentage) {

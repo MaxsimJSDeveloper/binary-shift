@@ -8,6 +8,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
 import Loader from "./components/Loader/Loader";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
+import RedirectPage from "./pages/RedirectPage/RedirectPage";
 
 const MainPage = lazy(() => import("../src/pages/MainPage/MainPage"));
 const HomePage = lazy(() => import("../src/pages/HomePage/HomePage"));
@@ -30,7 +31,7 @@ function App() {
     <SharedLayout>
     <Suspense fallback={null}>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        {!isLogged?<Route path="/" element={<MainPage />} />:<Route path="*" element={<RedirectPage />} />}
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         {isLogged ? (

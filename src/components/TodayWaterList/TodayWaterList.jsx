@@ -7,18 +7,13 @@ import EditTodayListModal from "../EditTodayListModal/EditTodayListModal";
 import DeleteEntryModal from "../DeleteEntryModal/DeleteEntryModal";
 import Modal from "../Modal/Modal";
 import TodayListModal from "../TodayListModal/TodayListModal";
-import {
-  addWater,
-  updateWater,
-  deleteWater,
-} from "../../redux/water/operations";
+import {updateWater} from "../../redux/water/operations";
 import { getWaterToday } from "../../redux/today/operations";
 import { selectEntriesToday, selectIsLoading, selectError } from "../../redux/today/selectors";
 
 const TodayWaterList = () => {
   const dispatch = useDispatch();
   const dailyWaterList = useSelector(selectEntriesToday);
-  console.log("Список води на сьогодні:", dailyWaterList);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,8 +21,10 @@ const TodayWaterList = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [waterEntry, setWaterEntry] = useState(null);
 
+  
+
   useEffect(() => {
-    dispatch(getWaterToday());
+    dispatch(getWaterToday());   
   }, [dispatch]);
 
   const addWaterModal = () => {
@@ -45,35 +42,36 @@ const TodayWaterList = () => {
     setIsDeleteModalOpen(true);
   };
 
-  const handleAddWater = async (newWater) => {
-    try {
-      const result = await dispatch(addWater(newWater)).unwrap();
-      console.log("Add Water Result:", result);
-      dispatch(getWaterToday()); 
-    } catch (err) {
-      console.error("Failed to add water:", err);
-    }
-  };
+  // const handleAddWater = async (newWater) => {
+  //   try {
+  //     const result = await dispatch(addWater(newWater)).unwrap();
+  //     // console.log("Add Water Result:", result);
+  //     dispatch(getWaterToday()); 
+  //   } catch (err) {
+  //     console.error("Failed to add water:", err);
+  //   }
+  // };
   
-  const handleUpdateWater = async (updatedWater) => {
-    try {
-      const result = await dispatch(updateWater(updatedWater)).unwrap();
-      console.log("Update Water Result:", result);
-      dispatch(getWaterToday()); 
-    } catch (err) {
-      console.error("Failed to update water:", err);
-    }
-  };
+  // const handleUpdateWater = async (updatedWater) => {
+  //   try {
+  //     const result = await dispatch(updateWater(updatedWater)).unwrap();
+  //     console.log("Update Water Result:", result);
+  //     dispatch(getWaterToday()); 
+  //   } catch (err) {
+  //     console.error("Failed to update water:", err);
+  //   }
+  // };
   
-  const handleDeleteWater = async (id) => {
-    try {
-      const result = await dispatch(deleteWater(id)).unwrap();
-      console.log("Delete Water Result:", result);
-      dispatch(getWaterToday()); 
-    } catch (err) {
-      console.error("Failed to delete water:", err);
-    }
-  };
+  // const handleDeleteWater = async (id) => {
+  //   try {
+  //     const result = await dispatch(deleteWater(id)).unwrap();
+  //     console.log("Delete Water Result:", result);
+  //     dispatch(getWaterToday()); 
+  //   } catch (err) {
+  //     console.error("Failed to delete water:", err);
+  //   }
+  // };
+  
 
   return (
     <div className={css.section}>
@@ -93,7 +91,7 @@ const TodayWaterList = () => {
                   </svg>
                   <span className={css.waterAmount}>{entry.volume} ml</span>
                   <span className={css.waterTime}>
-                    {new Date(entry.date).toLocaleTimeString()}
+                    {new Date(entry.date).toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'})}
                   </span>
                 </div>
                 <div className={css.buttonsWrapper}>
@@ -122,7 +120,6 @@ const TodayWaterList = () => {
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <TodayListModal
             onClose={() => setIsModalOpen(false)}
-            onAddWater={handleAddWater}
           />
         </Modal>
       {isEditModalOpen && (
@@ -131,7 +128,7 @@ const TodayWaterList = () => {
         onUpdate={updateWater}
         onClose={() => setIsEditModalOpen(false)}
         id={waterEntry?._id}
-        time={waterEntry?.date}
+        time={new Date(waterEntry.date).toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'})}
         amountWater={waterEntry?.volume}
           />
         </Modal>

@@ -25,8 +25,8 @@ const todaySlice = createSlice({
     .addCase(getWaterToday.fulfilled, (state, action)=>{
       state.isLoading=false;
       state.error = null;
-      state.entriesToday = action.payload.data.numberOfValue;
-      state.percentageConsumed = action.payload.data.percentageConsumed; 
+      state.entriesToday = action.payload.numberOfValue;
+      state.percentageConsumed = action.payload.percentageConsumed; 
     })
   },
 });

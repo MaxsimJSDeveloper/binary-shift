@@ -85,8 +85,8 @@ const TodayWaterList = () => {
           {Array.isArray(dailyWaterList) && dailyWaterList.length === 0 ? (
             <p>No notes yet</p>
           ) : (
-            Array.isArray(dailyWaterList) && dailyWaterList.map((entry) => (
-              <li key={entry.id} className={css.item}>
+            dailyWaterList.map(entry => (
+              <li key={entry._id} className={css.item}>
                 <div className={css.waterOptions}>
                   <svg width={36} height={36} className={css.icon}>
                     <use xlinkHref="/src/img/symbol-defs.svg#icon-glass" />

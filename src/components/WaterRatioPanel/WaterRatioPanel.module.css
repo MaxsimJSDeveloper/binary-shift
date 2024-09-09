@@ -165,17 +165,6 @@
         color: #D7E3FF;
     }
 }
-/* @media only screen and (min-width: 360px) and (max-width: 400px) {
-    .highPercentage {
-        right: 5%;
-    }
-}
-@media only screen and (min-width: 500px) and (max-width: 779px) {
-    .highPercentage {
-        right: 50%;
-    }
-} */
-
 .addWaterBtn {
     width: 280px;
     height: 36px;

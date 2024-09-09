@@ -9,6 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 import css from "..//AddWaterForm/AddWaterForm.module.css";
 import { useDispatch } from "react-redux";
 import { addWater } from "../../redux/water/operations";
+import { getWaterToday } from "../../redux/today/operations";
 
 const notifyIncorectData = () => toast.error("The data entered is incorrect");
 const notifyIncorrectAmount = () =>
@@ -101,13 +102,15 @@ function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
       const date = Date(dateString);
       const volume = amountWater
       if (id === null) {
-        dispatch(addWater({ date, volume}))
+        dispatch(addWater({ date, volume }))
+        dispatch(getWaterToday())
         // если не передали id будет post на создание новой записи
         // console.log({ time: mewTime, amountWater });
         notifySuccess();
         setTimeout(onClose, 2000);
       } else {
-        dispatch(addWater({ date, volume}))
+        dispatch(addWater({ date, volume }))
+        dispatch(getWaterToday())
         //если передали id будет patch на редактирование записи
         // console.log({ id, time: mewTime, amountWater });
         notifySuccessUpdate();
@@ -123,7 +126,8 @@ function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
       const dateString = `${year}-${month}-${day}T${time}:00`
       const date = Date(dateString);      
       const volume = amountWater;
-      dispatch(addWater({ date, volume}))
+      dispatch(addWater({ date, volume }))
+      dispatch(getWaterToday())
       notifySuccess();
       setTimeout(onClose, 2000);      
     } else {
@@ -133,7 +137,8 @@ function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
       const dateString = `${year}-${month}-${day}T${time}:00`
       const date = Date(dateString);
       const volume = amountWater;
-      dispatch(addWater({ date, volume}))
+      dispatch(addWater({ date, volume }))
+      dispatch(getWaterToday())
       notifySuccessUpdate();
       setTimeout(onClose, 2000);
     }    

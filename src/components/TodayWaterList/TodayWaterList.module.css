@@ -10,11 +10,15 @@
 }
 .list {
     height: 172px;
-    overflow-y: scroll;
+    overflow-y: hidden;
     padding-right: 10px;
     margin-bottom: 12px;
     &:not:last-child{
         border-bottom: 1px solid #d7e3ff;
+    }
+    &:not(:empty) {
+            
+        overflow-y: scroll;
     }
 }
 .list::-webkit-scrollbar {
@@ -26,6 +30,12 @@
 }
 .list::-webkit-scrollbar-track {
     background-color: #d7e3ff;
+}
+.listMessage{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--primery-color-blue);
 }
 .item {
     display: flex;

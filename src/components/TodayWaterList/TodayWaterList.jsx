@@ -94,7 +94,7 @@ const TodayWaterList = () => {
         <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
         <DeleteEntryModal
         onClose={() => setIsDeleteModalOpen(false)}
-        id={waterEntry?.id}
+        id={waterEntry?._id}
           />
         </Modal>
       )}

@@ -124,7 +124,7 @@ function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
       dispatch(addWater({ date, volume}))
       notifySuccessUpdate();
       setTimeout(onClose, 2000);
-    }
+    }    
   }
   return (
     <>

@@ -2,7 +2,7 @@
 // <EditTodayListModal onClose={handleCloseModal} time={} amountWater={} id={}/>
 
 import css from "../EditTodayListModal/EditTodayListModal.module.css";
-import AddWaterForm from "../AddWaterForm/AddWaterForm";
+import EditWaterForm from "../EditWaterForma/EditWaterForm";
 
 function EditTodayListModal({ onClose, time = "7:00", amountWater = 400, id }) {
   return (
@@ -16,7 +16,7 @@ function EditTodayListModal({ onClose, time = "7:00", amountWater = 400, id }) {
         <p className={css.time}>{time}</p>
       </div>
       <p className={css.text}>Correct entered data:</p>
-      <AddWaterForm
+      <EditWaterForm
         onClose={onClose}
         currentTime={time}
         water={amountWater}

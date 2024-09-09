@@ -6,10 +6,11 @@ import { useEffect, useState } from "react";
 import { HiPlus } from "react-icons/hi";
 import { HiMinus } from "react-icons/hi";
 import toast, { Toaster } from "react-hot-toast";
-import css from "..//AddWaterForm/AddWaterForm.module.css";
+import css from "../EditWaterForma/EditWaterForm.module.css";
 import { useDispatch } from "react-redux";
-import { addWater } from "../../redux/water/operations";
+import { updateWater } from "../../redux/water/operations";
 import { getWaterToday } from "../../redux/today/operations";
+
 
 const notifyIncorectData = () => toast.error("The data entered is incorrect");
 const notifyIncorrectAmount = () =>
@@ -17,7 +18,7 @@ const notifyIncorrectAmount = () =>
 const notifySuccess = () => toast.success("Successfully created!");
 const notifySuccessUpdate = () => toast.success("Successfully utdated!");
 
-function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
+function EditWaterForm({ onClose, water = 0, currentTime, id = null }) {
   const [amountWater, setAmountWater] = useState(water);
   const [time, setTime] = useState(currentTime);
   const [isTimeCorrect, setIsTimeCorrect] = useState(true);
@@ -102,14 +103,14 @@ function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
       const date = Date(dateString);
       const volume = amountWater
       if (id === null) {
-        dispatch(addWater({ date, volume }))
+        dispatch(updateWater({ date, volume }))
         dispatch(getWaterToday())
         // если не передали id будет post на создание новой записи
         // console.log({ time: mewTime, amountWater });
         notifySuccess();
         setTimeout(onClose, 2000);
       } else {
-        dispatch(addWater({ date, volume }))
+        dispatch(updateWater({ id, date, volume }))
         dispatch(getWaterToday())
         //если передали id будет patch на редактирование записи
         // console.log({ id, time: mewTime, amountWater });
@@ -126,7 +127,7 @@ function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
       const dateString = `${year}-${month}-${day}T${time}:00`
       const date = Date(dateString);      
       const volume = amountWater;
-      dispatch(addWater({ date, volume }))
+      dispatch(updateWater({ date, volume }))
       dispatch(getWaterToday())
       notifySuccess();
       setTimeout(onClose, 2000);      
@@ -137,7 +138,7 @@ function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
       const dateString = `${year}-${month}-${day}T${time}:00`
       const date = Date(dateString);
       const volume = amountWater;
-      dispatch(addWater({ date, volume }))
+      dispatch(updateWater({ id, date, volume }))
       dispatch(getWaterToday())
       notifySuccessUpdate();
       setTimeout(onClose, 2000);
@@ -219,4 +220,4 @@ function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
   );
 }
 
-export default AddWaterForm;
+export default EditWaterForm;

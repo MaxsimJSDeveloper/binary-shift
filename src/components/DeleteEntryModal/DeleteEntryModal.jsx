@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./DeleteEntryModal.module.css";
 import { deleteWater } from "../../redux/water/operations";
+import { getWaterToday } from "../../redux/today/operations";
 
 const notifySuccess = () => toast.success("Successfully deleted!");
 const notifyError = () => toast.error("Oops, something went wrong");
@@ -21,6 +22,7 @@ export default function DeleteEntryModal({ onClose, id }) {
       .catch(() => {
         notifyError();
       });
+    dispatch(getWaterToday())
   }
   return (
     <div className={css.wrapper}>

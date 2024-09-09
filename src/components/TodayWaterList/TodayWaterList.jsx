@@ -84,9 +84,9 @@ const TodayWaterList = () => {
         <EditTodayListModal
         onUpdate={updateWater}
         onClose={() => setIsEditModalOpen(false)}
-        id={waterEntry?.id}
-        time={waterEntry?.time}
-        amountWater={waterEntry?.amountWater}
+        id={waterEntry?._id}
+        time={waterEntry?.date}
+        amountWater={waterEntry?.volume}
           />
         </Modal>
       )}

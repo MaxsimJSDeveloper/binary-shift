@@ -83,7 +83,7 @@ const TodayWaterList = () => {
       <div className={css.listWrapper}>
         <ul className={css.list}>
           {Array.isArray(dailyWaterList) && dailyWaterList.length === 0 ? (
-            <p>No notes yet</p>
+            <p className={css.listMessage}>No notes yet</p>
           ) : (
             dailyWaterList.map(entry => (
               <li key={entry._id} className={css.item}>

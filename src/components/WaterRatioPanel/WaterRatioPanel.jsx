@@ -34,7 +34,7 @@ const WaterRatioPanel = () => {
         const rangeSlider = document.getElementById("range-slider");
         const rangeInput = document.getElementById("range-input");
         const rangeValue = document.getElementById("range-value");
-
+        
         const updateThumbPosition = () => {
             if (rangeInput && rangeValue && rangeSlider) {
                 const progressRatio = waterConsumedValue / 100;
@@ -42,10 +42,11 @@ const WaterRatioPanel = () => {
                 const positionX = progressRatio * availableWidth;
 
                 rangeSlider.style.left = `${positionX}px`;
-                rangeValue.style.left = `${positionX - 3}px`;
+                rangeValue.style.left = `${positionX}px`;
                 rangeValue.innerText = `${waterConsumedValue}%`;
             }
         };
+        
 
         const updateRangeBackground = () => {
             if (rangeInput) {

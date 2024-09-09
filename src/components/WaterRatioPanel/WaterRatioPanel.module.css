@@ -1,16 +1,28 @@
-@media only screen and (min-width: 320px){
+@media only screen and (min-width: 320px) {
     container {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-        }
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 280px;
+    }
 }
+
 @media only screen and (min-width: 768px) {
     .container {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 23px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: 704px;
+        gap: 23px;
+    }
+}
+@media only screen and (min-width: 1440px) {
+    .container {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: 592px;
+        gap: 31px;
     }
 }
 
@@ -18,32 +30,36 @@
     display: flex;
     flex-direction: column;
 }
+
 .rangeHeader {
     font-size: 18px;
     line-height: 24px;
     color: var(--primery-color-blue);
     margin-bottom: 8px;
 }
+
 @media screen and (max-width: 768px) {
     .rangeHeader {
         margin-bottom: 16px;
     }
 }
-.progressbar {
+ 
+ .progressbar {
     position: relative;
+
+} 
+.rangeContainer {
+    width: 100%;
 }
 
-.rangeContainer {
-    width: 100%; 
-} 
- 
 .rangeIntake {
     position: relative;
     width: 100%;
     display: flex;
     align-items: center;
 }
- @media screen and (max-width: 767px) {
+
+@media screen and (max-width: 767px) {
     .inputWrapper {
         width: 256px;
     }
@@ -60,6 +76,7 @@
         width: 360px;
     }
 } 
+
 .rangeWaterValue {
     position: absolute;
     bottom: -40px;
@@ -69,25 +86,29 @@
     line-height: 20px;
     font-weight: 500;
     color: var(--primery-color-blue);
+
     &::before {
-            content: '|';
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #D7E3FF;
-        }
+        content: '|';
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #D7E3FF;
+    }
 }
+
 @media screen and (mшт-width: 768px) {
     .rangeWaterValue {
         bottom: -30px;
     }
 }
+
 .rangeNumber {
     position: relative;
     white-space: nowrap;
     transform: translateX(-50%);
 }
+
 .rangeInput {
     appearance: none;
     width: 100%;
@@ -97,6 +118,7 @@
     position: relative;
 
 }
+
 .rangeInput::-webkit-slider-thumb {
     appearance: none;
     width: 14px;
@@ -106,11 +128,15 @@
     border: 1px solid var(--color-6);
 
 }
+
 .rangePerc {
     display: flex;
     justify-content: space-between;
     margin-top: 1px;
+    position: relative;
+    width: 100%;
 }
+
 .lowPercentage {
     font-size: 12px;
     line-height: 16px;
@@ -123,20 +149,22 @@
         color: #D7E3FF;
     }
 }
+
 .highPercentage {
+    position: absolute;
+    right: 0;
     font-size: 12px;
     line-height: 16px;
     font-weight: 400;
     color: var(--primery-color-blue);
-        &::before {
-            content: '|';
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            color: #D7E3FF;
-        }
+    &::before {
+        content: '|';
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        color: #D7E3FF;
+    }
 }
-
 .addWaterBtn {
     width: 280px;
     height: 36px;
@@ -150,12 +178,13 @@
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
     cursor: pointer;
-    margin-top: 16px;
+    margin-top: 40px;
 
     &:hover {
         box-shadow: 0 6px 8px rgba(0, 123, 255, 0.3);
-    } 
+    }
 }
+
 @media screen and (min-width: 768px) {
     .addWaterBtn {
         margin: 0;
@@ -163,6 +192,7 @@
         height: 44px;
     }
 }
+
 @media screen and (min-width: 1440px) {
     .addWaterBtn {
         margin: 0;
@@ -170,10 +200,10 @@
         height: 44px;
     }
 }
+
 .addIcon {
     margin-right: 8px;
     width: 24px;
     height: 24px;
     color: var(--color);
-} 
- 
+}

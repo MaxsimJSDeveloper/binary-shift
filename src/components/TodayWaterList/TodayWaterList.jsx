@@ -49,7 +49,7 @@ const TodayWaterList = () => {
             <p>No notes yet</p>
           ) : (
             dailyWaterList.map(entry => (
-              <li key={entry.id} className={css.item}>
+              <li key={entry._id} className={css.item}>
                 <div className={css.waterOptions}>
                   <svg width={36} height={36} className={css.icon}>
                     <use xlinkHref="/src/img/symbol-defs.svg#icon-glass" />

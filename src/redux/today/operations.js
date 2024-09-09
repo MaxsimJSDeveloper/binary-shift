@@ -7,8 +7,8 @@ export const getWaterToday = createAsyncThunk(
   "water/today",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/today");
-      return response.data;
+      const response = await axios.get("/today");     
+      return response.data.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || err.message);
     }

@@ -7,6 +7,8 @@ import { HiPlus } from "react-icons/hi";
 import { HiMinus } from "react-icons/hi";
 import toast, { Toaster } from "react-hot-toast";
 import css from "..//AddWaterForm/AddWaterForm.module.css";
+import { useDispatch } from "react-redux";
+import { addWater } from "../../redux/water/operations";
 
 const notifyIncorectData = () => toast.error("The data entered is incorrect");
 const notifyIncorrectAmount = () =>
@@ -16,9 +18,11 @@ const notifySuccessUpdate = () => toast.success("Successfully utdated!");
 
 function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
   const [amountWater, setAmountWater] = useState(water);
-  const [time, setTime] = useState(() => currentTime);
+  const [time, setTime] = useState(currentTime);
   const [isTimeCorrect, setIsTimeCorrect] = useState(true);
   const [isAmountCorrect, setIsAmountCorrect] = useState(true);
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     setTime(currentTime);
@@ -89,15 +93,19 @@ function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
       return;
     }
     if (time.length === 5 && time.startsWith("0")) {
-      const mewTime = time.slice(1);
+      // const mewTime = time.slice(1);
+      const date = Date.now();
+      const volume = amountWater
       if (id === null) {
+        dispatch(addWater({ date, volume}))
         // если не передали id будет post на создание новой записи
-        console.log({ time: mewTime, amountWater });
+        // console.log({ time: mewTime, amountWater });
         notifySuccess();
         setTimeout(onClose, 2000);
       } else {
+        dispatch(addWater({ date, volume}))
         //если передали id будет patch на редактирование записи
-        console.log({ id, time: mewTime, amountWater });
+        // console.log({ id, time: mewTime, amountWater });
         notifySuccessUpdate();
         setTimeout(onClose, 2000);
       }
@@ -105,11 +113,15 @@ function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
       return;
     }
     if (id === null) {
-      console.log({ time, amountWater });
+      const date = Date.now();
+      const volume = amountWater;
+      dispatch(addWater({ date, volume}))
       notifySuccess();
       setTimeout(onClose, 2000);
     } else {
-      console.log({ id, time, amountWater });
+      const date = Date.now();
+      const volume = amountWater;
+      dispatch(addWater({ date, volume}))
       notifySuccessUpdate();
       setTimeout(onClose, 2000);
     }

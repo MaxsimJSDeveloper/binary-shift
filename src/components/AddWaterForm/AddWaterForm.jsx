@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { HiPlus } from "react-icons/hi";
 import { HiMinus } from "react-icons/hi";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import css from "..//AddWaterForm/AddWaterForm.module.css";
 import { useDispatch } from "react-redux";
 import { addWater } from "../../redux/water/operations";
@@ -11,6 +11,7 @@ const notifyIncorectData = () => toast.error("The data entered is incorrect");
 const notifyIncorrectAmount = () =>
   toast.error("The value of the water you drink should be from 1 to 5000");
 const notifySuccess = () => toast.success("Successfully created!");
+const notifyError = () => toast.error("Oops, something went wrong");
 
 function AddWaterForm({ onClose, water = 0, currentTime }) {
   const [amountWater, setAmountWater] = useState(water);
@@ -19,6 +20,7 @@ function AddWaterForm({ onClose, water = 0, currentTime }) {
   const [isAmountCorrect, setIsAmountCorrect] = useState(true);
   const dispatch = useDispatch();
 
+  const timeFormat = /^([0-9]|[0-1][0-9]|2[0-3]):[0-5][0-9]$/;
 
   useEffect(() => {
     setTime(currentTime);
@@ -45,11 +47,12 @@ function AddWaterForm({ onClose, water = 0, currentTime }) {
     if (timeFormat.test(value)) {
       setTime(value);
     }
+    if (timeFormat.test(time)) {
+      setIsTimeCorrect(true);
+    }
   }
 
   function handleTimeBlur() {
-    const timeFormat = /^([0-9]|[0-1][0-9]|2[0-3]):[0-5][0-9]$/;
-
     if (!timeFormat.test(time)) {
       setIsTimeCorrect(false);
     } else {
@@ -88,22 +91,29 @@ function AddWaterForm({ onClose, water = 0, currentTime }) {
       notifyIncorrectAmount();
       return;
     }
-              
+
     const year = new Date().getFullYear();
     const month = new Date().getMonth();
-    const formatMonth = month.toString().padStart(2,'0')
+    const formatMonth = month.toString().padStart(2, "0");
     const day = new Date().getDate();
-    const formatDay = day.toString().padStart(2, '0')
-    const formatTime = time.toString().padStart(5,'0')
-    
-    const date = new Date(`${year}-${formatMonth}-${formatDay}T${formatTime}:00`);
-    
+    const formatDay = day.toString().padStart(2, "0");
+    const formatTime = time.toString().padStart(5, "0");
+
+    const date = new Date(
+      `${year}-${formatMonth}-${formatDay}T${formatTime}:00`
+    );
+
     const volume = amountWater;
-    dispatch(addWater({ date, volume }));
-    dispatch(getWaterToday());
-    notifySuccess();
-    setTimeout(onClose, 1000); 
-   
+    dispatch(addWater({ date, volume }))
+      .unwrap()
+      .then(() => {
+        notifySuccess();
+        dispatch(getWaterToday());
+        setTimeout(onClose, 2000);
+      })
+      .catch(() => {
+        notifyError();
+      });
   }
   return (
     <>
@@ -172,11 +182,6 @@ function AddWaterForm({ onClose, water = 0, currentTime }) {
           </button>
         </div>
       </form>
-      <Toaster
-        containerStyle={{
-          top: 100,
-        }}
-      />
     </>
   );
 }

@@ -1,14 +1,16 @@
 import { useDispatch } from "react-redux";
 import { logOut } from "../../redux/auth/operations.js";
 import Modal from "../Modal/Modal";
-
+import { useNavigate } from "react-router-dom";
 import css from "./UserLogoutModal.module.css";
 
 export default function UserLogOutModal({ isOpen, onClose }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
     dispatch(logOut());
+    navigate("/signin");
     onClose();
   };
 

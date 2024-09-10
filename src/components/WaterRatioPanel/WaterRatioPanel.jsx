@@ -19,7 +19,7 @@ const WaterRatioPanel = () => {
         dispatch(getWaterToday());
       }, [dispatch]);
       
-      console.log("Today's Water Percentage:", todayWaterPercentage);
+    //   console.log("Today's Water Percentage:", todayWaterPercentage);
 
     useEffect(() => {
         if (todayWaterPercentage) {

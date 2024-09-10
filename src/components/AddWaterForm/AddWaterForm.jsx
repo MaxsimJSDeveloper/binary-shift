@@ -1,7 +1,3 @@
-// Исползуется пакет react-hot-toast
-// надо установить
-// npm install react-hot-toast
-
 import { useEffect, useState } from "react";
 import { HiPlus } from "react-icons/hi";
 import { HiMinus } from "react-icons/hi";
@@ -15,9 +11,8 @@ const notifyIncorectData = () => toast.error("The data entered is incorrect");
 const notifyIncorrectAmount = () =>
   toast.error("The value of the water you drink should be from 1 to 5000");
 const notifySuccess = () => toast.success("Successfully created!");
-const notifySuccessUpdate = () => toast.success("Successfully utdated!");
 
-function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
+function AddWaterForm({ onClose, water = 0, currentTime }) {
   const [amountWater, setAmountWater] = useState(water);
   const [time, setTime] = useState(currentTime);
   const [isTimeCorrect, setIsTimeCorrect] = useState(true);
@@ -93,55 +88,24 @@ function AddWaterForm({ onClose, water = 0, currentTime, id = null }) {
       notifyIncorrectAmount();
       return;
     }
-    if (time.length === 5 && time.startsWith("0")) {
-            
-      const year = new Date().getFullYear();
-      const month = new Date().getMonth();
-      const day = new Date().getDate();
-      const dateString = `${year}-${month}-${day}T${time}:00`
-      const date = Date(dateString);
-      const volume = amountWater
-      if (id === null) {
-        dispatch(addWater({ date, volume }))
-        dispatch(getWaterToday())
-        // если не передали id будет post на создание новой записи
-        // console.log({ time: mewTime, amountWater });
-        notifySuccess();
-        setTimeout(onClose, 2000);
-      } else {
-        dispatch(addWater({ date, volume }))
-        dispatch(getWaterToday())
-        //если передали id будет patch на редактирование записи
-        // console.log({ id, time: mewTime, amountWater });
-        notifySuccessUpdate();
-        setTimeout(onClose, 2000);
-      }
-
-      return;
-    }
-    if (id === null) {
-      const year = new Date().getFullYear();
-      const month = new Date().getMonth();
-      const day = new Date().getDate();
-      const dateString = `${year}-${month}-${day}T${time}:00`
-      const date = Date(dateString);      
-      const volume = amountWater;
-      dispatch(addWater({ date, volume }))
-      dispatch(getWaterToday())
-      notifySuccess();
-      setTimeout(onClose, 2000);      
-    } else {
-      const year = new Date().getFullYear();
-      const month = new Date().getMonth();
-      const day = new Date().getDate();
-      const dateString = `${year}-${month}-${day}T${time}:00`
-      const date = Date(dateString);
-      const volume = amountWater;
-      dispatch(addWater({ date, volume }))
-      dispatch(getWaterToday())
-      notifySuccessUpdate();
-      setTimeout(onClose, 2000);
-    }    
+              
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const formatMonth = month.toString().padStart(2,'0')
+    const day = new Date().getDate();
+    const formatDay = day.toString().padStart(2, '0')
+    const formatTime = time.toString(5,"0")
+    
+    const date = new Date(`${year}-${formatMonth}-${formatDay}T${formatTime}:00`);
+    const volume = amountWater;
+    dispatch(addWater({ date, volume }));
+    dispatch(getWaterToday());
+    notifySuccess();
+    setTimeout(onClose, 1000);
+    
+    
+    
+   
   }
   return (
     <>

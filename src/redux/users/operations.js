@@ -37,7 +37,7 @@ export const updateUserAvatar = createAsyncThunk(
         },
       });
 
-      return res.data;
+      return res.data.user;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || err.message);
     }

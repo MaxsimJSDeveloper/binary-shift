@@ -9,6 +9,7 @@ import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
 import Loader from "./components/Loader/Loader";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import RedirectPage from "./pages/RedirectPage/RedirectPage";
+import { Toaster } from "react-hot-toast";
 
 const MainPage = lazy(() => import("../src/pages/MainPage/MainPage"));
 const HomePage = lazy(() => import("../src/pages/HomePage/HomePage"));
@@ -25,24 +26,29 @@ function App() {
 
   const isLogged = useSelector(selectIsLoggedIn);
   return isRefreshingUser ? (
-    <Loader/>
+    <Loader />
   ) : (
     <>
-    <SharedLayout>
-    <Suspense fallback={null}>
-      <Routes>
-        {!isLogged?<Route path="/" element={<MainPage />} />:<Route path="*" element={<RedirectPage />} />}
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
-        {isLogged ? (
-          <Route path="/home" element={<HomePage />} />
-        ) : (
-          <Route path="/signin" element={<SignIn />} />
-        )}
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Suspense>  
-    </SharedLayout>
+      <SharedLayout>
+        <Suspense fallback={null}>
+          <Routes>
+            {!isLogged ? (
+              <Route path="/" element={<MainPage />} />
+            ) : (
+              <Route path="*" element={<RedirectPage />} />
+            )}
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            {isLogged ? (
+              <Route path="/home" element={<HomePage />} />
+            ) : (
+              <Route path="/signin" element={<SignIn />} />
+            )}
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </SharedLayout>
+      <Toaster />
     </>
   );
 }

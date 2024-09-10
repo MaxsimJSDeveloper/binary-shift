@@ -1,4 +1,3 @@
-
 import Modal from "../Modal/Modal";
 import css from "./SettingModal.module.css";
 import UserSettingsForm from "../UserSettingsForm/UserSettingsForm";
@@ -12,4 +11,3 @@ export default function SettingModal({ isOpen, onClose }) {
     </Modal>
   );
 }
-

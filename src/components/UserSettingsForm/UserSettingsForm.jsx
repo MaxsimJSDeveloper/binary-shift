@@ -7,10 +7,11 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 import { HiOutlineEye } from "react-icons/hi2";
 import { HiOutlineEyeOff } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import css from "./UserSettingsForm.module.css";
 import { updateUser, updateUserAvatar } from "../../redux/users/operations";
 import { selectUser } from "../../redux/users/selectors";
+import Loader from "../Loader/Loader";
 
 const validationSchema = Yup.object({
   gender: Yup.string().oneOf(["male", "female"]),
@@ -33,6 +34,7 @@ export default function UserSettingsForm({ onClose }) {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatNewPassword, setShowRepeatNewPassword] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
   const [photoPreview, setPhotoPreview] = useState(user?.photo || "");
   const dispatch = useDispatch();
   const fieldId = useId();
@@ -67,6 +69,8 @@ export default function UserSettingsForm({ onClose }) {
     const formData = new FormData();
     formData.append("avatar", file);
 
+    setIsUploading(true);
+
     dispatch(updateUserAvatar(formData))
       .unwrap()
       .then(() => {
@@ -74,6 +78,9 @@ export default function UserSettingsForm({ onClose }) {
       })
       .catch(() => {
         toast.error("Error uploading photo.");
+      })
+      .finally(() => {
+        setIsUploading(false);
       });
   };
 
@@ -118,7 +125,9 @@ export default function UserSettingsForm({ onClose }) {
         {({ errors, touched, isSubmitting }) => (
           <Form>
             <h2 className={css.setting_title}>Setting</h2>
+            {isSubmitting && <Loader />}
             <h3 className={css.photoTitle}>Your photo</h3>
+
             <div className={css.uploadPhotoWrapper}>
               <div className={css.photoUrlWrapper}>
                 {photoPreview ? (
@@ -149,6 +158,7 @@ export default function UserSettingsForm({ onClose }) {
                 </button>
               </div>
             </div>
+            {isUploading && <Loader />}
 
             <div className={css.user_info_block_desktop}>
               <div className={css.gender_name_email_desktop}>
@@ -345,9 +355,6 @@ export default function UserSettingsForm({ onClose }) {
           </Form>
         )}
       </Formik>
-      <div>
-        <Toaster />
-      </div>
     </div>
   );
 }

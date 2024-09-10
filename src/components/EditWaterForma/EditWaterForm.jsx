@@ -95,7 +95,7 @@ function EditWaterForm({ onClose, water = 0, currentTime, id = null }) {
     const formatMonth = month.toString().padStart(2,'0')
     const day = new Date().getDate();
     const formatDay = day.toString().padStart(2, '0')
-    const formatTime = time.toString(5,"0")
+    const formatTime = time.toString().padStart(5,"0")
     
     const date = new Date(`${year}-${formatMonth}-${formatDay}T${formatTime}:00`);
     const volume = amountWater

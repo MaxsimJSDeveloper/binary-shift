@@ -94,17 +94,15 @@ function AddWaterForm({ onClose, water = 0, currentTime }) {
     const formatMonth = month.toString().padStart(2,'0')
     const day = new Date().getDate();
     const formatDay = day.toString().padStart(2, '0')
-    const formatTime = time.toString(5,"0")
+    const formatTime = time.toString().padStart(5,'0')
     
     const date = new Date(`${year}-${formatMonth}-${formatDay}T${formatTime}:00`);
+    
     const volume = amountWater;
     dispatch(addWater({ date, volume }));
     dispatch(getWaterToday());
     notifySuccess();
-    setTimeout(onClose, 1000);
-    
-    
-    
+    setTimeout(onClose, 1000); 
    
   }
   return (

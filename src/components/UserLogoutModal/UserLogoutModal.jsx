@@ -1,12 +1,15 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/auth/operations.js";
 import Modal from "../Modal/Modal";
 import { useNavigate } from "react-router-dom";
 import css from "./UserLogoutModal.module.css";
+import { selectIsLoading } from "../../redux/users/selectors.js";
+import Loader from "../Loader/Loader.jsx";
 
 export default function UserLogOutModal({ isOpen, onClose }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLoading = useSelector(selectIsLoading);
 
   const handleLogOut = () => {
     dispatch(logOut());
@@ -33,6 +36,7 @@ export default function UserLogOutModal({ isOpen, onClose }) {
           <button className={css.cancel_btn} onClick={onClose}>
             Cancel
           </button>
+          {isLoading && <Loader />}
         </div>
       </div>
     </Modal>

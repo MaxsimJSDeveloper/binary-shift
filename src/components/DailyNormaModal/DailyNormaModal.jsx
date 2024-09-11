@@ -1,13 +1,15 @@
 import { useEffect, useId } from "react";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/users/selectors";
+import { selectUser, selectIsLoading } from "../../redux/users/selectors";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { IoMdClose } from "react-icons/io";
 import css from "../DailyNormaModal/DailyNormaModal.module.css";
 import * as Yup from "yup";
+import Loader from "../Loader/Loader";
 
 export default function DailyNormaModal({ closeModal, onSave }) {
   const user = useSelector(selectUser);
+  const isLoading = useSelector(selectIsLoading);
   const initialValues = {
     sex: sessionStorage.getItem("gender") || user?.gender,
     inputWeightValue: sessionStorage.getItem("weight") || "0",
@@ -252,6 +254,7 @@ export default function DailyNormaModal({ closeModal, onSave }) {
                   </div>
                 </div>
                 <div className={css.btncontainer}>
+                  {isLoading && <Loader />}
                   <button type="submit" className={css.formbutton}>
                     Save
                   </button>

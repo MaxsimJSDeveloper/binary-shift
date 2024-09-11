@@ -3,10 +3,12 @@ import { HiPlus } from "react-icons/hi";
 import { HiMinus } from "react-icons/hi";
 import toast from "react-hot-toast";
 import css from "../EditWaterForma/EditWaterForm.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateWater } from "../../redux/water/operations";
 import { getWaterToday } from "../../redux/today/operations";
 import { fetchMonthWater } from "../../redux/month/operations";
+import { selectIsLoading } from "../../redux/today/selectors";
+import Loader from "../Loader/Loader";
 
 const notifyIncorectData = () => toast.error("The data entered is incorrect");
 const notifyIncorrectAmount = () =>
@@ -21,6 +23,7 @@ function EditWaterForm({ onClose, water = 0, currentTime, id = null }) {
   const [isAmountCorrect, setIsAmountCorrect] = useState(true);
   const dispatch = useDispatch();
   const timeFormat = /^([0-9]|[0-1][0-9]|2[0-3]):[0-5][0-9]$/;
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     setTime(currentTime);
@@ -180,6 +183,7 @@ function EditWaterForm({ onClose, water = 0, currentTime, id = null }) {
         </div>
         <div className={css.btnflexbox}>
           <p className={css.textamuont}>{amountWater}ml</p>
+          {isLoading && <Loader />}
           <button className={css.submitbtn} type="submit">
             Save
           </button>

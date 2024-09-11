@@ -114,7 +114,7 @@
   padding: 24px 13px;
   box-shadow: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
   background: #fff;
-  position: fixed;
+  position: absolute;
 }
 
 .dayInfo {
@@ -182,7 +182,6 @@
   .ul {
     row-gap: 22px;
     width: 544px;
-    column-gap: 4px;
   }
   .li {
     flex-basis: calc(100% / 10);

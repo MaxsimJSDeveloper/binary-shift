@@ -14,7 +14,7 @@ export default function DailyNormaModal({ closeModal, onSave }) {
     sex: sessionStorage.getItem("gender") || user?.gender,
     inputWeightValue: sessionStorage.getItem("weight") || "0",
     inputTimeValue: sessionStorage.getItem("time") || "0",
-    dailyNorma: sessionStorage.getItem("dailyNorma") || "0",
+    dailyNorma: sessionStorage.getItem("dailyNorma") || "2.0",
   };
 
   const id = useId();
@@ -116,7 +116,8 @@ export default function DailyNormaModal({ closeModal, onSave }) {
               values.inputTimeValue
             ).toFixed(1);
 
-            const displayAmount = waterAmount === "0.0" ? "1.8" : waterAmount;
+            // const displayAmount = waterAmount === "0.0" ? "1.8" : waterAmount;
+            const displayAmount = waterAmount === "0.0" ? "0.0" : waterAmount;
 
             const handleFieldChange = (field, value) => {
               setFieldValue(field, value);

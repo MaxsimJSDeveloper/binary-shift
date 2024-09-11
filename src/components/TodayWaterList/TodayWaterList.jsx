@@ -10,6 +10,7 @@ import TodayListModal from "../TodayListModal/TodayListModal";
 import {updateWater} from "../../redux/water/operations";
 import { getWaterToday } from "../../redux/today/operations";
 import { selectEntriesToday, selectIsLoading, selectError } from "../../redux/today/selectors";
+import Loader from "../Loader/Loader";
 
 const TodayWaterList = () => {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ const TodayWaterList = () => {
   return (
     <div className={css.section}>
       <h2 className={css.heading}>Today</h2>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loader />}
       {error && <p>Error: {error}</p>}
       <div className={css.listWrapper}>
         <ul className={css.list}>

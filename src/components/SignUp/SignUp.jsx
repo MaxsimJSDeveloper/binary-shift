@@ -1,5 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import * as Yup from "yup";
@@ -7,10 +7,13 @@ import css from "./SignUp.module.css";
 import toast from "react-hot-toast";
 import { register } from "../../redux/auth/operations";
 import sprite from "../../img/symbol-defs.svg";
+import { selectIsLoading } from "../../redux/users/selectors";
+import Loader from "../Loader/Loader";
 
 export default function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLoading = useSelector(selectIsLoading);
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -154,6 +157,7 @@ export default function SignUp() {
             >
               Sign In
             </button>
+            {isLoading && <Loader />}
           </div>
         </Form>
       )}

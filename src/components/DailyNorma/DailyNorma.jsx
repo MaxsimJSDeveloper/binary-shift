@@ -6,6 +6,7 @@ import {
   putWaterRate,
 } from "../../redux/waterRate/operations.js";
 import css from "../DailyNorma/DailyNorma.module.css";
+import Loader from "../Loader/Loader.jsx";
 
 export default function DailyNorma() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,7 +43,7 @@ export default function DailyNorma() {
       <span className={css.dailytitle}>My daily norma</span>
       <div className={css.datadaily}>
         <span className={css.water}>
-          {isLoading ? "Loading..." : `${initialNorma} L`}
+          {isLoading ? <Loader /> : `${initialNorma} L`}
         </span>
         <button className={css.waterbutton} onClick={handleOpenModal}>
           Edit
@@ -50,6 +51,7 @@ export default function DailyNorma() {
         {isModalOpen && (
           <div className={css.modalOverlay}>
             <div className={css.modalContent}>
+              {isLoading && <Loader />}
               <DailyNormaModal
                 closeModal={handleCloseModal}
                 onSave={handleSave}

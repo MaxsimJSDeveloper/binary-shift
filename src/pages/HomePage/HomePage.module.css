@@ -18,7 +18,7 @@
 
 @media only screen and (min-width: 768px) {
   .container {
-    /* max-width: 768px; */    
+    /* max-width: 768px; */
     padding: 0px 32px;
   }
 }
@@ -40,7 +40,7 @@
       url(../../img/mobile/backround-sign-mob_1x.webp);
     background-repeat: no-repeat;
     background-position-x: center;
-    background-position-y: 90px ;
+    background-position-y: 90px;
     background-size: contain;
     min-height: 600px;
   }
@@ -82,20 +82,19 @@
       url(../../img/desck/backround-sign-desk_1x.webp);
     background-repeat: no-repeat;
     background-size: contain;
-     background-position-x: -50px;
+    background-position-x: -50px;
     background-position-y: -50px;
     min-height: 738px;
   }
 }
 
-
 @media (min-width: 1440px) and (min-resolution: 192dpi),
   (min-width: 1440px) and (min-device-pixel-ratio: 2) {
   .background {
     background-image: url(../../img/desck/background-bable@2x.png),
-     url(../../img/desck/backround-sign-deck_2x.webp); 
+      url(../../img/desck/backround-sign-deck_2x.webp);
   }
-} 
+}
 
 /* My daily norma and progressbar */
 
@@ -156,7 +155,7 @@
 @media only screen and (min-width: 768px) {
   .container-progress {
     padding: 32px 24px;
-    height: 688px;
+    max-height: 700px;
   }
 }
 
@@ -167,17 +166,17 @@
   }
 }
 
-.wrapDailyNorm{
+.wrapDailyNorm {
   margin-top: 20px;
 }
 
-@media only screen and (min-width: 768px){
-  .wrapDailyNorm{
+@media only screen and (min-width: 768px) {
+  .wrapDailyNorm {
     margin-top: 30px;
   }
 }
-@media only screen and (min-width: 1440px){
-  .wrapDailyNorm{
+@media only screen and (min-width: 1440px) {
+  .wrapDailyNorm {
     margin-top: 40px;
   }
 }

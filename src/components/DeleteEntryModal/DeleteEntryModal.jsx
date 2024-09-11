@@ -5,24 +5,28 @@ import toast from "react-hot-toast";
 import css from "./DeleteEntryModal.module.css";
 import { deleteWater } from "../../redux/water/operations";
 import { getWaterToday } from "../../redux/today/operations";
+import { fetchMonthWater } from "../../redux/month/operations";
 import { selectIsLoading } from "../../redux/today/selectors";
 import Loader from "../Loader/Loader";
+
 
 const notifySuccess = () => toast.success("Successfully deleted!");
 const notifyError = () => toast.error("Oops, something went wrong");
 
 export default function DeleteEntryModal({ onClose, id }) {
   const dispatch = useDispatch();
+  const month = new Date().toLocaleString('en-Us', { month: 'long' });
+  const year = new Date().getFullYear();
   const isLoading = useSelector(selectIsLoading);
 
-  function handleDelete() {
-    console.log(id);
 
+  function handleDelete() {
     dispatch(deleteWater(id))
       .unwrap()
       .then(() => {
         notifySuccess();
         dispatch(getWaterToday());
+        dispatch(fetchMonthWater({ month, year }));
         setTimeout(onClose, 2000);
       })
       .catch(() => {

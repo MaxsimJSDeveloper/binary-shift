@@ -6,6 +6,7 @@ import css from "../EditWaterForma/EditWaterForm.module.css";
 import { useDispatch } from "react-redux";
 import { updateWater } from "../../redux/water/operations";
 import { getWaterToday } from "../../redux/today/operations";
+import { fetchMonthWater } from "../../redux/month/operations";
 
 const notifyIncorectData = () => toast.error("The data entered is incorrect");
 const notifyIncorrectAmount = () =>
@@ -92,11 +93,12 @@ function EditWaterForm({ onClose, water = 0, currentTime, id = null }) {
     }
 
     const year = new Date().getFullYear();
-    const month = new Date().getMonth();
-    const formatMonth = month.toString().padStart(2, "0");
-    const day = new Date().getDate();
+    const monthNumber = new Date().getMonth()+1;
+    const formatMonth = monthNumber.toString().padStart(2, "0");
+    const day = new Date().getDate()+1;
     const formatDay = day.toString().padStart(2, "0");
     const formatTime = time.toString().padStart(5, "0");
+    const month = new Date().toLocaleString('en-Us', { month: 'long' });
 
     const date = new Date(
       `${year}-${formatMonth}-${formatDay}T${formatTime}:00`
@@ -109,6 +111,7 @@ function EditWaterForm({ onClose, water = 0, currentTime, id = null }) {
       .then(() => {
         notifySuccessUpdate();
         dispatch(getWaterToday());
+        dispatch(fetchMonthWater({ month, year }));
         setTimeout(onClose, 2000);
       })
       .catch(() => {

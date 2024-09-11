@@ -10,8 +10,8 @@ import Loader from "../Loader/Loader";
 import { selectWaterRate } from "../../redux/waterRate/selectors";
 import { fetchWaterRate } from "../../redux/waterRate/operations";
 
-const ModalCalendar = ({day,dailyNorma,rate,servings, x, y}) => {
-    return (<div className={css.modal} style={{top:y-208, left:x-292}}>
+const ModalCalendar = ({ day, dailyNorma, rate, servings, x, y }) => {
+    return (<div className={css.modal} style={{top:y, left:x}}>
         <div className={css.dayInfo}>
             <p><span className={css.span}>{day}</span></p>
                     <p>Daily norma: <span className={css.span}>{dailyNorma}L</span></p>
@@ -37,9 +37,15 @@ export default function MonthStatsTable() {
     const [dayObj, setDayObj] = useState({date: '',
             dailyNorm: 1500,
             dailyNormPercent: 0,
-            portions: 0})
-            
-    const water = useSelector(state => selectData(state, { month, year }));
+        portions: 0
+    })
+    // Розположення <div> в залежності від девайсу
+    const isMobile = useMediaQuery({ query: '(max-width:767px)' });
+    const isTablet = useMediaQuery({ query: '(min-width:768px) and (max-width:1440px' });
+    const isDesktop = useMediaQuery({ query: '(min-width:1440px)' });
+                
+    // const water = useSelector(state => selectData(state, { month, year }));
+    const water = useSelector(selectData);
     const dailyNorma = useSelector(selectWaterRate);
     const dispatch = useDispatch();   
 
@@ -51,7 +57,7 @@ export default function MonthStatsTable() {
     },[currentDate, dispatch, month, year],)
 
     // Створення масиву обєктів для календаря
-    const daysArray = Array.from({ length: daysInMonth(currentDate.getMonth(), year) }, (_, i) => {
+    const daysArray = Array.from({ length: daysInMonth(currentDate.getMonth() , year) }, (_, i) => {
         return {  
             date: `${i+1}, ${month}`,
             dailyNorm: dailyNorma,
@@ -64,6 +70,8 @@ export default function MonthStatsTable() {
         const matchingObj = water.find(obj2 => obj2.date === obj1.date);
         return matchingObj ? matchingObj : obj1;
     })
+    
+    
 
     // Дії які відбуваються при кліку по кнопках вперед-назад
     const handleLeftButton = () => { 
@@ -82,10 +90,81 @@ export default function MonthStatsTable() {
     }
 
     // Дії які відбуваються в заледності від місцезнаходження мищі
-    const handleMouseEnter = (e, day) => {
-        setModalOpen(true) 
-        setX(e.clientX);
-        setY(e.clientY);
+    const handleMouseEnter = (day) => {
+        setModalOpen(true);
+        if (isDesktop) {
+            if (parseInt(day) < 11) {
+            setX(parseInt(day) * 54-300);
+            setY(-144); 
+            }
+            if (parseInt(day) >10 && parseInt(day)<21) {
+            setX((parseInt(day) - 10) * 54-300);
+            setY(-144+76); 
+            }
+            if (parseInt(day) >20 && parseInt(day)<31) {
+            setX((parseInt(day) - 20) * 54-300);
+            setY(8); 
+            }
+            if (parseInt(day) >30) {
+            setX((parseInt(day) - 30) * 54-300);
+            setY(8+76); 
+            }
+        }
+        if (isTablet) {
+            if (parseInt(day) < 6) {
+            setX(parseInt(day)*64- 31);
+            setY(-144); 
+            }
+            if (parseInt(day) > 5 && parseInt(day) < 11) {
+            setX(parseInt(day)*67 - 30-300);
+                setY(-144);
+            }
+            if (parseInt(day) >10 && parseInt(day)<16) {
+            setX((parseInt(day)-10)*64- 31);
+            setY(-144+92); 
+            }
+            if (parseInt(day) >15 && parseInt(day)<21) {
+            setX((parseInt(day)-10)*67 - 30-300);
+            setY(-144+92); 
+            }
+            if (parseInt(day) >20 && parseInt(day)<26) {
+            setX((parseInt(day) - 20) * 64-31);
+            setY(40); 
+            }
+            if (parseInt(day) >25 && parseInt(day)<31) {
+            setX((parseInt(day) - 20) *67- 30-300);
+            setY(40); 
+            }
+            if (parseInt(day) >30) {
+            setX((parseInt(day) - 30) * 67-31);
+            setY(132); 
+            }
+        }
+        if (isMobile) {
+            setX(0);
+            if (parseInt(day) < 6) {
+            setY(-198); 
+            }
+            if (parseInt(day) > 5 && parseInt(day) < 11) {
+            setY(-128);
+            }
+            if (parseInt(day) >10 && parseInt(day)<16) {
+            setY(-144+86); 
+            }
+            if (parseInt(day) >15 && parseInt(day)<21) {
+            setY(12); 
+            }
+            if (parseInt(day) >20 && parseInt(day)<26) {
+            setY(82); 
+            }
+            if (parseInt(day) >25 && parseInt(day)<31) {
+            setY(152); 
+            }
+            if (parseInt(day) >30) {
+            setY(222); 
+            }
+        }
+               
         setDay(day);
         setDayObj(newDaysArray.find(obj => obj.date === day))        
     }
@@ -94,10 +173,7 @@ export default function MonthStatsTable() {
         setModalOpen(false)      
     }    
     
-    // Розположення <div> в залежності від девайсу
-    const isMobile = useMediaQuery({ query: '(max-width:767px)' });
-    const isTablet = useMediaQuery({ query: '(min-width:768px) and (max-width:1440px' });
-    const isDesktop = useMediaQuery({ query: '(min-width:1440px)' });
+    
 
     return (
         <div className={css.calendar}>
@@ -114,21 +190,14 @@ export default function MonthStatsTable() {
             </div>
             {isLoading&&<Loader/>}
             <ul className={css.ul}>
-                {newDaysArray.map((day) => (<li className={css.li} key={parseInt(day.date)} onMouseEnter={(e)=>handleMouseEnter(e,day.date)} onMouseLeave={handleMouseLeave}>
+                {newDaysArray.map((day) => (<li className={css.li} key={parseInt(day.date)} onMouseEnter={()=>handleMouseEnter(day.date)} onMouseLeave={handleMouseLeave}>
                     {parseInt(day.dailyNormPercent) < 100 ?
                         <div className={css.liDate}>{parseInt(day.date)}</div> :
                         <div className={css.liDateFull}>{parseInt(day.date)}</div>}
                     <p className={css.p}>{parseInt(day.dailyNormPercent)}%</p>                    
                 </li>))}
-            </ul>
-            {isModalOpen && isMobile &&
-                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} y={y} />}
-            {isModalOpen && isTablet && x <= 400 &&
-                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x+ 280} y={y} />}
-            {isModalOpen && isTablet && x > 400 &&
-                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y} />}
-            {isModalOpen && isDesktop &&
-                <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y} />}
+            </ul>           
+            {isModalOpen && <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y} />}
         </div>
     )
 }

@@ -10,42 +10,42 @@ export const handleRejected = (state, action) => {
   state.error = action.payload;
 };
 
-// const monthSlice = createSlice({
-//   name: "month",
-//   initialState: {
-//     data: [],
-//     isLoading: false,
-//     error: null,
-//   },
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(fetchMonthWater.rejected, handleRejected)
-//       .addCase(fetchMonthWater.pending, handlePending)
-//       .addCase(fetchMonthWater.fulfilled, (state, action) => {
-//         state.data = action.payload;
-//         state.isLoading = false;
-//       });
-//   },
-// });
-
-
 const monthSlice = createSlice({
   name: "monthItem",
   initialState: {
-    cache: {},
+    data: [],
     isLoading: false,
     error: null,
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchMonthWater.rejected, handleRejected)
       .addCase(fetchMonthWater.pending, handlePending)
-      .addCase(fetchMonthWater.fulfilled, (state, action) => {        
-        const { filterKeys, data } = action.payload;        
-        state.cache[filterKeys] = data;  
+      .addCase(fetchMonthWater.fulfilled, (state, action) => {
+        state.data = action.payload;
         state.isLoading = false;
-      })
-    .addCase(fetchMonthWater.rejected,handleRejected)
-  }
-})
+      });
+  },
+});
+
+
+// const monthSlice = createSlice({
+//   name: "monthItem",
+//   initialState: {
+//     cache: {},
+//     isLoading: false,
+//     error: null,
+//   },
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(fetchMonthWater.pending, handlePending)
+//       .addCase(fetchMonthWater.fulfilled, (state, action) => {        
+//         const { filterKeys, data } = action.payload;        
+//         state.cache[filterKeys] = data;  
+//         state.isLoading = false;
+//       })
+//     .addCase(fetchMonthWater.rejected,handleRejected)
+//   }
+// })
 
 export const monthReducer = monthSlice.reducer;

@@ -44,7 +44,7 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const index = state.waterEntries.findIndex(
-          (water) => water.id === action.payload.id
+          (water) => water.id === action.payload
         );
         if (index !== -1) {
           state.waterEntries.splice(index, 1);

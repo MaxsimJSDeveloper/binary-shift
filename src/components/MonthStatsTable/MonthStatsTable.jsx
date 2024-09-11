@@ -36,7 +36,7 @@ export default function MonthStatsTable() {
     const [day, setDay] = useState(0);
     const [dayObj, setDayObj] = useState({date: '',
             dailyNorm: 1500,
-            dailyNormPercent: 0,
+            dailyNormPercent: '0%',
         portions: 0
     })
     // Розположення <div> в залежності від девайсу
@@ -47,8 +47,7 @@ export default function MonthStatsTable() {
     // const water = useSelector(state => selectData(state, { month, year }));
     const water = useSelector(selectData);
     const dailyNorma = useSelector(selectWaterRate);
-    const dispatch = useDispatch();   
-
+    const dispatch = useDispatch();      
     useEffect(() => {
         setMonth(currentDate.toLocaleString("en-Us", { month: 'long' }));
         setYear(currentDate.getFullYear());   
@@ -61,7 +60,7 @@ export default function MonthStatsTable() {
         return {  
             date: `${i+1}, ${month}`,
             dailyNorm: dailyNorma,
-            dailyNormPercent: 0,
+            dailyNormPercent: '0%',
             portions: 0
         }
     })
@@ -194,7 +193,7 @@ export default function MonthStatsTable() {
                     {parseInt(day.dailyNormPercent) < 100 ?
                         <div className={css.liDate}>{parseInt(day.date)}</div> :
                         <div className={css.liDateFull}>{parseInt(day.date)}</div>}
-                    <p className={css.p}>{parseInt(day.dailyNormPercent)}%</p>                    
+                    <p className={css.p}>{day.dailyNormPercent}</p>                    
                 </li>))}
             </ul>           
             {isModalOpen && <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y} />}

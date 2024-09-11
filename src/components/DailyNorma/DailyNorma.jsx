@@ -7,6 +7,8 @@ import {
 } from "../../redux/waterRate/operations.js";
 import css from "../DailyNorma/DailyNorma.module.css";
 import Loader from "../Loader/Loader.jsx";
+import { fetchMonthWater } from "../../redux/month/operations.js";
+import { getWaterToday } from "../../redux/today/operations.js";
 
 export default function DailyNorma() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +16,8 @@ export default function DailyNorma() {
   const dispatch = useDispatch();
   const dailyNorma = useSelector((state) => state.waterRate.data);
   const isLoading = useSelector((state) => state.waterRate.isLoading);
+  const month = new Date().toLocaleString('en-Us', { month: 'long' });
+  const year = new Date().getFullYear();
 
   useEffect(() => {
     dispatch(fetchWaterRate());
@@ -35,6 +39,8 @@ export default function DailyNorma() {
 
   const handleSave = (newDailyNorma) => {
     dispatch(putWaterRate({ dailyNorma: newDailyNorma * 1000 }));
+    dispatch(fetchMonthWater({ month, year }))
+    dispatch(getWaterToday())
     setIsModalOpen(false);
   };
 

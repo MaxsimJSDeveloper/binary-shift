@@ -1,7 +1,7 @@
 // При вызове компонента передать пропс onClose и id
 
 import { useDispatch } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import css from "./DeleteEntryModal.module.css";
 import { deleteWater } from "../../redux/water/operations";
 import { getWaterToday } from "../../redux/today/operations";
@@ -13,16 +13,18 @@ export default function DeleteEntryModal({ onClose, id }) {
   const dispatch = useDispatch();
 
   function handleDelete() {
+    console.log(id);
+
     dispatch(deleteWater(id))
       .unwrap()
       .then(() => {
         notifySuccess();
+        dispatch(getWaterToday());
         setTimeout(onClose, 2000);
       })
       .catch(() => {
         notifyError();
       });
-    dispatch(getWaterToday())
   }
   return (
     <div className={css.wrapper}>
@@ -36,11 +38,6 @@ export default function DeleteEntryModal({ onClose, id }) {
           Cancel
         </button>
       </div>
-      <Toaster
-        containerStyle={{
-          top: 100,
-        }}
-      />
     </div>
   );
 }

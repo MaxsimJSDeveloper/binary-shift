@@ -196,7 +196,7 @@ export default function MonthStatsTable() {
                     <p className={css.p}>{day.dailyNormPercent}</p>                    
                 </li>))}
             </ul>           
-            {isModalOpen && <ModalCalendar day={day} dailyNorma={dayObj.dailyNorm} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y} />}
+            {isModalOpen && <ModalCalendar day={day} dailyNorma={(dayObj.dailyNorm)/1000} rate={dayObj.dailyNormPercent} servings={dayObj.portions} x={x} y={y} />}
         </div>
     )
 }

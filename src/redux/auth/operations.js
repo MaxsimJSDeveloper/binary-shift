@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { useNavigate } from "react-router-dom";
 
 axios.defaults.baseURL = "https://binary-shift-backend.onrender.com/";
 
@@ -61,3 +62,20 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+
+export const setInterceptors = () => {
+
+  axios.interceptors.response.use(
+    (response) => {
+      return response
+    }, error => {
+      if (error.response && error.response.status === 401) {
+        const navigate = useNavigate();
+        navigate('/signin');        
+      }
+      return Promise.reject(error);
+    }
+  );
+
+}

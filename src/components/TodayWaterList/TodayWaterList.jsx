@@ -43,35 +43,12 @@ const TodayWaterList = () => {
     setIsDeleteModalOpen(true);
   };
 
-  // const handleAddWater = async (newWater) => {
-  //   try {
-  //     const result = await dispatch(addWater(newWater)).unwrap();
-  //     // console.log("Add Water Result:", result);
-  //     dispatch(getWaterToday()); 
-  //   } catch (err) {
-  //     console.error("Failed to add water:", err);
-  //   }
-  // };
-  
-  // const handleUpdateWater = async (updatedWater) => {
-  //   try {
-  //     const result = await dispatch(updateWater(updatedWater)).unwrap();
-  //     console.log("Update Water Result:", result);
-  //     dispatch(getWaterToday()); 
-  //   } catch (err) {
-  //     console.error("Failed to update water:", err);
-  //   }
-  // };
-  
-  // const handleDeleteWater = async (id) => {
-  //   try {
-  //     const result = await dispatch(deleteWater(id)).unwrap();
-  //     console.log("Delete Water Result:", result);
-  //     dispatch(getWaterToday()); 
-  //   } catch (err) {
-  //     console.error("Failed to delete water:", err);
-  //   }
-  // };
+if (isModalOpen||isEditModalOpen||isDeleteModalOpen) {
+  document.body.style.overflow="hidden"
+  }
+  if (!isModalOpen&&!isEditModalOpen&&!isDeleteModalOpen) {
+  document.body.style.overflow="auto"
+}
   
 
   return (

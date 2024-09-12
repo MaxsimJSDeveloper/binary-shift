@@ -89,6 +89,13 @@ const WaterRatioPanel = () => {
             window.removeEventListener('resize', updateRangeBackground);
         };
     }, [waterConsumedValue]);
+    
+if (isModalOpen) {
+  document.body.style.overflow="hidden"
+  }
+  if (!isModalOpen) {
+  document.body.style.overflow="auto"
+}
 
     return (
         <div className={css.container}>

@@ -65,10 +65,10 @@ export default function UserLogo() {
   const avatarUrl = user?.photo;
   const initials = getInitials(user?.name, user?.email);
 
-  if (isSettingModalOpen) {
+  if (isSettingModalOpen||isLogoutModal) {
   document.body.style.overflow="hidden"
   }
-  if (!isSettingModalOpen) {
+  if (!isSettingModalOpen&&!isLogoutModal) {
   document.body.style.overflow="auto"
 }
 

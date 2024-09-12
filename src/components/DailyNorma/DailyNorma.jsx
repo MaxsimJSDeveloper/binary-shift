@@ -43,7 +43,12 @@ export default function DailyNorma() {
     dispatch(getWaterToday())
     setIsModalOpen(false);
   };
-
+if (isModalOpen) {
+  document.body.style.overflow="hidden"
+  }
+  if (!isModalOpen) {
+  document.body.style.overflow="auto"
+}
   return (
     <div className={css.dailyform}>
       <span className={css.dailytitle}>My daily norma</span>

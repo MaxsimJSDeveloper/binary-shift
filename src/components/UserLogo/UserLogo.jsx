@@ -65,6 +65,14 @@ export default function UserLogo() {
   const avatarUrl = user?.photo;
   const initials = getInitials(user?.name, user?.email);
 
+  if (isSettingModalOpen) {
+  document.body.style.overflow="hidden"
+  }
+  if (!isSettingModalOpen) {
+  document.body.style.overflow="auto"
+}
+
+
   return (
     <div>
       <button className={css.containerUserAvatar} onClick={handleButtonClick}>

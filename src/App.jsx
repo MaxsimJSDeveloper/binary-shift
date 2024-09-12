@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import { refreshUser } from "./redux/auth/operations";
+import { refreshUser, setInterceptors } from "./redux/auth/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { lazy, Suspense, useEffect } from "react";
 import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
@@ -19,12 +19,14 @@ const SignIn = lazy(() => import("../src/pages/SignInPage/SignInPage"));
 function App() {
   const dispatch = useDispatch();
   const isRefreshingUser = useSelector(selectIsRefreshing);
+  const isLogged = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(refreshUser());
+    setInterceptors();    
   }, [dispatch]);
 
-  const isLogged = useSelector(selectIsLoggedIn);
+  
   return isRefreshingUser ? (
     <Loader />
   ) : (

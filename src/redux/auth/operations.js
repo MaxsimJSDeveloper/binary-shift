@@ -17,8 +17,7 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post("/auth/register", credentials);
-      setAuthHeader(res.data.token); // Додаємо токен до заголовків
-      return res.data; // Повертаємо всі дані з відповіді
+      return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -29,8 +28,10 @@ export const logIn = createAsyncThunk(
   "auth/login",
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post("/auth/login", credentials);
-      setAuthHeader(res.data.data.accessToken); // Встановлюємо токен в заголовок
+      const res = await axios.post("/auth/login", credentials, {
+        withCredentials: true,
+      });
+      setAuthHeader(res.data.data.accessToken);
       return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -41,7 +42,7 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
     await axios.post("/auth/logout");
-    clearAuthHeader(); // Очищуємо заголовок авторизації
+    clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -49,33 +50,39 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
-  async (_, thunkAPI) => {
-    const reduxState = thunkAPI.getState();
-    setAuthHeader(reduxState.auth.token); // Встановлюємо токен перед запитом
-    const res = await axios.get("/user");
-    return res.data.data;
+  async () => {
+    const { data } = await axios.post("/auth/refresh", null, {
+      withCredentials: true,
+    });
+    setAuthHeader(data.data.accessToken);
+    return data.data;
   },
   {
-    condition(_, thunkAPI) {
-      const reduxState = thunkAPI.getState();
-      return reduxState.auth.token !== null; // Перевіряємо, чи є токен
-    }
+    condition(_, { getState }) {
+      const state = getState();
+      return state.auth.token !== null && !state.auth.isRefreshing;
+    },
   }
 );
 
+export const logoutUser = createAsyncThunk("auth/logout", async () => {
+  const { data } = await axios.post("/auth/logout", null, {
+    withCredentials: true,
+  });
+  return data.data;
+});
 
 export const setInterceptors = () => {
-
   axios.interceptors.response.use(
     (response) => {
-      return response
-    }, error => {
+      return response;
+    },
+    (error) => {
       if (error.response && error.response.status === 401) {
         const navigate = useNavigate();
-        navigate('/signin');        
+        navigate("/signin");
       }
       return Promise.reject(error);
     }
   );
-
-}
+};

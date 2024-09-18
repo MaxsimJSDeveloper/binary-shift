@@ -220,6 +220,7 @@ export default function UserSettingsForm({ onClose }) {
                     name="email"
                     id={`${fieldId}-email`}
                     placeholder="Enter your email"
+                    autoComplete="email"
                   />
                   <ErrorMessage
                     name="email"
@@ -243,6 +244,7 @@ export default function UserSettingsForm({ onClose }) {
                         name="password"
                         id={`${fieldId}-password`}
                         placeholder="Password"
+                        autoComplete="current-password"
                       />
                       <button
                         className={css.user_form_input_button}
@@ -281,6 +283,7 @@ export default function UserSettingsForm({ onClose }) {
                         name="newPassword"
                         id={`${fieldId}-newPassword`}
                         placeholder="Password"
+                        autoComplete="new-password"
                       />
                       <button
                         className={css.user_form_input_button}
@@ -318,6 +321,7 @@ export default function UserSettingsForm({ onClose }) {
                         name="repeatNewPassword"
                         id={`${fieldId}-repeatNewPassword`}
                         placeholder="Password"
+                        autoComplete="new-password"
                       />
                       <button
                         className={css.user_form_input_button}

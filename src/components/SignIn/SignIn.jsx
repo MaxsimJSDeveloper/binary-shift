@@ -67,6 +67,7 @@ export default function SignIn() {
                 className={`${css.field} ${
                   touched.email && errors.email ? css.error : ""
                 }`}
+                autoComplete="email"
               />
               <ErrorMessage
                 name="email"
@@ -85,6 +86,7 @@ export default function SignIn() {
                   className={`${css.field} ${
                     touched.password && errors.password ? css.error : ""
                   }`}
+                  autoComplete="password"
                 />
                 <svg className={css.eyeIcon} onClick={togglePasswordVisibility}>
                   <use

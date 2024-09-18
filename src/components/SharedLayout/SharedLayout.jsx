@@ -1,11 +1,10 @@
-import Header from "../Header/Header"
-import css from "./SharedLayout.module.css"
+import Header from "../Header/Header";
 
-export default function SharedLayout({children}){
-    return(
-        <div className={css.box} >
-        <Header/>
-        {children}
-        </div>
-    )
+export default function SharedLayout({ children }) {
+  return (
+    <div>
+      <Header />
+      {children}
+    </div>
+  );
 }

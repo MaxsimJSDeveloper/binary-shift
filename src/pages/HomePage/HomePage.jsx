@@ -5,7 +5,6 @@ import { selectError } from "../../redux/water/selectors";
 
 import TodayWaterList from "../../components/TodayWaterList/TodayWaterList";
 import MonthStatsTable from "../../components/MonthStatsTable/MonthStatsTable";
-// import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 import DailyNorma from "../../components/DailyNorma/DailyNorma";
 import css from "./HomePage.module.css";
 import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";

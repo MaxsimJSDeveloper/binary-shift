@@ -3,11 +3,10 @@ import sprite from "../../img/symbol-defs.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function WaterConsumptionTracker() {
-  const navigate = useNavigate(); // Хук для навигації по маршрутам
+  const navigate = useNavigate();
 
-  // обрробка кліку по кнопці
   const handleButtonClick = () => {
-    navigate("/signup"); // редірект
+    navigate("/signup");
   };
 
   return (

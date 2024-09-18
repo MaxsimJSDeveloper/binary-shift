@@ -19,8 +19,7 @@ export default function UserLogo() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
-  const [isLogoutModal, setIsLogoutModal] = useState(false); // resolved variable name
-
+  const [isLogoutModal, setIsLogoutModal] = useState(false);
   const handleButtonClick = () => {
     setIsModalOpen((prevState) => !prevState);
   };
@@ -65,13 +64,12 @@ export default function UserLogo() {
   const avatarUrl = user?.photo;
   const initials = getInitials(user?.name, user?.email);
 
-  if (isSettingModalOpen||isLogoutModal) {
-  document.body.style.overflow="hidden"
+  if (isSettingModalOpen || isLogoutModal) {
+    document.body.style.overflow = "hidden";
   }
-  if (!isSettingModalOpen&&!isLogoutModal) {
-  document.body.style.overflow="auto"
-}
-
+  if (!isSettingModalOpen && !isLogoutModal) {
+    document.body.style.overflow = "auto";
+  }
 
   return (
     <div>

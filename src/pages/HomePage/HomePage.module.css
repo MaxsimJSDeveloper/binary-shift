@@ -1,8 +1,3 @@
-/* .section {
-    padding-top: 80px;
-    padding-bottom: 54px;
-} */
-
 .container {
   margin: 0 auto;
   padding: 0px 0px;
@@ -11,14 +6,12 @@
 @media only screen and (max-width: 767px) {
   .container {
     margin: 0 auto;
-    /* max-width: 320px; */
     padding: 0px 20px;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .container {
-    /* max-width: 768px; */
     padding: 0px 32px;
   }
 }
@@ -31,8 +24,6 @@
     padding: 0px 112px;
   }
 }
-
-/* background */
 
 @media (max-width: 767px) {
   .background {
@@ -96,10 +87,7 @@
   }
 }
 
-/* My daily norma and progressbar */
-
 .firstSection {
-  /* padding-top: 24px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -109,17 +97,8 @@
 @media only screen and (min-width: 768px) {
   .firstSection {
     gap: 500px;
-    /* padding-top: 40px; */
   }
 }
-
-@media only screen and (min-width: 1440px) {
-  .firstSection {
-    /* padding-top: 52px; */
-  }
-}
-
-/* Calendar */
 
 .containerProgressWrapper {
   padding: 40px 0px;

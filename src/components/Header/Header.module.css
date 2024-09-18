@@ -11,16 +11,8 @@
 @media screen and (min-width: 768px) {
   .header {
     min-width: 768px;
-    /* padding: 16px 32px; */
   }
   .signIn {
     font-size: 18px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .header {
-    min-width: 1440px;
-    /* padding: 12px 112px; */
   }
 }

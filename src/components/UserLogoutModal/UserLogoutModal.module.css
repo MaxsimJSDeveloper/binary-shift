@@ -9,14 +9,12 @@
   width: 232px;
   height: 196px;
   margin: 0 auto;
-  /* padding: 32px 24px; */
   background: var(--primery-color-white);
   border-radius: 10px;
 }
 
 .log_out_title {
   color: var(--primery-color-black);
-  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 26px;
   font-weight: 500;
@@ -27,7 +25,6 @@
 .logout_confirm {
   width: 100%;
   color: var(--primery-color-black);
-  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 17px;
   line-height: 1.11;
@@ -43,7 +40,6 @@
 }
 
 .logout_btn {
-  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
@@ -59,7 +55,6 @@
 }
 
 .cancel_btn {
-  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
@@ -69,7 +64,6 @@
   width: 232px;
   height: 36px;
   padding: 8px 30px;
-  cursor: pointer;
   border: none;
   border-radius: 10px;
 }

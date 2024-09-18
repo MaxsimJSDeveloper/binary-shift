@@ -97,12 +97,12 @@ function AddWaterForm({ onClose, water = 0, currentTime }) {
     }
 
     const year = new Date().getFullYear();
-    const monthNumber = new Date().getMonth()+1;
+    const monthNumber = new Date().getMonth() + 1;
     const formatMonth = monthNumber.toString().padStart(2, "0");
     const day = new Date().getDate();
     const formatDay = day.toString().padStart(2, "0");
     const formatTime = time.toString().padStart(5, "0");
-    const month = new Date().toLocaleString('en-Us', { month: 'long' });
+    const month = new Date().toLocaleString("en-Us", { month: "long" });
 
     const date = new Date(
       `${year}-${formatMonth}-${formatDay}T${formatTime}:00`
@@ -185,7 +185,7 @@ function AddWaterForm({ onClose, water = 0, currentTime }) {
           <p className={css.textamuont}>{amountWater}ml</p>
           {isLoading && <Loader />}
           <button className={css.submitbtn} type="submit">
-            Save 
+            Save
           </button>
         </div>
       </form>

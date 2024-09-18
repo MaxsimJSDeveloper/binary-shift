@@ -1,5 +1,3 @@
-// При вызове компонента передать пропс onClose и id
-
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import css from "./DeleteEntryModal.module.css";
@@ -9,16 +7,14 @@ import { fetchMonthWater } from "../../redux/month/operations";
 import { selectIsLoading } from "../../redux/today/selectors";
 import Loader from "../Loader/Loader";
 
-
 const notifySuccess = () => toast.success("Successfully deleted!");
 const notifyError = () => toast.error("Oops, something went wrong");
 
 export default function DeleteEntryModal({ onClose, id }) {
   const dispatch = useDispatch();
-  const month = new Date().toLocaleString('en-Us', { month: 'long' });
+  const month = new Date().toLocaleString("en-Us", { month: "long" });
   const year = new Date().getFullYear();
   const isLoading = useSelector(selectIsLoading);
-
 
   function handleDelete() {
     dispatch(deleteWater(id))

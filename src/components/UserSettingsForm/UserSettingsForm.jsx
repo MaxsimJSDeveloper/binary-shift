@@ -29,7 +29,6 @@ const validationSchema = Yup.object({
 
 export default function UserSettingsForm({ onClose }) {
   const user = useSelector(selectUser);
-  const [isSubmitting, setSubmitting] = useState(false);
   const [showOutdatedpassword, setShowOutdatedpassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatNewPassword, setShowRepeatNewPassword] = useState(false);
@@ -64,10 +63,11 @@ export default function UserSettingsForm({ onClose }) {
   };
 
   const handleUploadPhoto = async (file) => {
-    if (!file) return;
+    const fileToUpload = file || selectedFile;
+    if (!fileToUpload) return;
 
     const formData = new FormData();
-    formData.append("avatar", file);
+    formData.append("avatar", fileToUpload);
 
     setIsUploading(true);
 

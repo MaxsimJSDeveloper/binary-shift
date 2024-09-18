@@ -10,7 +10,6 @@
 .heading {
   font-size: 24px;
   font-weight: bold;
-  font-family: Roboto;
   margin-bottom: 16px;
   text-align: left;
   color: #2f2f2f;
@@ -26,7 +25,6 @@
   font-size: 18px;
   color: #2f2f2f;
   margin-bottom: 8px;
-  font-weight: 400;
 }
 
 .field {
@@ -39,23 +37,22 @@
   border: 1px solid #e6e6e6;
   border-radius: 6px;
   margin-top: 8px;
-  font-weight: 400;
-  transition: border-color 0.3s ease; /* Додаємо плавний перехід при зміні кольору рамки */
+  transition: border-color 0.3s ease;
   color: #407bff;
 }
+
 .field:focus {
-  outline: none; /* Прибирає чорну жирну підсвітку */
-  box-shadow: 0 0 4px rgba(64, 123, 255, 0.5); /* Додає легку тінь для кращої видимості */
+  outline: none;
+  box-shadow: 0 0 4px rgba(64, 123, 255, 0.5);
 }
 
-/* Стили для поля з помилкою */
 .field.error {
-  border-color: #ff4d4d; /* Червоний колір рамки при помилці */
+  border-color: #ff4d4d;
 }
 
 .field.error:focus {
-  border-color: #ff4d4d; /* Залишає червоний колір рамки при фокусі, якщо є помилка */
-  box-shadow: none; /* Прибирає тінь при помилці */
+  border-color: #ff4d4d;
+  box-shadow: none;
 }
 
 .error {
@@ -66,11 +63,10 @@
 .btn {
   background-color: #007bff;
   color: white;
-  padding: 8px 30px 8px 30px;
+  padding: 8px 30px;
   border: none;
   border-radius: 10px;
   font-size: 16px;
-  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
@@ -96,19 +92,19 @@
 
 .field {
   width: 100%;
-  padding-right: 36px; /* Простір для іконки */
+  padding-right: 36px;
 }
 
 .eyeIcon {
   position: absolute;
-  right: 11px; /* Відступ 11px від правої межі */
-  top: 16px; /* Відступ 14px від верхньої межі */
-  bottom: 16px; /* Відступ 18px від нижньої межі */
+  right: 11px;
+  top: 16px;
+  bottom: 16px;
   width: 24px;
   height: 24px;
   cursor: pointer;
-  stroke: #407bff; /* Колір ліній іконки */
-  fill: white; /* Білий фон для іконки */
+  stroke: #407bff;
+  fill: white;
 }
 
 @media (max-width: 767px) {
@@ -124,13 +120,8 @@
 @media (min-width: 768px) {
   .form {
     max-width: 336px;
-    margin-left: 32px;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 40px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
+    margin: 0 0 0 32px;
+    padding: 40px 0 0 0;
   }
   .label {
     margin-bottom: 0px;

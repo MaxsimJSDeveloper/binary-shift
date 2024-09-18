@@ -1,20 +1,24 @@
 import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { refreshUser, setInterceptors } from "./redux/auth/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { lazy, Suspense, useEffect } from "react";
 import { selectIsLoggedIn, selectIsRefreshing } from "./redux/auth/selectors";
 import Loader from "./components/Loader/Loader";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
-import RedirectPage from "./pages/RedirectPage/RedirectPage";
 import { Toaster } from "react-hot-toast";
 
 const MainPage = lazy(() => import("../src/pages/MainPage/MainPage"));
 const HomePage = lazy(() => import("../src/pages/HomePage/HomePage"));
 const SignUp = lazy(() => import("../src/pages/SignUpPage/SignUpPage"));
 const SignIn = lazy(() => import("../src/pages/SignInPage/SignInPage"));
+const NotFoundPage = lazy(() =>
+  import("../src/pages/NotFoundPage/NotFoundPage")
+);
+const RedirectPage = lazy(() =>
+  import("../src/pages/RedirectPage/RedirectPage")
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -23,10 +27,9 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshUser());
-    setInterceptors();    
+    setInterceptors();
   }, [dispatch]);
 
-  
   return isRefreshingUser ? (
     <Loader />
   ) : (

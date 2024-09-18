@@ -1,16 +1,10 @@
-// При вызове компонента передать пропс onClose
-// <TodayWaterList onClose={handleCloseModal} />
-
 import { useEffect, useState } from "react";
 
 import css from "../TodayListModal/TodayListModal.module.css";
 import AddWaterForm from "../AddWaterForm/AddWaterForm";
 
-
 function TodayListModal({ onClose }) {
-  // function TodayWaterList({ onClose }) {
   const [time, setTime] = useState("");
-
 
   useEffect(() => {
     const now = new Date();

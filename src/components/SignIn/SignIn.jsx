@@ -10,7 +10,6 @@ import sprite from "../../img/symbol-defs.svg";
 import { selectIsLoading } from "../../redux/users/selectors";
 import Loader from "../Loader/Loader";
 
-
 export default function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,7 +32,7 @@ export default function SignIn() {
   const handleSubmit = (values, actions) => {
     dispatch(logIn(values))
       .unwrap()
-      .then((data) => {
+      .then(() => {
         toast.success("Login successful!");
         navigate("/home");
       })

@@ -7,9 +7,13 @@ import EditTodayListModal from "../EditTodayListModal/EditTodayListModal";
 import DeleteEntryModal from "../DeleteEntryModal/DeleteEntryModal";
 import Modal from "../Modal/Modal";
 import TodayListModal from "../TodayListModal/TodayListModal";
-import {updateWater} from "../../redux/water/operations";
+import { updateWater } from "../../redux/water/operations";
 import { getWaterToday } from "../../redux/today/operations";
-import { selectEntriesToday, selectIsLoading, selectError } from "../../redux/today/selectors";
+import {
+  selectEntriesToday,
+  selectIsLoading,
+  selectError,
+} from "../../redux/today/selectors";
 import Loader from "../Loader/Loader";
 
 const TodayWaterList = () => {
@@ -22,10 +26,8 @@ const TodayWaterList = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [waterEntry, setWaterEntry] = useState(null);
 
-  
-
   useEffect(() => {
-    dispatch(getWaterToday());   
+    dispatch(getWaterToday());
   }, [dispatch]);
 
   const addWaterModal = () => {
@@ -43,13 +45,12 @@ const TodayWaterList = () => {
     setIsDeleteModalOpen(true);
   };
 
-if (isModalOpen||isEditModalOpen||isDeleteModalOpen) {
-  document.body.style.overflow="hidden"
+  if (isModalOpen || isEditModalOpen || isDeleteModalOpen) {
+    document.body.style.overflow = "hidden";
   }
-  if (!isModalOpen&&!isEditModalOpen&&!isDeleteModalOpen) {
-  document.body.style.overflow="auto"
-}
-  
+  if (!isModalOpen && !isEditModalOpen && !isDeleteModalOpen) {
+    document.body.style.overflow = "auto";
+  }
 
   return (
     <div className={css.section}>
@@ -61,7 +62,7 @@ if (isModalOpen||isEditModalOpen||isDeleteModalOpen) {
           {Array.isArray(dailyWaterList) && dailyWaterList.length === 0 ? (
             <p className={css.listMessage}>No notes yet</p>
           ) : (
-            dailyWaterList.map(entry => (
+            dailyWaterList.map((entry) => (
               <li key={entry._id} className={css.item}>
                 <div className={css.waterOptions}>
                   <svg width={36} height={36} className={css.icon}>
@@ -69,7 +70,10 @@ if (isModalOpen||isEditModalOpen||isDeleteModalOpen) {
                   </svg>
                   <span className={css.waterAmount}>{entry.volume} ml</span>
                   <span className={css.waterTime}>
-                    {new Date(entry.date).toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'})}
+                    {new Date(entry.date).toLocaleTimeString("uk-UA", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                   </span>
                 </div>
                 <div className={css.buttonsWrapper}>
@@ -95,27 +99,34 @@ if (isModalOpen||isEditModalOpen||isDeleteModalOpen) {
           Add water
         </button>
       </div>
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <TodayListModal
-            onClose={() => setIsModalOpen(false)}
-          />
-        </Modal>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <TodayListModal onClose={() => setIsModalOpen(false)} />
+      </Modal>
       {isEditModalOpen && (
-        <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
-        <EditTodayListModal
-        onUpdate={updateWater}
-        onClose={() => setIsEditModalOpen(false)}
-        id={waterEntry?._id}
-        time={new Date(waterEntry.date).toLocaleTimeString('uk-UA',{hour:'2-digit',minute:'2-digit'})}
-        amountWater={waterEntry?.volume}
+        <Modal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+        >
+          <EditTodayListModal
+            onUpdate={updateWater}
+            onClose={() => setIsEditModalOpen(false)}
+            id={waterEntry?._id}
+            time={new Date(waterEntry.date).toLocaleTimeString("uk-UA", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+            amountWater={waterEntry?.volume}
           />
         </Modal>
       )}
       {isDeleteModalOpen && (
-        <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
-        <DeleteEntryModal
-        onClose={() => setIsDeleteModalOpen(false)}
-        id={waterEntry?._id}
+        <Modal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+        >
+          <DeleteEntryModal
+            onClose={() => setIsDeleteModalOpen(false)}
+            id={waterEntry?._id}
           />
         </Modal>
       )}

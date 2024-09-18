@@ -7,7 +7,6 @@
 
   .component {
     padding: 0 20px;
-    font-family: "Roboto";
   }
 
   .header {
@@ -38,10 +37,6 @@
     gap: 16px;
   }
 
-  /* .trackerItemAdd {
-    padding: 22px 0;
-  } */
-
   .icon {
     width: 32px;
     height: 32px;
@@ -62,16 +57,11 @@
   }
 }
 
-/* Tablet styles (min-width: 768px) */
 @media (min-width: 768px) {
   .background {
     min-width: 768px;
     padding: 0 32px;
   }
-
-  /* .wrap {
-    width: 768px;
-  } */
 
   .header {
     padding-top: 40px;
@@ -119,7 +109,6 @@
   }
 }
 
-/* Desktop styles (min-width: 1440px) */
 @media (min-width: 1440px) {
   .background {
     padding-left: 216px;

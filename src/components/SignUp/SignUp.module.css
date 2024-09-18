@@ -1,6 +1,5 @@
 .form {
   max-width: 280px;
-  /* margin: 50px auto; */
   padding: 20px;
   text-align: left;
   background-color: none;
@@ -30,64 +29,57 @@
 
 .field {
   width: 100%;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 12px 10px;
   font-size: 16px;
   border: 1px solid #e6e6e6;
   border-radius: 6px;
   margin-top: 8px;
   font-weight: 400;
-  position: relative; /* Додаємо для позиціонування іконки */
-  transition: border-color 0.3s ease; /* Додаємо плавний перехід при зміні кольору рамки */
+  position: relative;
+  transition: border-color 0.3s ease;
   color: #407bff;
 }
 
 .field:focus {
-  outline: none; /* Прибирає стандартну підсвітку браузера */
-  border-color: #407bff; /* Змінює колір рамки при фокусі */
-  box-shadow: 0 0 4px rgba(64, 123, 255, 0.5); /* Додає легку тінь для кращої видимості */
+  outline: none;
+  border-color: #407bff;
+  box-shadow: 0 0 4px rgba(64, 123, 255, 0.5);
 }
 
-/* Стили для поля з помилкою */
 .field.error {
-  border-color: #ff4d4d; /* Червоний колір рамки при помилці */
+  border-color: #ff4d4d;
 }
 
 .field.error:focus {
-  border-color: #ff4d4d; /* Залишає червоний колір рамки при фокусі, якщо є помилка */
-  box-shadow: none; /* Прибирає тінь при помилці */
+  border-color: #ff4d4d;
+  box-shadow: none;
 }
 
-/* Обгортка для полів з паролем і іконкою */
 .passwordWrapper {
-  position: relative; /* Для позиціонування іконки всередині поля */
+  position: relative;
 }
 
-/* Іконка очей */
 .eyeIcon {
   position: absolute;
-  top: 14px; /* Відстань від верхньої межі поля вводу */
+  top: 14px;
   bottom: 18px;
-  right: 11px; /* Відстань від правої межі поля вводу */
+  right: 11px;
   width: 24px;
   height: 24px;
   cursor: pointer;
-  stroke: #407bff; /* Колір лінії */
-  fill: white; /* Колір фону іконки */
+  stroke: #407bff;
+  fill: white;
 }
 
-/* Класи для помилки */
 .error {
-  color: #ff4d4d; /* Червоний колір для тексту помилки */
+  color: #ff4d4d;
   font-size: 14px;
 }
 
 .btn {
   background-color: #007bff;
   color: white;
-  padding: 8px 30px 8px 30px;
+  padding: 8px 30px;
   border: none;
   border-radius: 10px;
   font-size: 16px;
@@ -112,13 +104,8 @@
 
 @media (max-width: 767px) {
   .form {
-    margin-top: 0;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 0;
+    margin: 0 20px;
     padding-top: 24px;
-    padding-left: 0;
-    padding-right: 0;
     padding-bottom: 0;
   }
   .label {
@@ -132,10 +119,7 @@
   .form {
     max-width: 336px;
     margin-left: 32px;
-    padding-top: 40px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
+    padding: 40px 0 0 0;
   }
   .label {
     margin-bottom: 0px;

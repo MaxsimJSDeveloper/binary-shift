@@ -13,6 +13,10 @@ export default function Loader() {
         wrapperStyle={{}}
         wrapperClass=""
       />
+      <p>
+        WARNING server is deployed on a free host, so the first download takes
+        time
+      </p>
     </div>
   );
 }
